@@ -3,13 +3,14 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const autoprefixer = require('autoprefixer')
 
 const appDirectory = fs.realpathSync(process.cwd());
+
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./public/index.html",
   filename: "./index.html"
 });
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: `${appDirectory}/dist`,
     publicPath: '/',
@@ -20,11 +21,16 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
 
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: 'awesome-typescript-loader'
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -34,7 +40,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
-          { 
+          {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
