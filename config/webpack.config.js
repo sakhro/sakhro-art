@@ -1,17 +1,12 @@
 const fs = require('fs');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const autoprefixer = require('autoprefixer')
-const path = require('path');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 const appDirectory = fs.realpathSync(process.cwd());
 
-const htmlPlugin = new HtmlWebPackPlugin({
-  template: "./public/index.html",
-  filename: "./index.html"
-});
-
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: `${appDirectory}/dist`,
     publicPath: '/',
@@ -22,20 +17,18 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: [".ts", ".tsx", ".js", ".json"],
+    plugins: [
+      new TsConfigPathsPlugin()
+    ]
   },
 
   module: {
     rules: [
-      // {
-      //   test: /\.tsx?$/,
-      //   loader: 'awesome-typescript-loader',
-      // },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      },
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.css$/,
         use: [
@@ -67,5 +60,10 @@ module.exports = {
     ]
   },
 
-  plugins: [htmlPlugin]
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html"
+    })
+  ]
 };

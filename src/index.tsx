@@ -4,19 +4,17 @@ import { IntlProvider } from 'react-intl'
 
 import { App } from 'components'
 
-import { language, messages } from 'config/i18n'
+import { language, messages } from './config/i18n'
 
-// declare global {
-//   interface Window { intl: any; }
-// }
-
-// let app: JSX.Element
+declare global {
+  interface Window { intl: any; }
+}
 
 if (!window.intl) {
-  require.ensure([
+  (require as  any).ensure([
     'intl',
     'intl/locale-data/jsonp/en.js',
-  ], (require) => {
+  ], (require: any) => {
     require('intl');
     require('intl/locale-data/jsonp/en.js');
 

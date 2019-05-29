@@ -9,7 +9,7 @@ const defaultMessage = `
 
 class App extends React.Component {
   state = {
-    name: 'Eric',
+    name: 'Sava',
     unreadCount: 1000,
   };
 
@@ -28,4 +28,4 @@ class App extends React.Component {
   }
 }
 
-export default ReactIntl.injectIntl(App)
+export default ReactIntl.injectIntl(App as any)
