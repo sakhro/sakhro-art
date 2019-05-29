@@ -1,3 +1,25 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"]
+  "presets": [
+    "babel-plugin-styled-components"
+  ],
+  "plugins": [
+    [
+      "react-intl",
+      {
+        "messagesDir": "./build/messages",
+        "enforceDescriptions": false
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "components": "./src/components",
+          "config": "./srr/config",
+          "static": "./static",
+        }
+      }
+    ]
+  ]
 }
