@@ -2,11 +2,6 @@ const fs = require('fs');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const autoprefixer = require('autoprefixer')
 const path = require('path');
-// This helper function is not strictly necessary.
-// I just don't like repeating the path.join a dozen times.
-function srcPath(subdir) {
-    return path.resolve(__dirname, subdir);
-}
 
 const appDirectory = fs.realpathSync(process.cwd());
 
@@ -16,7 +11,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './src/index.js',
   output: {
     path: `${appDirectory}/dist`,
     publicPath: '/',
@@ -27,19 +22,19 @@ module.exports = {
   },
 
   resolve: {
-    alias: {
-      components: srcPath('/src/components/'),
-      config: srcPath('/src/config/'),
-      static: srcPath('/static/'),
-    },
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
   },
 
   module: {
     rules: [
+      // {
+      //   test: /\.tsx?$/,
+      //   loader: 'awesome-typescript-loader',
+      // },
       {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
       {
         test: /\.css$/,

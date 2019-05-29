@@ -28,4 +28,4 @@ class App extends React.Component {
   }
 }
 
-export default ReactIntl.injectIntl(App as any)
+export default ReactIntl.injectIntl(App)
