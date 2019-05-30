@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const autoprefixer = require('autoprefixer')
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
@@ -27,7 +28,10 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: "awesome-typescript-loader"
+        loader: "awesome-typescript-loader",
+        options: {
+          getCustomTransformers: path.join(__dirname, './webpack.ts-transformers.js')
+        }
       },
       {
         enforce: "pre",

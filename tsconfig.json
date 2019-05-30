@@ -1,23 +1,24 @@
 {
   "compilerOptions": {
-      "outDir": "./dist/",
-      "sourceMap": true,
-      "noImplicitAny": true,
-      "module": "commonjs",
-      "target": "es6",
-      "jsx": "react",
-      "baseUrl": ".",
-      "esModuleInterop": true, // Allow default imports from the lib
-      "paths": {
-        "@static/*": [
-          "./static/*"
-        ],
-        "@*": [
-          "src/*"
-        ],
-      }  
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "esModuleInterop": true, // Allow default imports from the lib
+    "paths": {
+      "@static/*": [
+        "./static/*"
+      ],
+      "@*": [
+        "src/*"
+      ],
+    }
   },
   "include": [
-      "./src/**/*"
+    "./src/**/*"
   ]
 }
