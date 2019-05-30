@@ -1,31 +1,16 @@
-import * as React from 'react';
-import * as ReactIntl from 'react-intl';
+import React, { lazy, Suspense } from 'react';
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 
-const defaultMessage = `
-  Hello {name}, you have {unreadCount, number} {unreadCount, plural,
-  one {message}
-  other {messages}
-}`
+import { HOME } from '@constants/url'
 
-class App extends React.Component {
-  state = {
-    name: 'Sava',
-    unreadCount: 1000,
-  };
+const HomePage = lazy(() => import('@routes/HomePage'));
 
-  render() {
-    const { name, unreadCount } = this.state;
-
-    return (
-      <p>
-        <ReactIntl.FormattedMessage
-          id="helloWorld"
-          defaultMessage={defaultMessage}
-          values={{ name: <b>{name}</b>, unreadCount }}
-        />
-      </p>
-    );
-  }
-}
-
-export default ReactIntl.injectIntl(App as any)
+export const App = () => (
+  <BrowserRouter>
+    <Suspense fallback={null}>
+      <Switch>
+        <Route exact component={HomePage} path={HOME} />
+      </Switch>
+    </Suspense>
+  </BrowserRouter>
+)

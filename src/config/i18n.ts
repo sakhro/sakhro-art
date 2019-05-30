@@ -1,9 +1,20 @@
 import { addLocaleData } from 'react-intl';
 
-import * as en from 'react-intl/locale-data/en';
+import en from 'react-intl/locale-data/en';
 
 // Our translated strings
-import localeData from '../../static/locale';
+import localeData from '@static/locale';
+
+// Polyfill for safary
+if (!window.intl) {
+  (require as any).ensure([
+    'intl',
+    'intl/locale-data/jsonp/en.js',
+  ], (require: any) => {
+    require('intl');
+    require('intl/locale-data/jsonp/en.js');
+  });
+}
 
 addLocaleData([...en]);
 

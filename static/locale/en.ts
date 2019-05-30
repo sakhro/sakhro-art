@@ -1,3 +1,3 @@
 export const en = {
-  'helloWorld': 'Hello {name} {unreadCount}!'
+  'helloWorld': 'Hello {name}!'
 }
