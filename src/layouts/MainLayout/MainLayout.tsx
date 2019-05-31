@@ -1,17 +1,13 @@
-import React, { Fragment, FC } from 'react';
+import React, { FC, Fragment } from 'react';
 
-import { GlobalStyles } from '@styled'
+interface IProps { }
 
-interface IProps {
-}
-
-export const MainLayout: FC<IProps> = ({ 
-  children 
+export const MainLayout: FC<IProps> = ({
+  children
 }) => (
-  <Fragment>
-    <GlobalStyles />
-    <main>
-      {children}
-    </main>
-  </Fragment>
-)
+    <Fragment>
+      <main>
+        {children}
+      </main>
+    </Fragment>
+  )

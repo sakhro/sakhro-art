@@ -29,9 +29,6 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: "awesome-typescript-loader",
-        options: {
-          getCustomTransformers: path.join(__dirname, './webpack.ts-transformers.js')
-        }
       },
       {
         enforce: "pre",
