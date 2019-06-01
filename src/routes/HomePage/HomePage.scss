@@ -3,3 +3,9 @@
 .container {
   @include flex($direction: column);
 }
+
+.backgroundImg {
+  @include size(100%, 100vh);
+
+  object-fit: cover;
+}

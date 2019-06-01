@@ -1,11 +1,19 @@
-import React from 'react';
+import React from "react";
 
-import c from './HomePage.scss'
+import { Img } from "@components";
+
+import { HomeSM } from "@static/images";
+
+import c from "./HomePage.scss";
 
 export const HomePage = () => {
   return (
     <div className={c.container}>
-      ABCĆDEFGHIJKLMNOPQRSŠTUVWXYZŽ
+      <Img
+        src={HomeSM}
+        alt="Olesya Sakhro"
+        className={c.backgroundImg}
+      />
     </div>
   );
 };

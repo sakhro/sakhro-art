@@ -1,0 +1,1 @@
+export const HomeSM = require("./home-sm.jpg");

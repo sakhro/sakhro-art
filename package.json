@@ -12,6 +12,7 @@
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}' --fix --format verbose"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.8",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
     "@types/react-intl": "^2.3.17",
@@ -41,6 +42,7 @@
     "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "intl": "^1.2.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

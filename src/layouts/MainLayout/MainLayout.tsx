@@ -1,13 +1,16 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC, Fragment } from "react";
 
-import '@styles/app.scss'
+import { Header } from "@components";
+
+import "@styles/app.scss";
 
 interface IProps {}
 
-export const MainLayout: FC<IProps> = props => (
+export const MainLayout: FC<IProps> = (props) => (
     <Fragment>
+      <Header />
       <main>
         {props.children}
       </main>
     </Fragment>
-  )
+  );
