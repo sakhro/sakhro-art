@@ -81,8 +81,12 @@ module.exports = {
         use: getStyleLoaders({
           importLoaders: 2,
           modules: true,
-          getLocalIdent: getCSSModuleLocalIdent,
+          getLocalIdent: getCSSModuleLocalIdent
         }, 'sass-loader'),
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader']
       },
     ]
   },

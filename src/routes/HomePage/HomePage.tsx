@@ -4,8 +4,8 @@ import c from './HomePage.scss'
 
 export const HomePage = () => {
   return (
-    <p className={c.container}>
-      HomePage
-    </p>
+    <div className={c.container}>
+      ABCĆDEFGHIJKLMNOPQRSŠTUVWXYZŽ
+    </div>
   );
 };

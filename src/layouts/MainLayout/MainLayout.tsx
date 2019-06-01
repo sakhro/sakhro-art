@@ -1,13 +1,13 @@
 import React, { FC, Fragment } from 'react';
 
-interface IProps { }
+import '@styles/app.scss'
 
-export const MainLayout: FC<IProps> = ({
-  children
-}) => (
+interface IProps {}
+
+export const MainLayout: FC<IProps> = props => (
     <Fragment>
       <main>
-        {children}
+        {props.children}
       </main>
     </Fragment>
   )
