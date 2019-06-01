@@ -7,7 +7,9 @@
     "tsm": "tsm src -w",
     "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development",
     "dev": "concurrently --kill-others \"yarn webpack:dev\" \"yarn tsm\" ",
-    "build": "webpack --config ./config/webpack.config.js --mode production"
+    "build": "webpack --config ./config/webpack.config.js --mode production",
+    "lint": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}'",
+    "lint:fix": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}' --fix --format verbose"
   },
   "devDependencies": {
     "@types/react": "^16.8.19",
@@ -27,6 +29,10 @@
     "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
+    "tslint": "^5.17.0",
+    "tslint-consistent-codestyle": "^1.15.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^4.0.0",
     "typed-scss-modules": "^0.0.10",
     "typescript": "^3.5.1",
     "url-loader": "^1.1.2",
