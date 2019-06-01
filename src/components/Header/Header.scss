@@ -2,7 +2,7 @@
 
 .container {
   @include container;
-  @include size(auto, 50px);
+  @include size(auto, 60px);
   @include flex($align: center, $justify: space-between);
 
   border-left: 8px solid $color-secondary;

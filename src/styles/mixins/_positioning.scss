@@ -12,31 +12,37 @@
   display: $display;
 }
 
-@mixin position-variant($position, $args) {
+@mixin position-variant($position, $top, $right, $bottom, $left) {
+  position: $position;
+
+  $args: (
+    top: $top,
+    left: $left,
+    right: $right,
+    bottom: $bottom,
+  );
+
   @each $o in top right bottom left {
-    $i: index($args, $o);
-    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
-      #{$o}: nth($args, $i + 1);
+    $value: map-get($args, $o);
+    
+    @if $value {
+      #{$o}: $value
     }
   }
-  position: $position;
 }
 
-@mixin absolute($args: "") {
-  @include position-variant(absolute, $args);
+@mixin absolute($top: false, $right: false, $bottom: false, $left: false) {
+  @include position-variant(absolute, $top, $right, $bottom, $left);
 }
 
-@mixin fixed($args: "") {
-  @include position-variant(fixed, $args);
+@mixin fixed($top: false, $right: false, $bottom: false, $left: false) {
+  @include position-variant(fixed, $top, $right, $bottom, $left);
 }
 
-@mixin relative($args: "") {
-  @include position-variant(relative, $args);
+@mixin relative($top: false, $right: false, $bottom: false, $left: false) {
+  @include position-variant(relative, $top, $right, $bottom, $left);
 }
 
-@mixin sticky($args: "") {
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
-  @include position-variant(sticky, $args);
+@mixin sticky($top: false, $right: false, $bottom: false, $left: false) {
+  @include position-variant(sticky, $top, $right, $bottom, $left);
 }

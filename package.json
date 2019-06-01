@@ -5,11 +5,11 @@
   "license": "MIT",
   "scripts": {
     "tsm": "tsm src -w",
-    "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development",
     "dev": "concurrently --kill-others \"yarn webpack:dev\" \"yarn tsm\" ",
-    "build": "webpack --config ./config/webpack.config.js --mode production",
     "lint": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}'",
-    "lint:fix": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}' --fix --format verbose"
+    "build": "webpack --config ./config/webpack.config.js --mode production",
+    "lint:fix": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}' --fix --format verbose",
+    "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.8",
