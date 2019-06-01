@@ -1,10 +1,44 @@
 const fs = require('fs');
-const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const autoprefixer = require('autoprefixer')
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 
 const appDirectory = fs.realpathSync(process.cwd());
+
+// common function to get style loaders
+const getStyleLoaders = (cssOptions, preProcessor) => {
+  const loaders = [
+    require.resolve('style-loader'),
+    {
+      loader: require.resolve('css-loader'),
+      options: cssOptions,
+    },
+    {
+      // Options for PostCSS as we reference these options twice
+      // Adds vendor prefixing based on your specified browser support in
+      // package.json
+      loader: require.resolve('postcss-loader'),
+      options: {
+        // Necessary for external CSS imports to work
+        // https://github.com/facebook/create-react-app/issues/2677
+        ident: 'postcss',
+        plugins: () => [
+          require('postcss-flexbugs-fixes'),
+          require('postcss-preset-env')({
+            autoprefixer: {
+              flexbox: 'no-2009',
+            },
+            stage: 3,
+          }),
+        ],
+      },
+    },
+  ];
+  if (preProcessor) {
+    loaders.push(require.resolve(preProcessor));
+  }
+  return loaders;
+};
 
 module.exports = {
   entry: './src/index.tsx',
@@ -20,7 +54,8 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
     plugins: [
-      new TsConfigPathsPlugin() // To handle path modules
+      // To handle path modules
+      new TsConfigPathsPlugin()
     ]
   },
 
@@ -37,32 +72,18 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              module: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                autoprefixer({
-                  browsers: [
-                    ">1%",
-                    "last 2 version"
-                  ]
-                })
-              ]
-            }
-          }
-        ]
-      }
+        use: getStyleLoaders({
+          importLoaders: 1,
+        }),
+      },
+      {
+        test: /\.scss$/,
+        use: getStyleLoaders({
+          importLoaders: 2,
+          modules: true,
+          getLocalIdent: getCSSModuleLocalIdent,
+        }, 'sass-loader'),
+      },
     ]
   },
 

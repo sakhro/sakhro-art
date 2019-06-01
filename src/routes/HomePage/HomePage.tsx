@@ -1,9 +1,10 @@
 import React from 'react';
 
+import c from './HomePage.scss'
 
 export const HomePage = () => {
   return (
-    <p>
+    <p className={c.container}>
       HomePage
     </p>
   );
