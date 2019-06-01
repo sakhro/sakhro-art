@@ -43,6 +43,14 @@ $spacing-sizes: (
   8: 64px,
 );
 
+// POSITIONING
+$z-indexes: (
+  'modal',
+  'header',
+  'body',
+  'footer'
+);
+
 $typography: (
   base: (
     base: (
@@ -55,8 +63,9 @@ $typography: (
   ),
   h1: (
     base: (
+      font-family: $font-family-secondary,
       font-size: 46px,
-      font-weight: 500,
+      font-weight: 400,
       letter-spacing: 3px,
       line-height: 1.5
     )

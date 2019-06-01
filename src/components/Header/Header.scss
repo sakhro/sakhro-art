@@ -1,8 +1,9 @@
 @import 'src/styles/base';
 
 .container {
-  @include size(100%, 50px);
-  @include flex($align: center);
+  @include container;
+  @include size(auto, 50px);
+  @include flex($align: center, $justify: space-between);
 
   border-left: 8px solid $color-secondary;
 }

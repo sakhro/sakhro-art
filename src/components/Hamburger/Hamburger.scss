@@ -1,0 +1,29 @@
+@import 'src/styles/base';
+
+.container {
+  @include size(auto, 22px);
+  @include flex($direction: column, $justify: space-between, $align: flex-end);
+
+  border-radius: 100%;
+  background-color: transparent;
+  border: 0px;
+}
+
+.topBar,
+.middleBar,
+.bottomBar {
+  border-radius: 10px;
+  background-color: $color-white;
+}
+
+.topBar {
+  @include size(20px, 2px);
+}
+
+.middleBar {
+  @include size(26px, 2px);
+}
+
+.bottomBar {
+  @include size(17px, 2px);
+}

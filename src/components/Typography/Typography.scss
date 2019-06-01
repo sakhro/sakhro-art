@@ -1,0 +1,9 @@
+@import 'src/styles/base';
+
+.h1 {
+  @include font(h1);
+}
+
+.p {
+  @include font;
+}
