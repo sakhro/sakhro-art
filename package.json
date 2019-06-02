@@ -35,6 +35,7 @@
     "tslint-consistent-codestyle": "^1.15.1",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^4.0.0",
+    "tslint-react-hooks": "^2.1.0",
     "typed-scss-modules": "^0.0.10",
     "typescript": "^3.5.1",
     "url-loader": "^1.1.2",

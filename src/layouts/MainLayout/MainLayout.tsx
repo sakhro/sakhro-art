@@ -1,10 +1,10 @@
-import React, { FC, Fragment } from "react";
+import React, { FC, Fragment, memo } from "react";
 
 import { Footer, Header } from "@components";
 
 import "@styles/app.scss";
 
-export const MainLayout: FC = (props) => (
+export const MainLayout: FC = memo(props => (
     <Fragment>
       <Header />
       <main>
@@ -12,4 +12,4 @@ export const MainLayout: FC = (props) => (
       </main>
       <Footer />
     </Fragment>
-  );
+  ));

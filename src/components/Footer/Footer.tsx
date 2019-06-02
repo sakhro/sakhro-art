@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
-import { Typography, Button } from "@components";
+import { Button, Typography } from "@components";
 
 import c from "./Footer.scss";
 
-export const Footer = () => (
+export const Footer = memo(() => (
   <footer className={c.wrapper}>
     <div className={c.container}>
       <Typography>
@@ -20,4 +20,4 @@ export const Footer = () => (
       </Button>
     </div>
   </footer>
-);
+));

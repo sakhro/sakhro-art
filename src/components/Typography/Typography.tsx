@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React, { FC, useMemo } from "react";
+import React, { FC, memo, useMemo } from "react";
 
 import c from "./Typography.scss";
 
@@ -20,7 +20,7 @@ const classNames = {
   p: c.p,
 };
 
-export const Typography: FC<IProps> = props => {
+export const Typography: FC<IProps> = memo(props => {
   const Component = useMemo(() => (
     props.component || "p"
   ), [props.component]);
@@ -34,4 +34,4 @@ export const Typography: FC<IProps> = props => {
       {props.children}
     </Component>
   );
-};
+});

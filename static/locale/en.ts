@@ -1,3 +1,5 @@
 export const en = {
-  'helloWorld': 'Hello {name}!'
-}
+  history: "History",
+  home: "Home",
+  lookbook: "Lookbook",
+};

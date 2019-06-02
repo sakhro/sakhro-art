@@ -1,13 +1,13 @@
-import React, { lazy, Suspense } from 'react';
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import React, { lazy, memo, Suspense } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { MainLayout } from '@layouts/MainLayout'
+import { MainLayout } from "@layouts/MainLayout";
 
-import { HOME } from '@constants/url'
+import { HOME } from "@constants/url";
 
-const HomePage = lazy(() => import('@routes/HomePage'));
+const HomePage = lazy(() => import("@routes/HomePage"));
 
-export const App = () => (
+export const App = memo(() => (
   <BrowserRouter>
     <MainLayout>
       <Suspense fallback={null}>
@@ -17,4 +17,4 @@ export const App = () => (
       </Suspense>
     </MainLayout>
   </BrowserRouter>
-)
+));

@@ -1,12 +1,19 @@
-@import 'src/styles/base';
+@import "src/styles/base";
 
 .container {
   @include size(auto, 22px);
   @include flex($direction: column, $justify: space-between, $align: flex-end);
 
   border-radius: 100%;
-  background-color: transparent;
-  border: 0px;
+  transition: background-color 100ms ease-in-out;
+
+  &:hover {
+    .topBar,
+    .middleBar,
+    .bottomBar {
+      background-color: $color-secondary;
+    }
+  }
 }
 
 .topBar,

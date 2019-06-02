@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { Img } from "@components";
 
@@ -6,7 +6,7 @@ import { HomeSM } from "@static/images";
 
 import c from "./HomePage.scss";
 
-export const HomePage = () => (
+export const HomePage = memo(() => (
   <div className={c.container}>
     <Img
       src={HomeSM}
@@ -14,4 +14,4 @@ export const HomePage = () => (
       className={c.backgroundImg}
     />
   </div>
-);
+));

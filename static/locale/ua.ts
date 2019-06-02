@@ -1,3 +1,5 @@
 export const ua = {
-  'helloWorld': 'Привіт {name} {unreadCount}!'
-}
+  history: "Історія",
+  home: "Головна",
+  lookbook: "Лукбук",
+};

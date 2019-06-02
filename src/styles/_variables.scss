@@ -2,6 +2,8 @@
 $color-primary: #1a2a44;
 $color-secondary: #c05152;
 $color-white: #ffffff;
+$color-black: #000000;
+$color-dodger-blue: #2196F3;
 
 // TYPOGRAPHY
 $font-family-base: 'Lato', sans-serif;
@@ -46,9 +48,9 @@ $spacing-sizes: (
 // POSITIONING
 $z-indexes: (
   'modal',
+  'nav',
   'header',
   'body',
-  'footer'
 );
 
 $typography: (

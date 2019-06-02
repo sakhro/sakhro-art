@@ -1,0 +1,3 @@
+interface IExternalLink {
+  href: string;
+}

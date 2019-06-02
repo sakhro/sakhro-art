@@ -1,0 +1,13 @@
+@import 'src/styles/base';
+
+.container {
+  @include flex($align: center, $justify: center);
+  @include font($color: $color-white);
+  
+  text-decoration: none;
+  transition: color 100ms ease-in-out;
+
+  &:hover {
+    color: $color-secondary;
+  }
+}
