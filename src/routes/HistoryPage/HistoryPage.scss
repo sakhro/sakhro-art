@@ -1,0 +1,23 @@
+@import 'src/styles/base';
+
+.container {
+  @include flex($direction: column);
+}
+
+.title {
+  @include px(2);
+  @include mb(1);
+}
+
+.sakhroKenzoImg {
+  @include ml(2);
+}
+
+.parag {
+  @include px(2);
+  @include font($align: justify);
+}
+
+.olesyaSakhroImg {
+  @include mr(2);
+}

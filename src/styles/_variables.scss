@@ -5,12 +5,6 @@ $color-white: #ffffff;
 $color-black: #000000;
 $color-dodger-blue: #2196F3;
 
-// TYPOGRAPHY
-$font-family-base: 'Lato', sans-serif;
-$font-family-secondary: 'Bentham', serif;
-$font-size-base: 21px;
-$font-weight-base: normal;
-
 // GRID
 $grid-columns: 12;
 $grid-fluid: false;
@@ -53,6 +47,12 @@ $z-indexes: (
   'body',
 );
 
+// TYPOGRAPHY
+$font-family-base: 'Lato', sans-serif;
+$font-family-secondary: 'Bentham', serif;
+$font-size-base: 16px;
+$font-weight-base: normal;
+
 $typography: (
   base: (
     base: (
@@ -70,7 +70,7 @@ $typography: (
       font-weight: 400,
       letter-spacing: 3px,
       line-height: 1.5
-    )
+    ),
   ),
 )
 

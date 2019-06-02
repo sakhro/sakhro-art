@@ -1,11 +1,18 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { FC, memo, useCallback, useEffect, useState } from "react";
+import { RouteComponentProps } from "react-router";
 
 import { Hamburger, Nav, Typography } from "@components";
 
 import c from "./Header.scss";
 
-export const Header = memo(() => {
+export const Header: FC<RouteComponentProps> = memo(props => {
   const [isNavVisible, setIsNavVisible] = useState(false);
+
+  useEffect(() => {
+    if (props.location) {
+      closeNav();
+    }
+  }, [props.location]);
 
   const closeNav = useCallback(() => {
     setIsNavVisible(false);
