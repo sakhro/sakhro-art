@@ -8,4 +8,6 @@ export { Footer } from "./Footer";
 export { Hamburger } from "./Hamburger";
 export { RouterLink } from "./RouterLink";
 export { Typography } from "./Typography";
+export { ProductCard } from "./ProductCard";
+export { DotsPattern } from "./DotsPattern";
 export { ExternalLink } from "./ExternalLink";

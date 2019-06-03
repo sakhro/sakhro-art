@@ -4,6 +4,7 @@ $color-secondary: #c05152;
 $color-white: #ffffff;
 $color-black: #000000;
 $color-dodger-blue: #2196F3;
+$color-porcelain: #E2E8E8;
 
 // GRID
 $grid-columns: 12;
@@ -37,6 +38,8 @@ $spacing-sizes: (
   6: 48px,
   7: 56px,
   8: 64px,
+  9: 70px,
+  10: 78px,
 );
 
 // POSITIONING
@@ -68,8 +71,18 @@ $typography: (
       font-family: $font-family-secondary,
       font-size: 46px,
       font-weight: 400,
-      letter-spacing: 3px,
-      line-height: 1.5
+      letter-spacing: 2.5px,
+      line-height: 1.5,
+      text-transform: uppercase
+    ),
+  ),
+  h2: (
+    base: (
+      font-family: $font-family-secondary,
+      font-size: 36px,
+      font-weight: 400,
+      letter-spacing: 2px,
+      line-height: 1.4,
     ),
   ),
 )

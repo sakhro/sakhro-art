@@ -1,0 +1,14 @@
+@import "src/styles/base";
+
+.container {
+  @include absolute($top: -10%, $right: 0, $left: 0, $bottom: 50%);
+
+  opacity: 0.5;
+  z-index: -1;
+  background: transparent;
+  background-image:
+    radial-gradient($color-primary 20%, transparent 0), 
+    radial-gradient($color-primary 20%, transparent 0);
+  background-size: 14px 14px;
+  background-position: 0 0, 7px 7px;
+}

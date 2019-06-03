@@ -27,8 +27,8 @@ body {
   font-family: $font-family-base;
   font-size: $font-size-base;
   font-weight: $font-weight-base;
-  background-color: $color-primary;
-  color: $color-white;
+  color: $color-primary;
+  background: linear-gradient(90deg, $color-white 66%, $color-porcelain 33%);
 }
 
 /**

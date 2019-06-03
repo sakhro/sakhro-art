@@ -1,14 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { IntlProvider, InjectedIntlProps } from 'react-intl'
+import React from "react";
+import ReactDOM from "react-dom";
+import { InjectedIntlProps, IntlProvider } from "react-intl";
 
-import { App } from '@components'
+import { App } from "@components";
 
-import { language, messages } from '@config/i18n'
+import { language, messages } from "@config/i18n";
 
 declare global {
+  // tslint:disable-next-line:interface-name
   interface Window {
-    intl: InjectedIntlProps
+    intl: InjectedIntlProps;
   }
 }
 
@@ -16,6 +17,6 @@ const app = (
   <IntlProvider locale={language} messages={messages}>
     <App />
   </IntlProvider>
-)
+);
 
-ReactDOM.render(app, document.getElementById('root'))
+ReactDOM.render(app, document.getElementById("root"));

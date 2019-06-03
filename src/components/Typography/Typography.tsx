@@ -3,7 +3,7 @@ import React, { FC, memo, useMemo } from "react";
 
 import c from "./Typography.scss";
 
-type TextComponentType = "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+type TextComponentType = "p" | "h1" | "h2";
 
 interface IProps {
   component?: TextComponentType;
@@ -12,11 +12,7 @@ interface IProps {
 
 const classNames = {
   h1: c.h1,
-  h2: c.h1,
-  h3: c.h1,
-  h4: c.h1,
-  h5: c.h1,
-  h6: c.h1,
+  h2: c.h2,
   p: c.p,
 };
 
