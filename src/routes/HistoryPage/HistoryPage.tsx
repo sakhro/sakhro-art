@@ -18,28 +18,28 @@ const altText = defineMessages({
 
 const paragraphs1: any = defineMessages({
   parag1: {
-    id: "parag1",
+    id: "history.parag1",
   },
   parag2: {
-    id: "parag2",
+    id: "history.parag2",
   },
   parag3: {
-    id: "parag3",
+    id: "history.parag3",
   },
   parag4: {
-    id: "parag4",
+    id: "history.parag4",
   },
 });
 
 const paragraphs2: any = defineMessages({
   parag5: {
-    id: "parag5",
+    id: "history.parag5",
   },
   parag6: {
-    id: "parag6",
+    id: "history.parag6",
   },
   parag7: {
-    id: "parag7",
+    id: "history.parag7",
   },
 });
 

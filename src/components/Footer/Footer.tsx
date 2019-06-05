@@ -1,33 +1,27 @@
 import React, { FC, memo, useCallback } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { FormattedMessage } from "react-intl";
-import { RouteComponentProps } from "react-router";
 
 import { Button, Typography } from "@components";
 
-import { LOOKBOOK } from "@constants/url";
-
 import c from "./Footer.scss";
 
-export const Footer: FC<RouteComponentProps> = memo(props => {
-  const onLookbookClick = useCallback(() => {
-    props.history.push(LOOKBOOK);
-  }, []);
+interface IProps {
+  label: string;
+  onClick?: () => void;
+}
+export const Footer: FC<IProps> = memo(props => (
+  <footer className={c.wrapper}>
+    <div className={c.container}>
+      <Typography className={c.lookbook}>
+        {props.label}
+      </Typography>
 
-  return (
-    <footer className={c.wrapper}>
-      <div className={c.container}>
-        <Typography className={c.lookbook}>
-          <FormattedMessage id="lookbook" />
-        </Typography>
-
-        <Button
-          onClick={onLookbookClick}
-          className={c.button}
-        >
-          <IoIosArrowRoundForward className={c.arrowIcon} />
-        </Button>
-      </div>
-    </footer>
-  );
-});
+      <Button
+        onClick={props.onClick}
+        className={c.button}
+      >
+        <IoIosArrowRoundForward className={c.arrowIcon} />
+      </Button>
+    </div>
+  </footer>
+));
