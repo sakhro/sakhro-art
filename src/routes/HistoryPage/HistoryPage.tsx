@@ -1,7 +1,7 @@
 import React, { FC, memo, useCallback } from "react";
 import { defineMessages, FormattedMessage, InjectedIntlProps } from "react-intl";
 
-import { Img, Typography } from "@components";
+import { Img, PageTitle, Typography } from "@components";
 
 import { Kenzo, OlesyaSakhro } from "@static/images";
 
@@ -57,9 +57,9 @@ export const HistoryPage: FC<InjectedIntlProps> = memo(props => {
   ), [paragraphs2]);
 
   const renderTitle = useCallback(() => (
-    <Typography component="h1" className={c.title}>
+    <PageTitle>
       <FormattedMessage id="history" />
-    </Typography>
+    </PageTitle>
   ), []);
 
   const renderFirstImg = useCallback(() => (

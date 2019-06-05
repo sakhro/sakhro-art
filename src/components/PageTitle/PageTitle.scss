@@ -1,0 +1,6 @@
+@import 'src/styles/base';
+
+.container {
+  @include px(2);
+  @include mb(1);
+}

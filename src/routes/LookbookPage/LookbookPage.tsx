@@ -1,18 +1,15 @@
 import React, { FC, memo, useCallback } from "react";
 import { FormattedMessage, InjectedIntlProps } from "react-intl";
 
-import { ProductCard, Typography } from "@components";
+import { PageTitle, ProductCard } from "@components";
 
 import c from "./LookbookPage.scss";
 
 export const LookbookPage: FC<InjectedIntlProps> = memo(() => {
   const renderTitle = useCallback(() => (
-    <Typography
-      component="h1"
-      className={c.title}
-    >
+    <PageTitle>
       <FormattedMessage id="lookbook" />
-    </Typography>
+    </PageTitle>
   ), []);
 
   const renderProductCard = useCallback(() => (

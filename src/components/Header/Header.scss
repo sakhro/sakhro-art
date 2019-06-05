@@ -1,13 +1,27 @@
 @import 'src/styles/base';
 
+$header-height: 60px;
+
 .container {
   @include container;
-  @include size(auto, 60px);
+  @include size(auto, $header-height);
   @include z-index('header');
   @include fixed($top: 0, $left: 0, $right: 0);
-  @include flex($align: center, $justify: space-between);
+  @include flex($justify: space-between);
 
   color: $color-white;
+  overflow: hidden;
   background-color: $color-primary;
   border-left: 8px solid $color-secondary;
+}
+
+.primaryTitle,
+.primaryTitle {
+  @include m(0);
+  @include flex($align: center);
+  @include size(auto, $header-height);
+}
+
+.titleWrapper {
+  transition: transform 50ms;
 }

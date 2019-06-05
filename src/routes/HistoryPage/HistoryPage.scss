@@ -4,11 +4,6 @@
   @include flex($direction: column);
 }
 
-.title {
-  @include px(2);
-  @include mb(1);
-}
-
 .sakhroKenzoImg {
   @include ml(2);
 }

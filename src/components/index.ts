@@ -5,6 +5,7 @@ export { Link } from "./Link";
 export { Header } from "./Header";
 export { Button } from "./Button";
 export { Footer } from "./Footer";
+export { PageTitle } from "./PageTitle";
 export { Hamburger } from "./Hamburger";
 export { RouterLink } from "./RouterLink";
 export { Typography } from "./Typography";
