@@ -20,6 +20,8 @@ $header-height: 60px;
   @include m(0);
   @include flex($align: center);
   @include size(auto, $header-height);
+
+  text-transform: uppercase;
 }
 
 .titleWrapper {

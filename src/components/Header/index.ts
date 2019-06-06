@@ -1,5 +1,12 @@
-import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { pageTitleKeySelector } from "@redux/Global/Router/RouterSelectors";
 
 import { Header as View } from "./Header";
 
-export const Header = withRouter(View);
+const mapStateToProps = createStructuredSelector({
+  pageTitleKey: pageTitleKeySelector,
+});
+
+export const Header = connect(mapStateToProps)(View);

@@ -1,20 +1,26 @@
 import React, { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
-import { RouteComponentProps } from "react-router";
+import { FormattedMessage } from "react-intl";
 
 import { Hamburger, Nav, Typography } from "@components";
+
+import { PAGE_TITLE } from "@config/global";
 import { useScrollOffset } from "@services/hooks";
 
 import c from "./Header.scss";
 
-export const Header: FC<RouteComponentProps> = memo(props => {
+interface IProps {
+  pageTitleKey: string;
+}
+
+export const Header: FC<IProps> = memo(props => {
   const [isNavVisible, setIsNavVisible] = useState(false);
   const scrollOffset = useScrollOffset();
 
   useEffect(() => {
-    if (props.location) {
+    if (props.pageTitleKey) {
       closeNav();
     }
-  }, [props.location]);
+  }, [props.pageTitleKey]);
 
   const getTitlePosition = useMemo(() => {
     switch (true) {
@@ -45,13 +51,15 @@ export const Header: FC<RouteComponentProps> = memo(props => {
       style={titleWrapperStyles}
     >
       <Typography className={c.primaryTitle}>
-        OLESYA SAKHRO
+        {PAGE_TITLE}
       </Typography>
       <Typography className={c.primaryTitle}>
-        HISTORY
+        <FormattedMessage
+          id={props.pageTitleKey}
+        />
       </Typography>
     </div>
-  ), [titleWrapperStyles]);
+  ), [titleWrapperStyles, props.pageTitleKey]);
 
   const renderHamburger = useCallback(() => (
     <Hamburger onClick={openNav} />

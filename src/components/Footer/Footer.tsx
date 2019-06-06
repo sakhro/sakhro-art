@@ -1,4 +1,5 @@
-import React, { FC, memo, useCallback } from "react";
+import { CallHistoryMethodAction } from "connected-react-router";
+import React, { FC, memo } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
 import { Button, Typography } from "@components";
@@ -7,7 +8,7 @@ import c from "./Footer.scss";
 
 interface IProps {
   label: string;
-  onClick?: () => void;
+  onClick?: any;
 }
 export const Footer: FC<IProps> = memo(props => (
   <footer className={c.wrapper}>

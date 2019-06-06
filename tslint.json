@@ -8,6 +8,7 @@
   ],
   "rules": {
     "arrow-parens": [2, "as-needed"],
-    "jsx-boolean-value": ["never"]
+    "jsx-boolean-value": ["never"],
+    "no-shadowed-variable": false
   }
 }

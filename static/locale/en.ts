@@ -11,7 +11,7 @@ export const en = {
   "history.parag7": "As her clients are saying: a diamond cannot be described, you need to hold it in your hands and examine it from every side. As such, Olesia Sakhro’s products are every woman’s desire...",
   "home": "Home",
   "lookbook": "Lookbook",
+  "missing": "Missing",
   "olesyaSakhro": "Olesya Sakhro",
   "sakhroKenzo": "Olesya Sakhro and Kenzo Takada",
-
 };

@@ -6,7 +6,7 @@ import c from "./Button.scss";
 interface IProps {
   className?: string;
   tabIndex?: number;
-  onClick: () => void;
+  onClick: any;
 }
 
 export const Button: FC<IProps> = memo(props => {

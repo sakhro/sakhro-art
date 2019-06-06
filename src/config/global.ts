@@ -15,3 +15,5 @@ export const SOCIALS = [
   { id: "facebook", Icon: FaFacebookSquare, href: FB_URL },
   { id: "instagram", Icon: FaInstagram , href: INSTAGRAM_URL },
 ];
+
+export const PAGE_TITLE = "OLESYA SAKHRO";
