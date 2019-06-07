@@ -1,7 +1,7 @@
-import React, { FC, memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { FC, memo, useCallback, useMemo } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Hamburger, Nav, Typography } from "@components";
+import { Hamburger, Typography } from "@components";
 
 import { PAGE_TITLE } from "@config/global";
 import { useScrollOffset } from "@services/hooks";
@@ -10,17 +10,11 @@ import c from "./Header.scss";
 
 interface IProps {
   pageTitleKey: string;
+  onHumburgerClick(): void;
 }
 
 export const Header: FC<IProps> = memo(props => {
-  const [isNavVisible, setIsNavVisible] = useState(false);
   const scrollOffset = useScrollOffset();
-
-  useEffect(() => {
-    if (props.pageTitleKey) {
-      closeNav();
-    }
-  }, [props.pageTitleKey]);
 
   const getTitlePosition = useMemo(() => {
     switch (true) {
@@ -32,14 +26,6 @@ export const Header: FC<IProps> = memo(props => {
         return scrollOffset - 49;
     }
   }, [scrollOffset]);
-
-  const closeNav = useCallback(() => {
-    setIsNavVisible(false);
-  }, []);
-
-  const openNav = useCallback(() => {
-    setIsNavVisible(true);
-  }, []);
 
   const titleWrapperStyles = useMemo(() => ({
     transform: `translateY(-${getTitlePosition}px)`,
@@ -62,21 +48,13 @@ export const Header: FC<IProps> = memo(props => {
   ), [titleWrapperStyles, props.pageTitleKey]);
 
   const renderHamburger = useCallback(() => (
-    <Hamburger onClick={openNav} />
-  ), [openNav]);
-
-  const renderNav = useCallback(() => (
-    <Nav
-      isVisible={isNavVisible}
-      onClose={closeNav}
-    />
-  ), [isNavVisible, closeNav]);
+    <Hamburger onClick={props.onHumburgerClick} />
+  ), [props.onHumburgerClick]);
 
   return (
     <header className={c.container}>
       {renderTitle()}
       {renderHamburger()}
-      {renderNav()}
     </header>
   );
 });
