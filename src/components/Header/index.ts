@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import { pageTitleKeySelector } from "@redux/Global/Router/RouterSelectors";
+import { pageTitleKeySelector } from "@redux/Router/RouterSelectors";
 
 import { Header as View } from "./Header";
 
