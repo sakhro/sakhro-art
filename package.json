@@ -19,6 +19,7 @@
     "@types/react-intl": "^2.3.17",
     "@types/react-redux": "^7.0.9",
     "@types/react-router-dom": "^4.3.3",
+    "@types/react-swipeable-views": "^0.13.0",
     "awesome-typescript-loader": "^5.2.1",
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.1",
@@ -56,6 +57,7 @@
     "react-intl": "^2.9.0",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
+    "react-swipeable-views": "^0.13.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"

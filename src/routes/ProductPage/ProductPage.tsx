@@ -1,11 +1,12 @@
 import React, { Fragment, memo } from "react";
 
-import { ContactMe } from "@components";
+import { ContactMe, Slideshow } from "@components";
 
 import c from "./ProductPage.scss";
 
 export const ProductPage = memo(() => (
-  <Fragment>
+  <div className={c.container}>
+    <Slideshow />
     <ContactMe />
-  </Fragment>
+  </div>
 ));
