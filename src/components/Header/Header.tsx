@@ -1,16 +1,18 @@
 import React, { FC, memo, useCallback, useMemo } from "react";
+import { IoIosArrowRoundBack } from "react-icons/io";
 import { FormattedMessage } from "react-intl";
+import { RouteComponentProps } from "react-router-dom";
 
-import { Hamburger, Typography } from "@components";
+import { Button, Hamburger, Typography } from "@components";
 
 import { PAGE_TITLE } from "@config/global";
 import { useScrollOffset } from "@services/hooks";
 
 import c from "./Header.scss";
 
-interface IProps {
+interface IProps extends RouteComponentProps {
   pageTitleKey: string;
-  onHumburgerClick(): void;
+  isProductPage: boolean;
 }
 
 export const Header: FC<IProps> = memo(props => {
@@ -31,28 +33,40 @@ export const Header: FC<IProps> = memo(props => {
     transform: `translateY(-${getTitlePosition}px)`,
   }), [getTitlePosition]);
 
-  const renderTitle = useCallback(() => (
-    <div
-      className={c.titleWrapper}
-      style={titleWrapperStyles}
-    >
-      <Typography className={c.primaryTitle}>
-        {PAGE_TITLE}
-      </Typography>
-      <Typography className={c.primaryTitle}>
-        <FormattedMessage
-          id={props.pageTitleKey}
-        />
-      </Typography>
-    </div>
-  ), [titleWrapperStyles, props.pageTitleKey]);
+  const renderTitle = useCallback(() =>
+    !props.isProductPage && (
+      <div
+        className={c.titleWrapper}
+        style={titleWrapperStyles}
+      >
+        <Typography className={c.primaryTitle}>
+          {PAGE_TITLE}
+        </Typography>
+        <Typography className={c.primaryTitle}>
+          <FormattedMessage
+            id={props.pageTitleKey}
+          />
+        </Typography>
+      </div>
+    ), [titleWrapperStyles, props.pageTitleKey, props.isProductPage]);
 
   const renderHamburger = useCallback(() => (
-    <Hamburger onClick={props.onHumburgerClick} />
-  ), [props.onHumburgerClick]);
+    <Hamburger />
+  ), []);
+
+  const renderBackArrow = useCallback(() =>
+    props.isProductPage && (
+      <Button
+        className={c.backButton}
+        onClick={props.history.goBack}
+      >
+        <IoIosArrowRoundBack className={c.arrowIcon} />
+      </Button>
+    ), [props.pageTitleKey, props.isProductPage]);
 
   return (
     <header className={c.container}>
+      {renderBackArrow()}
       {renderTitle()}
       {renderHamburger()}
     </header>

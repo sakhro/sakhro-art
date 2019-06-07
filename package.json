@@ -9,7 +9,8 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}'",
     "build": "webpack --config ./config/webpack.config.js --mode production",
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}' --fix --format verbose",
-    "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development"
+    "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development",
+    "deploy:hosting": "yarn build && firebase deploy --only hosting"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.8",
@@ -48,7 +49,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "connected-react-router": "^6.4.0",
     "intl": "^1.2.5",
     "ramda": "^0.26.1",
     "react": "^16.8.6",

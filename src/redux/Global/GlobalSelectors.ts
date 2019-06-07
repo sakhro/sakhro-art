@@ -1,15 +1,16 @@
+import { pathOr } from "ramda";
 import { createSelector } from "reselect";
 
 import { HISTORY, HOME, LOOKBOOK } from "@constants/url";
 
-const getState = (state: { router: any; }) => state.router;
+const getState = (state: IRootState) => state.global;
 
-const location = (state: any) =>
-  getState(state).location;
+const location = (_: IRootState, props: any) => props.location;
+const nav = (state: IRootState) => getState(state).nav;
 
 const currentRouteSelector = createSelector(
   location,
-  location => location.pathname,
+  ({ pathname }) => pathname,
 );
 
 const isLookbookPageSelector = createSelector(
@@ -25,6 +26,21 @@ const isHistoryPageSelector = createSelector(
 const isHomePageSelector = createSelector(
   currentRouteSelector,
   currentRoute => currentRoute === HOME,
+);
+
+const productIdSelector = createSelector(
+  location,
+  ({ pathname }) => pathOr(null, [2], pathname.split("/")), // Only for specific app routes
+);
+
+export const isNavVisibleSelector = createSelector(
+  nav,
+  ({ isVisible }) => isVisible,
+);
+
+export const isProductPageSelector = createSelector(
+  productIdSelector,
+  productId => !!productId,
 );
 
 export const pageTitleKeySelector = createSelector(

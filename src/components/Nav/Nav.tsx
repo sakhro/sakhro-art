@@ -28,6 +28,7 @@ export const Nav: FC<IProps> = memo((props) => {
     <li key={id}>
       <Link
         to={to}
+        onClick={props.onClose}
         tabIndex={tabIndex}
         className={c.navLink}
       >

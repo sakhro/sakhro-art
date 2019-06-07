@@ -10,6 +10,7 @@ interface IProps {
   href?: string;
   tabIndex?: number;
   className?: string;
+  onClick?: any;
 }
 
 export const Link: FC<IProps> = memo(props => {

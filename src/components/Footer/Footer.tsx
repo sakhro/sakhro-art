@@ -1,4 +1,3 @@
-import { CallHistoryMethodAction } from "connected-react-router";
 import React, { FC, memo } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
@@ -10,6 +9,7 @@ interface IProps {
   label: string;
   onClick?: any;
 }
+
 export const Footer: FC<IProps> = memo(props => (
   <footer className={c.wrapper}>
     <div className={c.container}>

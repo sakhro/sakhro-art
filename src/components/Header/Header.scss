@@ -27,3 +27,12 @@ $header-height: 60px;
 .titleWrapper {
   transition: transform 50ms;
 }
+
+.backButton {
+  margin-left: -10px;
+  color: $color-white;
+}
+
+.arrowIcon {
+  @include size(50px);
+}

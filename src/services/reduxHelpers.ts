@@ -1,42 +1,72 @@
-export const createActionType = (prefix: string, name: string, async: boolean): any => {
-  const nameSplitted = name.split("_");
-  const upperName = name.toUpperCase();
+export const createReducer = (initialState: any, handlers: { [x: string]: any; }, finalizer = (x: any) => x) =>
+  (state = initialState, action: { type: string | number; }) => {
+    if (action.type) {
+      const handler = handlers[action.type];
 
-  const attemptActionName = `${upperName}_ATTEMPT`;
-  const successActionName = `${upperName}_SUCCESS`;
-  const failureActionName = `${upperName}_FAILURE`;
+      if (handler) {
+        const result = handler(state, action);
+        if (result === null && typeof result === "object") {
+          return state;
+        }
+        return finalizer({ ...state, ...result });
+      }
+    }
+    return state;
+  };
 
-  const attemptActionValue = `${prefix}.${upperName}_ATTEMPT`;
-  const successActionValue = `${prefix}.${upperName}_SUCCESS`;
-  const failureActionValue = `${prefix}.${upperName}_FAILURE`;
+export const createActionsStructure = (prefix: any, protoArray: { reduce: (arg0: ({ types, actions }: any, { name, async }: any) => { types: any; actions: any; }, arg1: { types: {}; actions: {}; }) => { types: any; actions: any; }; }) => {
+  // eslint-disable-next-line
+  const { types, actions } = protoArray.reduce(({ types, actions }, { name, async }) => {
+    const nameSplitted = name.split("_");
+    const upperName = name.toUpperCase();
 
-  // CREATE TYPES
-  const types = async ?
-    {
-      [attemptActionName]: attemptActionValue,
-      [successActionName]: successActionValue,
-      [failureActionName]: failureActionValue,
-    } : {
-      [upperName]: `${prefix}.${upperName}`,
+    // types creator
+    const actionTypesNames = [`${upperName}_INIT`, `${upperName}_SUCCESS`, `${upperName}_FAILURE`];
+    const actionTypesValues = [
+      `${prefix}.${upperName}_INIT`,
+      `${prefix}.${upperName}_SUCCESS`,
+      `${prefix}.${upperName}_FAILURE`,
+    ];
+    const actionTypes = async
+      ? {
+        [actionTypesNames[0]]: actionTypesValues[0],
+        [actionTypesNames[1]]: actionTypesValues[1],
+        [actionTypesNames[2]]: actionTypesValues[2],
+      }
+      : {
+        [actionTypesNames[0]]: actionTypesValues[0],
+      };
+    // actions creator
+    const actionPrimaryName = nameSplitted.slice(1).reduce((actionName: any, word: { charAt: (arg0: number) => { toUpperCase: () => void; }; slice: (arg0: number) => { toLowerCase: () => void; }; }) =>
+      `${actionName}${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}`, nameSplitted[0].toLowerCase());
+    const actionCreators = async
+      ? {
+        [actionPrimaryName]: (payload: any) => ({
+          type: actionTypesValues[0],
+          responseSuccess: (dataSuccess: any) => ({ type: actionTypesValues[1], payload: dataSuccess }),
+          responseFailure: (dataFailure: any) => ({ type: actionTypesValues[2], payload: dataFailure }),
+          payload,
+        }),
+      }
+      : {
+        [actionPrimaryName]: (payload: any) => ({
+          type: actionTypesValues[0],
+          payload,
+        }),
+      };
+    return {
+      types: {
+        ...types,
+        ...actionTypes,
+      },
+      actions: {
+        ...actions,
+        ...actionCreators,
+      },
     };
-
-  // CREATE ACTIONS
-  const actionPrimaryName = nameSplitted.slice(1).reduce((name: string, word: string) =>
-    `${name}${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}`, nameSplitted[0].toLowerCase());
-
-  const action = async ?
-    (data: any) => ({
-      data,
-      responseFailure: (dataFailure: any) => ({ type: failureActionValue, data: dataFailure }),
-      responseSuccess: (dataSuccess: any) => ({ type: successActionValue, data: dataSuccess }),
-      type: attemptActionValue,
-    }) : (data: any) => ({
-      data,
-      type: `${prefix}.${upperName}`,
-    });
-
+  }, { types: {}, actions: {} });
   return {
-    [`${actionPrimaryName}Types`]: types,
-    [`${actionPrimaryName}Action`]: action,
+    [`${prefix}Types`]: types,
+    [`${prefix}Actions`]: actions,
   };
 };

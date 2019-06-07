@@ -1,21 +1,18 @@
-import { connectRouter, routerMiddleware } from "connected-react-router";
-import { createBrowserHistory } from "history";
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore, Reducer } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-const history = createBrowserHistory();
+import globalReducer from "./Global/GlobalReducer";
 
-const reducers = combineReducers({
-  router: connectRouter(history),
+const reducers: Reducer<IRootState> = combineReducers({
+  global: globalReducer,
 });
 
 const rootStore = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(thunk, routerMiddleware(history))),
+  composeWithDevTools(applyMiddleware(thunk)),
 );
 
 export {
-  history,
   rootStore,
 };

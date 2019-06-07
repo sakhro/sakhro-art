@@ -1,9 +1,7 @@
 import React, { lazy, memo, Suspense } from "react";
-import { Redirect, Route, Router, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 import { MainLayout } from "@layouts/MainLayout";
-
-import { history } from "@redux/configureStore";
 
 import { HISTORY, HOME, LOOKBOOK, PRODUCT } from "@constants/url";
 
@@ -13,7 +11,7 @@ const LookbookPage = lazy(() => import("@routes/LookbookPage"));
 const ProductPage = lazy(() => import("@routes/ProductPage"));
 
 export const App = memo(() => (
-  <Router history={history}>
+  <BrowserRouter>
     <MainLayout>
       <Suspense fallback={null}> {/* TODO: Add loading fallback */}
         <Switch>
@@ -26,5 +24,5 @@ export const App = memo(() => (
         </Switch>
       </Suspense>
     </MainLayout>
-  </Router>
+  </BrowserRouter>
 ));

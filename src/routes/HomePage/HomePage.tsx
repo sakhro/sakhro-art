@@ -1,5 +1,6 @@
 import React, { FC, Fragment, memo, useCallback } from "react";
 import { defineMessages, InjectedIntlProps } from "react-intl";
+import { RouteComponentProps } from "react-router";
 
 import { Footer, Img } from "@components";
 
@@ -9,20 +10,16 @@ import { LOOKBOOK } from "@constants/url";
 
 import c from "./HomePage.scss";
 
-interface IProps extends InjectedIntlProps {
-  push: any;
-}
-
 const messages = defineMessages({
   lookbook: {
     id: "lookbook",
   },
 });
 
-export const HomePage: FC<IProps> = memo((props) => {
+export const HomePage: FC<InjectedIntlProps & RouteComponentProps> = memo((props) => {
   const onFooterButtonClick = useCallback(() => {
-    props.push(LOOKBOOK);
-  }, [props.push]);
+    props.history.push(LOOKBOOK);
+  }, []);
 
   return (
     <Fragment>
