@@ -65,7 +65,7 @@ export const HistoryPage: FC<InjectedIntlProps> = memo(props => {
   const renderFirstImg = useCallback(() => (
     <Img
       src={Kenzo}
-      className={c.sakhroKenzoImg}
+      imgClassName={c.sakhroKenzoImg}
       alt={props.intl.formatMessage(altText.sakhroKenzo)}
     />
   ), []);
@@ -77,7 +77,7 @@ export const HistoryPage: FC<InjectedIntlProps> = memo(props => {
   const renderSecondImg = useCallback(() => (
     <Img
       src={OlesyaSakhro}
-      className={c.olesyaSakhroImg}
+      imgClassName={c.olesyaSakhroImg}
       alt={props.intl.formatMessage(altText.olesyaSakhro)}
     />
   ), []);

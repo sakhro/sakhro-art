@@ -5,6 +5,7 @@
 }
 
 .sakhroKenzoImg {
+  @include size(calc(100% - 16px), auto);
   @include ml(2);
 }
 
@@ -14,5 +15,6 @@
 }
 
 .olesyaSakhroImg {
+  @include size(calc(100% - 16px), auto);
   @include mr(2);
 }

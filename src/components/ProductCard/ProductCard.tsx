@@ -28,7 +28,7 @@ export const ProductCard: FC<IProps> = props => {
   const renderSecondaryImg = useCallback(() => (
     <Img
       alt="bag"
-      className={c.secondaryImg}
+      imgClassName={c.secondaryImg}
       src={props.secondaryImg}
     />
   ), [props.secondaryImg]);

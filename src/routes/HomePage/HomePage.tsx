@@ -14,6 +14,9 @@ const messages = defineMessages({
   lookbook: {
     id: "lookbook",
   },
+  olesyaSakhro: {
+    id: "olesyaSakhro",
+  },
 });
 
 export const HomePage: FC<InjectedIntlProps & RouteComponentProps> = memo((props) => {
@@ -21,19 +24,28 @@ export const HomePage: FC<InjectedIntlProps & RouteComponentProps> = memo((props
     props.history.push(LOOKBOOK);
   }, []);
 
+  const renderFooter = useCallback(() => (
+    <Footer
+      label={props.intl.formatMessage(messages.lookbook)}
+      onClick={onFooterButtonClick}
+    />
+  ), [onFooterButtonClick, messages.lookbook]);
+
+  const renderMainContainer = useCallback(() => (
+    <div className={c.container}>
+      <Img
+        customHeight
+        src={HomeMain}
+        alt={props.intl.formatMessage(messages.olesyaSakhro)}
+        imgClassName={c.backgroundImg}
+      />
+    </div>
+  ), [messages.olesyaSakhro, HomeMain]);
+
   return (
     <Fragment>
-      <div className={c.container}>
-        <Img
-          src={HomeMain}
-          alt="Olesya Sakhro"
-          className={c.backgroundImg}
-        />
-      </div>
-      <Footer
-        label={props.intl.formatMessage(messages.lookbook)}
-        onClick={onFooterButtonClick}
-      />
+      {renderMainContainer()}
+      {renderFooter()}
     </Fragment>
   );
 });

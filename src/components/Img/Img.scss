@@ -1,4 +1,33 @@
+@import 'src/styles/base';
+
 .container {
+  overflow: hidden;
+}
+
+.placeholder {
+  overflow: hidden;
+  background-color: $color-alto
+}
+
+.loader {
+  @include size(100%, inherit);
+
+  background-size: 200% 100%;
+  background: linear-gradient(to right,transparent 10%, $color-gallery 50%, transparent 90%);
+  animation: loading 3s linear infinite;
+  transform: translateX(0);
+}
+
+.img {
   max-width: 100%;
   max-height: 100%;
+}
+
+@keyframes loading{
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
 }

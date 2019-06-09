@@ -5,7 +5,7 @@
 }
 
 .backgroundImg {
-  @include size(100%, calc(100vh - 60px));
+  @include size(100%, calc(100vh - 120px));
 
   object-fit: cover;
 }
