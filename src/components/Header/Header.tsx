@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FormattedMessage } from "react-intl";
 import { RouteComponentProps } from "react-router-dom";
@@ -15,7 +15,7 @@ interface IProps extends RouteComponentProps {
   isProductPage: boolean;
 }
 
-export const Header: FC<IProps> = memo(props => {
+export const Header: FC<IProps> = props => {
   const scrollOffset = useScrollOffset();
 
   const getTitlePosition = useMemo(() => {
@@ -50,10 +50,6 @@ export const Header: FC<IProps> = memo(props => {
       </div>
     ), [titleWrapperStyles, props.pageTitleKey, props.isProductPage]);
 
-  const renderHamburger = useCallback(() => (
-    <Hamburger />
-  ), []);
-
   const renderBackArrow = useCallback(() =>
     props.isProductPage && (
       <Button
@@ -68,7 +64,7 @@ export const Header: FC<IProps> = memo(props => {
     <header className={c.container}>
       {renderBackArrow()}
       {renderTitle()}
-      {renderHamburger()}
+      <Hamburger />
     </header>
   );
-});
+};

@@ -8,8 +8,8 @@ import c from "./Img.scss";
 interface IProps {
   src: string;
   alt: string;
-  customHeight?: boolean;
   imgClassName?: string;
+  customHeight?: boolean;
 }
 
 export const Img: FC<IProps> = props => {
@@ -38,14 +38,6 @@ export const Img: FC<IProps> = props => {
     getImageDimensions(props.src) || { width: 0, height: 0 }
   ), [props.src]);
 
-  const imgClassName = useMemo(() => (
-    cn(c.img, props.imgClassName)
-  ), [props.imgClassName]);
-
-  const placeholderClassName = useMemo(() => (
-    cn(c.placeholder, props.imgClassName)
-  ), [props.imgClassName]);
-
   const aspectRatio = useMemo(() => (
     getAspectRatio(+imgDimensions.width, +imgDimensions.height) || 1
   ), [imgDimensions]);
@@ -65,7 +57,7 @@ export const Img: FC<IProps> = props => {
       <img
         src={src}
         alt={props.alt}
-        className={imgClassName}
+        className={cn(c.img, props.imgClassName)}
       />
     ), [src, props.alt]);
 
@@ -74,7 +66,7 @@ export const Img: FC<IProps> = props => {
       <div
         ref={placeholderRef}
         style={placeholderStyle}
-        className={placeholderClassName}
+        className={cn(c.placeholder, props.imgClassName)}
       >
         <div className={c.loader} />
       </div>

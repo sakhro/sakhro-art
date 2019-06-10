@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { FC } from "react";
 
 import { Button } from "@components";
 
@@ -9,7 +9,7 @@ interface IProps {
   onClick: () => void;
 }
 
-export const Hamburger: FC<IProps> = memo(props => (
+export const Hamburger: FC<IProps> = props => (
   <Button
     className={c.container}
     onClick={props.onClick}
@@ -18,4 +18,4 @@ export const Hamburger: FC<IProps> = memo(props => (
     <div className={c.middleBar} />
     <div className={c.bottomBar} />
   </Button>
-));
+);

@@ -12,9 +12,8 @@
 .loader {
   @include size(100%, inherit);
 
-  background-size: 200% 100%;
-  background: linear-gradient(to right,transparent 10%, $color-gallery 50%, transparent 90%);
-  animation: loading 3s linear infinite;
+  background-color: $color-gallery;
+  animation: loading 3s ease-in-out infinite;
   transform: translateX(0);
 }
 

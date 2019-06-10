@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { FC } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
 import { Button, Typography } from "@components";
@@ -10,7 +10,7 @@ interface IProps {
   onClick?: any;
 }
 
-export const Footer: FC<IProps> = memo(props => (
+export const Footer: FC<IProps> = props => (
   <footer className={c.wrapper}>
     <div className={c.container}>
       <Typography className={c.lookbook}>
@@ -25,4 +25,4 @@ export const Footer: FC<IProps> = memo(props => (
       </Button>
     </div>
   </footer>
-));
+);

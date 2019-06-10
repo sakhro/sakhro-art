@@ -14,10 +14,6 @@ interface IProps {
 }
 
 export const Link: FC<IProps> = memo(props => {
-  const className = useMemo(() => (
-    cn(c.container, props.className)
-  ), [props.className]);
-
   const Component: any = useMemo(() => {
     switch (true) {
       case !!props.to:
@@ -28,6 +24,6 @@ export const Link: FC<IProps> = memo(props => {
   }, [props.to, props.href]);
 
   return (
-    <Component {...props} className={className} />
+    <Component {...props} className={cn(c.container, props.className)} />
   );
 });

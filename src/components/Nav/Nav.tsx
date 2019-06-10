@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React, { FC, memo, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Button, Link } from "@components";
@@ -13,11 +13,7 @@ interface IProps {
   onClose: () => void;
 }
 
-export const Nav: FC<IProps> = memo((props) => {
-  const className = useMemo(() => (
-    cn(c.container, { [c.visible]: props.isVisible })
-  ), [props.isVisible]);
-
+export const Nav: FC<IProps> = (props) => {
   const tabIndex = useMemo(() => (
     props.isVisible
       ? 0
@@ -37,22 +33,6 @@ export const Nav: FC<IProps> = memo((props) => {
     </li>
   ), [LINKS, tabIndex]);
 
-  const renderCloseButton = useCallback(() => (
-    <Button
-      className={c.close}
-      onClick={props.onClose}
-      tabIndex={tabIndex}
-    >
-      <div />
-    </Button>
-  ), [props.onClose, tabIndex]);
-
-  const renderLinks = useCallback(() => (
-    <ul className={c.links}>
-      {LINKS.map(renderLink)}
-    </ul>
-  ), [LINKS, tabIndex]);
-
   const renderSocial = useCallback(({
     id, Icon, href,
   }) => (
@@ -66,17 +46,21 @@ export const Nav: FC<IProps> = memo((props) => {
       </Link>
     ), [SOCIALS, tabIndex]);
 
-  const renderFooter = useCallback(() => (
-    <footer className={c.footer}>
-      {SOCIALS.map(renderSocial)}
-    </footer>
-  ), [SOCIALS, tabIndex]);
-
   return (
-    <nav className={className}>
-      {renderCloseButton()}
-      {renderLinks()}
-      {renderFooter()}
+    <nav className={cn(c.container, { [c.visible]: props.isVisible })}>
+      <Button
+        className={c.close}
+        onClick={props.onClose}
+        tabIndex={tabIndex}
+      >
+        <div />
+      </Button>
+      <ul className={c.links}>
+        {LINKS.map(renderLink)}
+      </ul>
+      <footer className={c.footer}>
+        {SOCIALS.map(renderSocial)}
+      </footer>
     </nav>
   );
-});
+};

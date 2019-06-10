@@ -1,4 +1,4 @@
-import React, { lazy, memo, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 import { MainLayout } from "@layouts/MainLayout";
@@ -10,7 +10,7 @@ const HistoryPage = lazy(() => import("@routes/HistoryPage"));
 const LookbookPage = lazy(() => import("@routes/LookbookPage"));
 const ProductPage = lazy(() => import("@routes/ProductPage"));
 
-export const App = memo(() => (
+export const App = () => (
   <BrowserRouter>
     <MainLayout>
       <Suspense fallback={null}> {/* TODO: Add loading fallback */}
@@ -25,4 +25,4 @@ export const App = memo(() => (
       </Suspense>
     </MainLayout>
   </BrowserRouter>
-));
+);

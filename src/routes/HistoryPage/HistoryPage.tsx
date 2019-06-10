@@ -43,7 +43,7 @@ const paragraphs2: any = defineMessages({
   },
 });
 
-export const HistoryPage: FC<InjectedIntlProps> = memo(props => {
+export const HistoryPage: FC<InjectedIntlProps> = props => {
   const renderParagraph1 = useCallback(key => (
     <Typography className={c.parag} key={key}>
       {props.intl.formatMessage(paragraphs1[key])}
@@ -56,43 +56,23 @@ export const HistoryPage: FC<InjectedIntlProps> = memo(props => {
     </Typography>
   ), [paragraphs2]);
 
-  const renderTitle = useCallback(() => (
-    <PageTitle>
-      <FormattedMessage id="history" />
-    </PageTitle>
-  ), []);
-
-  const renderFirstImg = useCallback(() => (
-    <Img
-      src={Kenzo}
-      imgClassName={c.sakhroKenzoImg}
-      alt={props.intl.formatMessage(altText.sakhroKenzo)}
-    />
-  ), []);
-
-  const renderFirstParags = useCallback(() => (
-    Object.keys(paragraphs1).map(renderParagraph1)
-  ), []);
-
-  const renderSecondImg = useCallback(() => (
-    <Img
-      src={OlesyaSakhro}
-      imgClassName={c.olesyaSakhroImg}
-      alt={props.intl.formatMessage(altText.olesyaSakhro)}
-    />
-  ), []);
-
-  const renderSecondParags = useCallback(() => (
-    Object.keys(paragraphs2).map(renderParagraph2)
-  ), []);
-
   return (
     <article className={c.container}>
-      {renderTitle()}
-      {renderFirstImg()}
-      {renderFirstParags()}
-      {renderSecondImg()}
-      {renderSecondParags()}
+      <PageTitle>
+        <FormattedMessage id="history" />
+      </PageTitle>
+      <Img
+        src={Kenzo}
+        imgClassName={c.sakhroKenzoImg}
+        alt={props.intl.formatMessage(altText.sakhroKenzo)}
+      />
+      {Object.keys(paragraphs1).map(renderParagraph1)}
+      <Img
+        src={OlesyaSakhro}
+        imgClassName={c.olesyaSakhroImg}
+        alt={props.intl.formatMessage(altText.olesyaSakhro)}
+      />
+      {Object.keys(paragraphs2).map(renderParagraph2)}
     </article>
   );
-});
+};

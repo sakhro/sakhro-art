@@ -21,12 +21,8 @@ export const Typography: FC<IProps> = memo(props => {
     props.component || "p"
   ), [props.component]);
 
-  const className = useMemo(() => (
-    cn(classNames[props.component], props.className)
-  ), [props.component, props.className]);
-
   return (
-    <Component className={className}>
+    <Component className={cn(classNames[props.component], props.className)}>
       {props.children}
     </Component>
   );

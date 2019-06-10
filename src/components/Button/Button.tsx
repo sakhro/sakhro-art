@@ -9,18 +9,12 @@ interface IProps {
   onClick: any;
 }
 
-export const Button: FC<IProps> = memo(props => {
-  const className: string = useMemo(() => (
-    cn(c.container, props.className)
-  ), [props.className]);
-
-  return (
-    <button
-      className={className}
-      onClick={props.onClick}
-      tabIndex={props.tabIndex}
-    >
-      {props.children}
-    </button>
-  );
-});
+export const Button: FC<IProps> = memo(props => (
+  <button
+    onClick={props.onClick}
+    tabIndex={props.tabIndex}
+    className={cn(c.container, props.className)}
+  >
+    {props.children}
+  </button>
+));

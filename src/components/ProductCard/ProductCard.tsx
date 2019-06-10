@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC } from "react";
 
 import { DotsPattern, Img, Link, Typography } from "@components";
 
@@ -13,50 +13,28 @@ interface IProps {
   title?: string;
 }
 
-export const ProductCard: FC<IProps> = props => {
-  const renderDotsPattern = useCallback(() => (
+export const ProductCard: FC<IProps> = props => (
+  <article className={c.container}>
     <DotsPattern />
-  ), []);
-
-  const renderPrimaryImg = useCallback(() => (
-    <Img
-      alt="bag"
-      src={props.primaryImg}
-    />
-  ), [props.primaryImg]);
-
-  const renderSecondaryImg = useCallback(() => (
-    <Img
-      alt="bag"
-      imgClassName={c.secondaryImg}
-      src={props.secondaryImg}
-    />
-  ), [props.secondaryImg]);
-
-  const renderTitle = useCallback(() => (
+    <Link to={`lookbook/${props.id}`}>
+      <Img
+        alt="bag"
+        src={props.primaryImg}
+      />
+      <Img
+        alt="bag"
+        imgClassName={c.secondaryImg}
+        src={props.secondaryImg}
+      />
+    </Link>
     <Typography
       component="h2"
       className={c.cardTitle}
     >
       {props.title}
     </Typography>
-  ), [props.title]);
-
-  const renderLink = useCallback(() => (
-    <Link to={`lookbook/${props.id}`}>
-      {renderPrimaryImg()}
-      {renderSecondaryImg()}
-    </Link>
-  ), [renderPrimaryImg, renderSecondaryImg, props.id]);
-
-  return (
-    <article className={c.container}>
-      {renderDotsPattern()}
-      {renderLink()}
-      {renderTitle()}
-    </article>
-  );
-};
+  </article>
+);
 
 ProductCard.defaultProps = {
   id: "sophia",

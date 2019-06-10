@@ -24,28 +24,20 @@ export const HomePage: FC<InjectedIntlProps & RouteComponentProps> = memo((props
     props.history.push(LOOKBOOK);
   }, []);
 
-  const renderFooter = useCallback(() => (
-    <Footer
-      label={props.intl.formatMessage(messages.lookbook)}
-      onClick={onFooterButtonClick}
-    />
-  ), [onFooterButtonClick, messages.lookbook]);
-
-  const renderMainContainer = useCallback(() => (
-    <div className={c.container}>
-      <Img
-        customHeight
-        src={HomeMain}
-        alt={props.intl.formatMessage(messages.olesyaSakhro)}
-        imgClassName={c.backgroundImg}
-      />
-    </div>
-  ), [messages.olesyaSakhro, HomeMain]);
-
   return (
     <Fragment>
-      {renderMainContainer()}
-      {renderFooter()}
+      <div className={c.container}>
+        <Img
+          customHeight
+          src={HomeMain}
+          alt={props.intl.formatMessage(messages.olesyaSakhro)}
+          imgClassName={c.backgroundImg}
+        />
+      </div>
+      <Footer
+        label={props.intl.formatMessage(messages.lookbook)}
+        onClick={onFooterButtonClick}
+      />
     </Fragment>
   );
 });

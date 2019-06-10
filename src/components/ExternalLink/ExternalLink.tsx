@@ -1,10 +1,10 @@
-import React, { FC, memo } from "react";
+import React, { FC } from "react";
 
 interface IProps extends IExternalLink {
   className?: string;
 }
 
-export const ExternalLink: FC<IProps> = memo(props => (
+export const ExternalLink: FC<IProps> = props => (
   <a
     target="_blank"
     rel="nofollow noopener"
@@ -12,4 +12,4 @@ export const ExternalLink: FC<IProps> = memo(props => (
   >
     {props.children}
   </a>
-));
+);
