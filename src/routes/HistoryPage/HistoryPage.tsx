@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from "react";
+import React, { FC } from "react";
 import { defineMessages, FormattedMessage, InjectedIntlProps } from "react-intl";
 
 import { Img, PageTitle, Typography } from "@components";
@@ -44,17 +44,17 @@ const paragraphs2: any = defineMessages({
 });
 
 export const HistoryPage: FC<InjectedIntlProps> = props => {
-  const renderParagraph1 = useCallback(key => (
+  const renderParagraph1 = (key: string) => (
     <Typography className={c.parag} key={key}>
       {props.intl.formatMessage(paragraphs1[key])}
     </Typography>
-  ), [paragraphs1]);
+  );
 
-  const renderParagraph2 = useCallback(key => (
+  const renderParagraph2 = (key: string) => (
     <Typography className={c.parag} key={key}>
       {props.intl.formatMessage(paragraphs2[key])}
     </Typography>
-  ), [paragraphs2]);
+  );
 
   return (
     <article className={c.container}>

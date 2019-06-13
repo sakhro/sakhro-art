@@ -1,5 +1,6 @@
 import cn from "classnames";
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC } from "react";
+import { IconType } from "react-icons/lib/cjs";
 import { FormattedMessage } from "react-intl";
 
 import { Button, Link } from "@components";
@@ -14,13 +15,11 @@ interface IProps {
 }
 
 export const Nav: FC<IProps> = (props) => {
-  const tabIndex = useMemo(() => (
-    props.isVisible
-      ? 0
-      : -1
-  ), [props.isVisible]);
+  const tabIndex = props.isVisible
+    ? 0
+    : -1;
 
-  const renderLink = useCallback(({ id, to }) => (
+  const renderLink = ({ id, to }: { id: string, to: string }) => (
     <li key={id}>
       <Link
         to={to}
@@ -31,11 +30,11 @@ export const Nav: FC<IProps> = (props) => {
         <FormattedMessage id={id} />
       </Link>
     </li>
-  ), [LINKS, tabIndex]);
+  );
 
-  const renderSocial = useCallback(({
+  const renderSocial = ({
     id, Icon, href,
-  }) => (
+  }: { id: string, Icon: IconType, href: string }) => (
       <Link
         key={id}
         href={href}
@@ -44,7 +43,7 @@ export const Nav: FC<IProps> = (props) => {
       >
         <Icon />
       </Link>
-    ), [SOCIALS, tabIndex]);
+    );
 
   return (
     <nav className={cn(c.container, { [c.visible]: props.isVisible })}>

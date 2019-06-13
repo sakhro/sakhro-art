@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useMemo } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FormattedMessage } from "react-intl";
 import { RouteComponentProps } from "react-router-dom";
@@ -33,37 +33,31 @@ export const Header: FC<IProps> = props => {
     transform: `translateY(-${getTitlePosition}px)`,
   }), [getTitlePosition]);
 
-  const renderTitle = useCallback(() =>
-    !props.isProductPage && (
-      <div
-        className={c.titleWrapper}
-        style={titleWrapperStyles}
-      >
-        <Typography className={c.primaryTitle}>
-          {PAGE_TITLE}
-        </Typography>
-        <Typography className={c.primaryTitle}>
-          <FormattedMessage
-            id={props.pageTitleKey}
-          />
-        </Typography>
-      </div>
-    ), [titleWrapperStyles, props.pageTitleKey, props.isProductPage]);
-
-  const renderBackArrow = useCallback(() =>
-    props.isProductPage && (
-      <Button
-        className={c.backButton}
-        onClick={props.history.goBack}
-      >
-        <IoIosArrowRoundBack className={c.arrowIcon} />
-      </Button>
-    ), [props.pageTitleKey, props.isProductPage]);
-
   return (
     <header className={c.container}>
-      {renderBackArrow()}
-      {renderTitle()}
+      {props.isProductPage && (
+        <Button
+          className={c.backButton}
+          onClick={props.history.goBack}
+        >
+          <IoIosArrowRoundBack className={c.arrowIcon} />
+        </Button>
+      )}
+      {!props.isProductPage && (
+        <div
+          className={c.titleWrapper}
+          style={titleWrapperStyles}
+        >
+          <Typography className={c.primaryTitle}>
+            {PAGE_TITLE}
+          </Typography>
+          <Typography className={c.primaryTitle}>
+            <FormattedMessage
+              id={props.pageTitleKey}
+            />
+          </Typography>
+        </div>
+      )}
       <Hamburger />
     </header>
   );

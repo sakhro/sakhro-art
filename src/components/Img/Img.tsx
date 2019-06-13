@@ -1,5 +1,5 @@
 import cn from "classnames";
-import React, { FC, Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { CSSProperties, FC, Fragment, useEffect, useMemo, useRef, useState } from "react";
 
 import { getAspectRatio, getImageDimensions } from "@services/helpers";
 
@@ -8,8 +8,10 @@ import c from "./Img.scss";
 interface IProps {
   src: string;
   alt: string;
+  style?: CSSProperties;
   imgClassName?: string;
   customHeight?: boolean;
+  onImgLoad?: () => void;
 }
 
 export const Img: FC<IProps> = props => {
@@ -23,10 +25,14 @@ export const Img: FC<IProps> = props => {
     img.onload = () => {
       // On img load set change src state to display an img
       setSrc(props.src);
+
+      if (props.onImgLoad) {
+        props.onImgLoad();
+      }
     };
     // Set img src to custom img el to load it lazy
     img.src = props.src;
-  }, [props.src]);
+  }, [props.src, props.onImgLoad]);
 
   useEffect(() => {
     if (placeholderRef.current) {
@@ -48,34 +54,29 @@ export const Img: FC<IProps> = props => {
 
   const placeholderStyle = useMemo(() => (
     props.customHeight
-      ? {}
-      : { height: `${height}px` }
-  ), [height, props.customHeight]);
-
-  const renderImg = useCallback(() =>
-    !!src && (
-      <img
-        src={src}
-        alt={props.alt}
-        className={cn(c.img, props.imgClassName)}
-      />
-    ), [src, props.alt]);
-
-  const renderPlaceholder = useCallback(() =>
-    !src && (
-      <div
-        ref={placeholderRef}
-        style={placeholderStyle}
-        className={cn(c.placeholder, props.imgClassName)}
-      >
-        <div className={c.loader} />
-      </div>
-    ), [src, placeholderStyle]);
+      ? { ...props.style }
+      : { height: `${height}px`, ...props.style }
+  ), [height, props.customHeight, props.style]);
 
   return (
     <Fragment>
-      {renderPlaceholder()}
-      {renderImg()}
+      {!src && (
+        <div
+          ref={placeholderRef}
+          style={placeholderStyle}
+          className={cn(c.placeholder, props.imgClassName)}
+        >
+          <div className={c.loader} />
+        </div>
+      )}
+      {!!src && (
+        <img
+          src={src}
+          alt={props.alt}
+          style={props.style}
+          className={cn(c.img, props.imgClassName)}
+        />
+      )}
     </Fragment>
   );
 };

@@ -13,5 +13,17 @@ export const LookbookPage: FC<InjectedIntlProps> = () => (
     <div className={c.productCard}>
       <ProductCard />
     </div>
+    <div className={c.productCard}>
+      <ProductCard />
+    </div>
+    <div className={c.productCard}>
+      <ProductCard />
+    </div>
+    <div className={c.productCard}>
+      <ProductCard />
+    </div>
+    <div className={c.productCard}>
+      <ProductCard />
+    </div>
   </section>
 );

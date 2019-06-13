@@ -1,7 +1,8 @@
 @import 'src/styles/base';
 
 .container {
-  @include my(10);
+  @include mt(12);
+  @include mb(50);
   @include mr(2);
   @include relative;
   @include flex($direction: column);
@@ -16,6 +17,8 @@
 .secondaryImg {
   @include absolute($top: 70px, $right: 50px);
 
-  opacity: 0.16;
+  transform: translateY(0);
+  transition: transform 50ms ease;
+  // opacity: 0.16;
   z-index: -1;
 }

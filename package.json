@@ -5,15 +5,16 @@
   "license": "MIT",
   "scripts": {
     "tsm": "tsm src -w",
-    "dev": "concurrently --kill-others \"yarn webpack:dev\" \"yarn tsm\" ",
+    "dev": "concurrently --kill-others \"yarn webpack:dev\" \"yarn tsm\"",
     "lint": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}'",
     "build": "webpack --config ./config/webpack.config.js --mode production",
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}' --fix --format verbose",
-    "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development",
+    "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development --open",
     "deploy:hosting": "yarn build && firebase deploy --only hosting"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.8",
+    "@types/d3-interpolate": "^1.3.1",
     "@types/ramda": "^0.26.9",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
@@ -49,6 +50,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "d3-interpolate": "^1.3.2",
     "intl": "^1.2.5",
     "ramda": "^0.26.1",
     "react": "^16.8.6",

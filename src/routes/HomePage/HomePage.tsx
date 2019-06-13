@@ -1,4 +1,4 @@
-import React, { FC, Fragment, memo, useCallback } from "react";
+import React, { FC, Fragment, memo } from "react";
 import { defineMessages, InjectedIntlProps } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
@@ -20,9 +20,9 @@ const messages = defineMessages({
 });
 
 export const HomePage: FC<InjectedIntlProps & RouteComponentProps> = memo((props) => {
-  const onFooterButtonClick = useCallback(() => {
+  const onFooterButtonClick = () => {
     props.history.push(LOOKBOOK);
-  }, []);
+  };
 
   return (
     <Fragment>
