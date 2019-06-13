@@ -2,6 +2,7 @@
 
 .wrapper {
   @include absolute($bottom: 0, $left: 0, $right: 0);
+  @include size(auto, 60px);
 
   background-color: $color-secondary;
 }
@@ -10,7 +11,6 @@
   @include pl(2);
   @include flex($align: center, $justify: space-between);
   @include container($fluid: true);
-  @include size(auto, 60px);
 }
 
 .contactIcon {

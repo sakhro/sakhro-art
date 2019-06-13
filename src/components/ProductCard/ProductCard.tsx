@@ -9,7 +9,7 @@ import { DOCUMENT_CENTER, DOCUMENT_HEIGHT } from "@constants/global";
 
 import c from "./ProductCard.scss";
 
-const i = interpolateNumber(0.33, -0.5);
+const i = interpolateNumber(0.33, -0.7);
 
 interface IProps {
   id?: string;
@@ -65,12 +65,15 @@ export const ProductCard: FC<IProps> = props => {
     transform: `translateY(-${centerPosition - 50}%)`,
   }), [centerPosition]);
 
-  const onImgLoad = useCallback(() => {
+  const onImgLoad = () => {
     setIsImgLoad(true);
-  }, []);
+  };
 
   return (
-    <article ref={containerRef} className={c.container}>
+    <article
+      ref={containerRef}
+      className={c.container}
+    >
       <DotsPattern style={dotsPatternStyle} />
       <Link to={`lookbook/${props.id}`}>
         <Img

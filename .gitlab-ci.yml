@@ -24,6 +24,6 @@ deploy_prod:
     - build_prod
   script:
     - yarn global add firebase-tools
-    - firebase deploy
+    - firebase deploy --token "$FIREBASE_TOKEN"
   only:
     - master
