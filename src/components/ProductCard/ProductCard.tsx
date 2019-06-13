@@ -1,5 +1,5 @@
 import { interpolateNumber } from "d3-interpolate";
-import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { CSSProperties, PureComponent, Ref } from "react";
 
 import { DotsPattern, Img, Link, Typography } from "@components";
 
@@ -18,85 +18,116 @@ interface IProps {
   title?: string;
 }
 
-export const ProductCard: FC<IProps> = props => {
-  const [isImgLoad, setIsImgLoad] = useState(false);
-  const containerRef = useRef<HTMLElement>(null);
-  const [centerPosition, setCenterPosition] = useState(0);
-  const [opacity, setOpacity] = useState(0);
+interface IState {
+  opacity: number;
+  isImgLoad: boolean;
+  centerPosition: number;
+}
 
-  useEffect(() => {
-    handleScroll();
+export class ProductCard extends PureComponent<IProps, IState> {
+  public static defaultProps: IProps;
+  public state = {
+    centerPosition: 0,
+    isImgLoad: false,
+    opacity: 0,
+  };
+  private containerRef: HTMLElement;
 
-    window.addEventListener("scroll", handleScroll, false);
+  public componentDidMount() {
+    this.handleScroll();
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll, false);
-    };
-  }, [isImgLoad]);
+    window.addEventListener("scroll", this.handleScroll, false);
+  }
 
-  const handleScroll = useCallback(() => {
-    if (containerRef.current && isImgLoad) {
-      const { height, top } = containerRef.current.getBoundingClientRect();
+  public componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll, false);
+  }
+
+  public render() {
+    return (
+      <article
+        className={c.container}
+        ref={this.handleContainerRef}
+      >
+        {this.renderDots()}
+        {this.renderLink()}
+        {this.renderCardTitle()}
+      </article>
+    );
+  }
+
+  private renderCardTitle = () => (
+    <Typography
+      component="h2"
+      className={c.cardTitle}
+    >
+      {this.props.title}
+    </Typography>
+  )
+
+  private renderDots = () => (
+    <DotsPattern style={this.getDotsPatternStyle()} />
+  )
+
+  private renderLink = () => (
+    <Link to={`lookbook/${this.props.id}`}>
+      <Img
+        alt="bag"
+        src={this.props.primaryImg}
+        onImgLoad={this.onImgLoad}
+      />
+      <Img
+        alt="bag"
+        imgClassName={c.secondaryImg}
+        src={this.props.secondaryImg}
+        style={this.getSecondImgStyle()}
+      />
+    </Link>
+  )
+
+  private onImgLoad = () => {
+    this.setState({ isImgLoad: true });
+  }
+
+  private getDotsPatternStyle = (): CSSProperties => ({
+    opacity: this.state.opacity,
+    transform: `translateY(${this.state.centerPosition - 50}%)`,
+  })
+
+  private getSecondImgStyle = (): CSSProperties => ({
+    opacity: this.state.opacity,
+    transform: `translateY(-${this.state.centerPosition - 50}%)`,
+  })
+
+  private handleContainerRef = (ref: HTMLElement) => {
+    this.containerRef = ref;
+  }
+
+  private handleScroll = () => {
+    if (this.containerRef && this.state.isImgLoad) {
+      const { height, top } = this.containerRef.getBoundingClientRect();
       const imgCenterPosition = height / 2 + top;
 
       if (imgCenterPosition <= DOCUMENT_CENTER) {
-        const position = imgCenterPosition - DOCUMENT_CENTER;
-        const opacity = i(Math.abs(position / DOCUMENT_HEIGHT));
+        const centerPosition = imgCenterPosition - DOCUMENT_CENTER;
+        const opacity = i(Math.abs(centerPosition / DOCUMENT_HEIGHT));
 
-        setOpacity(opacity);
-        setCenterPosition(position);
+        this.setState({
+          centerPosition,
+          opacity,
+        });
       } else {
-        const position = DOCUMENT_CENTER - imgCenterPosition;
-        const opacity = i(Math.abs(position / DOCUMENT_HEIGHT));
+        const centerPosition = DOCUMENT_CENTER - imgCenterPosition;
+        const opacity = i(Math.abs(centerPosition / DOCUMENT_HEIGHT));
 
-        setOpacity(opacity);
-        setCenterPosition(Math.abs(position));
+        this.setState({
+          centerPosition: Math.abs(centerPosition),
+          opacity,
+        });
       }
     }
-  }, [containerRef.current]);
-
-  const dotsPatternStyle = useMemo(() => ({
-    opacity,
-    transform: `translateY(${centerPosition - 50}%)`,
-  }), [centerPosition]);
-
-  const secondImgStyle = useMemo(() => ({
-    opacity,
-    transform: `translateY(-${centerPosition - 50}%)`,
-  }), [centerPosition]);
-
-  const onImgLoad = () => {
-    setIsImgLoad(true);
-  };
-
-  return (
-    <article
-      ref={containerRef}
-      className={c.container}
-    >
-      <DotsPattern style={dotsPatternStyle} />
-      <Link to={`lookbook/${props.id}`}>
-        <Img
-          alt="bag"
-          src={props.primaryImg}
-          onImgLoad={onImgLoad}
-        />
-        <Img
-          alt="bag"
-          imgClassName={c.secondaryImg}
-          src={props.secondaryImg}
-          style={secondImgStyle}
-        />
-      </Link>
-      <Typography
-        component="h2"
-        className={c.cardTitle}
-      >
-        {props.title}
-      </Typography>
-    </article>
-  );
-};
+  }
+}
 
 ProductCard.defaultProps = {
   id: "sophia",
