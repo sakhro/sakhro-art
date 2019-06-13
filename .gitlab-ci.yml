@@ -1,0 +1,28 @@
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build_prod:
+  stage: build
+  script:
+    - yarn
+    - yarn build
+  artifacts:
+    paths:
+      - dist
+  only:
+    - master
+
+deploy_prod:
+  stage: deploy
+  dependencies:
+    - build_prod
+  script:
+    - yarn global add firebase-tools
+    - firebase deploy
+  only:
+    - master
