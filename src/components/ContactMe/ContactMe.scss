@@ -1,0 +1,30 @@
+@import 'src/styles/base';
+
+.wrapper {
+  @include absolute($bottom: 0, $left: 0, $right: 0);
+
+  background-color: $color-secondary;
+}
+
+.container {
+  @include pl(2);
+  @include flex($align: center, $justify: space-between);
+  @include container($fluid: true);
+  @include size(auto, 60px);
+}
+
+.contactIcon {
+  @include size(30px);
+}
+
+.button {
+  @include size(80px, 60px);
+
+  color: $color-white;
+  background-color: $color-primary;
+}
+
+.contact {
+  color: $color-white;
+  text-transform: uppercase;
+}

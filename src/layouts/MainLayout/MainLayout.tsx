@@ -1,17 +1,16 @@
-import React, { Fragment, FC } from 'react';
+import React, { FC, memo, useEffect } from "react";
 
-import { GlobalStyles } from '@styled'
+import { Header, Nav } from "@components";
 
-interface IProps {
-}
+import "@styles/app.scss";
+import c from "./MainLayout.scss";
 
-export const MainLayout: FC<IProps> = ({ 
-  children 
-}) => (
-  <Fragment>
-    <GlobalStyles />
-    <main>
-      {children}
+export const MainLayout: FC = memo((props) => (
+  <section>
+    <Header />
+    <Nav />
+    <main className={c.main}>
+      {props.children}
     </main>
-  </Fragment>
-)
+  </section>
+));

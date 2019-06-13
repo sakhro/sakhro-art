@@ -1,0 +1,10 @@
+@import 'src/styles/base';
+
+.container {
+  @include flex($direction: column);
+  @include size(100%);
+}
+
+.productCard {
+  @include flex($align: center);
+}

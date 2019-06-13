@@ -1,0 +1,48 @@
+// Mixins
+@mixin z-index($name) {
+  @if index($z-indexes, $name) {
+    z-index: (length($z-indexes) - index($z-indexes, $name)) + 1;
+  } @else {
+    @error 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+  }
+}
+
+@mixin pseudo($display: block, $content: "") {
+  content: $content;
+  display: $display;
+}
+
+@mixin position-variant($position, $top, $right, $bottom, $left) {
+  position: $position;
+
+  $args: (
+    top: $top,
+    left: $left,
+    right: $right,
+    bottom: $bottom,
+  );
+
+  @each $o in top right bottom left {
+    $value: map-get($args, $o);
+    
+    @if $value {
+      #{$o}: $value
+    }
+  }
+}
+
+@mixin absolute($top: false, $right: false, $bottom: false, $left: false) {
+  @include position-variant(absolute, $top, $right, $bottom, $left);
+}
+
+@mixin fixed($top: false, $right: false, $bottom: false, $left: false) {
+  @include position-variant(fixed, $top, $right, $bottom, $left);
+}
+
+@mixin relative($top: false, $right: false, $bottom: false, $left: false) {
+  @include position-variant(relative, $top, $right, $bottom, $left);
+}
+
+@mixin sticky($top: false, $right: false, $bottom: false, $left: false) {
+  @include position-variant(sticky, $top, $right, $bottom, $left);
+}

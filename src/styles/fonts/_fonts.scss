@@ -1,0 +1,11 @@
+@mixin font-face($font-name, $file-name, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: quote($font-name);
+    font-style: $style;
+    font-weight: $weight;
+    src: url($file-name + '.ttf') format('truetype'),
+  }
+}
+
+@include font-face($font-name: "Lato", $file-name: "fonts/Lato-Regular");
+@include font-face($font-name: "Bentham", $file-name: "fonts/Bentham-Regular");

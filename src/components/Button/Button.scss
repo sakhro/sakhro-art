@@ -1,0 +1,10 @@
+@import 'src/styles/base';
+
+.container {
+  @include p(0);
+  @include flex($align: center, $justify: center);
+
+  border: 0;
+  background: transparent;
+  cursor: pointer,
+}

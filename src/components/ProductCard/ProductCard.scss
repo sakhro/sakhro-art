@@ -1,0 +1,24 @@
+@import 'src/styles/base';
+
+.container {
+  @include mt(12);
+  @include mb(50);
+  @include mr(2);
+  @include relative;
+  @include flex($direction: column);
+}
+
+.cardTitle {
+  @include mt(0);
+  
+  text-align: right;
+}
+
+.secondaryImg {
+  @include absolute($top: 70px, $right: 50px);
+
+  transform: translateY(0);
+  transition: transform 50ms ease;
+  // opacity: 0.16;
+  z-index: -1;
+}

@@ -1,0 +1,12 @@
+@import 'src/styles/base';
+
+.container {
+  @include flex($direction: column);
+}
+
+.backgroundImg {
+  @include absolute($top: 60px, $bottom: 60px);
+  @include size(100%, calc(100% - 120px));
+
+  object-fit: cover;
+}

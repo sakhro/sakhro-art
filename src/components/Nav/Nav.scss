@@ -1,0 +1,76 @@
+@import "src/styles/base";
+
+.container {
+  @include fixed($top: 0, $left: 0, $right: 0, $bottom: 0);
+  @include z-index("nav");
+  @include flex($direction: column, $align: center, $justify: space-between);
+  @include p(2);
+
+  box-shadow: 0 4px 10px 5px rgba($color-black, 0.07);
+  transform: translateX(110%);
+  transition: transform 500ms ease-out;
+  color: $color-white;
+  background-color: $color-primary;
+
+  &.visible {
+    transform: translateX(0);
+  }
+}
+
+.close {
+  @include relative;
+  @include size(36px);
+
+  margin-left: auto;
+
+  &::before,
+  &::after {
+    @include absolute($top: 0);
+
+    content: " ";
+    height: 36px;
+    width: 2px;
+    background-color: $color-white;
+    transition: background-color 100ms ease-in-out;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      background-color: $color-secondary;
+    }
+  }
+}
+
+.links {
+  @include pl(0);
+
+  text-align: center;
+  list-style: none;
+}
+
+.navLink {
+  @include my(8);
+
+  font-size: 32px !important;
+  text-transform: uppercase;
+}
+
+.socialLink {
+  @include ml(2);
+
+  font-size: 36px !important;
+}
+
+.footer {
+  @include flex;
+  align-self: flex-end;
+}

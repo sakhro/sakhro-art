@@ -1,0 +1,32 @@
+@import 'src/styles/base';
+
+.container {
+  overflow: hidden;
+}
+
+.placeholder {
+  overflow: hidden;
+  background-color: $color-alto
+}
+
+.loader {
+  @include size(100%, inherit);
+
+  background-color: $color-gallery;
+  animation: loading 3s ease-in-out infinite;
+  transform: translateX(0);
+}
+
+.img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@keyframes loading{
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
