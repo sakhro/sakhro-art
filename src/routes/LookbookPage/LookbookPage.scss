@@ -3,8 +3,15 @@
 .container {
   @include flex($direction: column);
   @include size(100%);
+
+  // max-height: 100vh;
+  // overflow-y: scroll;
+  // scroll-snap-type: y mandatory;
+  // scroll-snap-points-y: repeat(300px);
 }
 
 .productCard {
   @include flex($align: center);
+
+  // scroll-snap-align: start;
 }

@@ -9,7 +9,12 @@ import { DOCUMENT_CENTER, DOCUMENT_HEIGHT } from "@constants/global";
 
 import c from "./ProductCard.scss";
 
-const i = interpolateNumber(0.33, -0.7);
+const HIGHT_PRIMARY_OPACITY = 1;
+const HIGHT_SECONDARY_OPACITY = 0.33;
+const LOW_OPACITY_VALUE = -0.7;
+
+const secondaryI = interpolateNumber(HIGHT_SECONDARY_OPACITY, LOW_OPACITY_VALUE);
+const primaryI = interpolateNumber(HIGHT_PRIMARY_OPACITY, LOW_OPACITY_VALUE);
 
 interface IProps {
   id?: string;
@@ -19,7 +24,8 @@ interface IProps {
 }
 
 interface IState {
-  opacity: number;
+  secondaryOpacity: number;
+  primaryOpacity: number;
   isImgLoad: boolean;
   centerPosition: number;
 }
@@ -27,9 +33,10 @@ interface IState {
 export class ProductCard extends PureComponent<IProps, IState> {
   public static defaultProps: IProps;
   public state = {
-    centerPosition: 0,
+    centerPosition: 50,
     isImgLoad: false,
-    opacity: 0,
+    primaryOpacity: HIGHT_PRIMARY_OPACITY,
+    secondaryOpacity: HIGHT_SECONDARY_OPACITY,
   };
   private containerRef: HTMLElement;
 
@@ -48,6 +55,7 @@ export class ProductCard extends PureComponent<IProps, IState> {
       <article
         className={c.container}
         ref={this.handleContainerRef}
+        style={this.getContainerStyle()}
       >
         {this.renderDots()}
         {this.renderLink()}
@@ -56,7 +64,7 @@ export class ProductCard extends PureComponent<IProps, IState> {
     );
   }
 
-  private renderCardTitle = () => (
+  public renderCardTitle = () => (
     <Typography
       component="h2"
       className={c.cardTitle}
@@ -85,19 +93,60 @@ export class ProductCard extends PureComponent<IProps, IState> {
     </Link>
   )
 
-  private onImgLoad = () => {
-    this.setState({ isImgLoad: true });
-  }
+  private getContainerStyle = () => ({
+    opacity: this.state.primaryOpacity,
+  })
 
   private getDotsPatternStyle = (): CSSProperties => ({
-    opacity: this.state.opacity,
-    transform: `translateY(${this.state.centerPosition - 50}%)`,
+    opacity: this.state.secondaryOpacity,
+    transform: `translateY(${this.calculateCenterPosition() - 50}%)`,
   })
 
   private getSecondImgStyle = (): CSSProperties => ({
-    opacity: this.state.opacity,
-    transform: `translateY(-${this.state.centerPosition - 50}%)`,
+    opacity: this.state.secondaryOpacity,
+    transform: `translateY(-${this.calculateCenterPosition() - 50}%)`,
   })
+
+  private getElementDimentions = () =>
+    this.containerRef.getBoundingClientRect()
+
+  private getImageCenterPosition = () => {
+    const { height, top } = this.getElementDimentions();
+
+    return height / 2 + top;
+  }
+
+  private getOpacityValue = (centerPosition: number) => {
+    const primaryValue = primaryI(Math.abs(centerPosition / DOCUMENT_HEIGHT));
+    const secondaryValue = secondaryI(Math.abs(centerPosition / DOCUMENT_HEIGHT));
+
+    const primaryOpacity = this.calculatePrimaryOpacity(primaryValue);
+    const secondaryOpacity = this.calculateSecondaryOpacity(secondaryValue);
+
+    return ({
+      primaryOpacity,
+      secondaryOpacity,
+    });
+  }
+
+  private calculateCenterPosition = () =>
+    this.state.centerPosition > 600
+      ? 600
+      : this.state.centerPosition
+
+  private calculateSecondaryOpacity = (secondaryValue: number) =>
+    secondaryValue >= HIGHT_SECONDARY_OPACITY
+      ? HIGHT_SECONDARY_OPACITY
+      : secondaryValue < LOW_OPACITY_VALUE
+        ? LOW_OPACITY_VALUE
+        : secondaryValue
+
+  private calculatePrimaryOpacity = (primaryValue: number) =>
+    primaryValue >= HIGHT_PRIMARY_OPACITY
+      ? HIGHT_PRIMARY_OPACITY
+      : primaryValue < LOW_OPACITY_VALUE
+        ? LOW_OPACITY_VALUE
+        : primaryValue
 
   private handleContainerRef = (ref: HTMLElement) => {
     this.containerRef = ref;
@@ -105,27 +154,32 @@ export class ProductCard extends PureComponent<IProps, IState> {
 
   private handleScroll = () => {
     if (this.containerRef && this.state.isImgLoad) {
-      const { height, top } = this.containerRef.getBoundingClientRect();
-      const imgCenterPosition = height / 2 + top;
+      const imgCenterPosition = this.getImageCenterPosition();
 
       if (imgCenterPosition <= DOCUMENT_CENTER) {
         const centerPosition = imgCenterPosition - DOCUMENT_CENTER;
-        const opacity = i(Math.abs(centerPosition / DOCUMENT_HEIGHT));
+        const { primaryOpacity, secondaryOpacity } = this.getOpacityValue(centerPosition);
 
         this.setState({
           centerPosition,
-          opacity,
+          primaryOpacity,
+          secondaryOpacity,
         });
       } else {
         const centerPosition = DOCUMENT_CENTER - imgCenterPosition;
-        const opacity = i(Math.abs(centerPosition / DOCUMENT_HEIGHT));
+        const { primaryOpacity, secondaryOpacity } = this.getOpacityValue(centerPosition);
 
         this.setState({
           centerPosition: Math.abs(centerPosition),
-          opacity,
+          primaryOpacity,
+          secondaryOpacity,
         });
       }
     }
+  }
+
+  private onImgLoad = () => {
+    this.setState({ isImgLoad: true });
   }
 }
 
