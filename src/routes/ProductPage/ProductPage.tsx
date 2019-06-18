@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ContactMe, Slideshow } from "@components";
+import { ContactMe, Slideshow } from "@containers";
 
 import c from "./ProductPage.scss";
 

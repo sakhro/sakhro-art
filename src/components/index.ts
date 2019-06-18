@@ -1,13 +1,7 @@
-export { App } from "./App";
 export { Img } from "./Img";
-export { Nav } from "./Nav";
 export { Link } from "./Link";
 export { Slide } from "./Slide";
-export { Header } from "./Header";
 export { Button } from "./Button";
-export { Footer } from "./Footer";
-export { ContactMe } from "./ContactMe";
-export { Slideshow } from "./Slideshow";
 export { PageTitle } from "./PageTitle";
 export { Hamburger } from "./Hamburger";
 export { RouterLink } from "./RouterLink";

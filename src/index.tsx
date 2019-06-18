@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { InjectedIntlProps, IntlProvider } from "react-intl";
 import { Provider } from "react-redux";
 
-import { App } from "@components";
+import { App } from "@containers";
 
 import { language, messages } from "@config/i18n";
 import { rootStore } from "@redux/configureStore";

@@ -1,6 +1,6 @@
-import React, { FC, memo, useEffect } from "react";
+import React, { FC, memo } from "react";
 
-import { Header, Nav } from "@components";
+import { Header, Nav } from "@containers";
 
 import "@styles/app.scss";
 import c from "./MainLayout.scss";

@@ -2,7 +2,9 @@ import React, { FC, Fragment, memo } from "react";
 import { defineMessages, InjectedIntlProps } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
-import { Footer, Img } from "@components";
+import { Img } from "@components";
+
+import { Footer } from "@containers";
 
 import { HomeMain } from "@static/images";
 
