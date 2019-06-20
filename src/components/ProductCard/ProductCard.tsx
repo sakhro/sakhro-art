@@ -1,20 +1,11 @@
-import { interpolateNumber } from "d3-interpolate";
-import React, { CSSProperties, PureComponent, Ref } from "react";
+import cn from "classnames";
+import React, { PureComponent } from "react";
 
 import { DotsPattern, Img, Link, Typography } from "@components";
 
 import { sophiaPrimary, sophiaSecondary } from "@static/images/bags/sophia";
 
-import { DOCUMENT_CENTER, DOCUMENT_HEIGHT } from "@constants/global";
-
 import c from "./ProductCard.scss";
-
-const HIGHT_PRIMARY_OPACITY = 1;
-const HIGHT_SECONDARY_OPACITY = 0.33;
-const LOW_OPACITY_VALUE = -0.7;
-
-const secondaryI = interpolateNumber(HIGHT_SECONDARY_OPACITY, LOW_OPACITY_VALUE);
-const primaryI = interpolateNumber(HIGHT_PRIMARY_OPACITY, LOW_OPACITY_VALUE);
 
 interface IProps {
   id?: string;
@@ -24,38 +15,35 @@ interface IProps {
 }
 
 interface IState {
-  secondaryOpacity: number;
-  primaryOpacity: number;
   isImgLoad: boolean;
-  centerPosition: number;
+  isVisible: boolean;
 }
 
 export class ProductCard extends PureComponent<IProps, IState> {
   public static defaultProps: IProps;
+  public observer: IntersectionObserver;
+  public card: HTMLElement;
+
   public state = {
-    centerPosition: 50,
     isImgLoad: false,
-    primaryOpacity: HIGHT_PRIMARY_OPACITY,
-    secondaryOpacity: HIGHT_SECONDARY_OPACITY,
+    isVisible: false,
   };
-  private containerRef: HTMLElement;
 
-  public componentDidMount() {
-    this.handleScroll();
-
-    window.addEventListener("scroll", this.handleScroll, false);
+  public componentDidUpdate() {
+    if (!this.observer) {
+      this.createObservable();
+    }
   }
 
   public componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll, false);
+    this.observer.unobserve(this.card);
   }
 
   public render() {
     return (
       <article
-        className={c.container}
         ref={this.handleContainerRef}
-        style={this.getContainerStyle()}
+        className={this.getContainerClassName()}
       >
         {this.renderDots()}
         {this.renderLink()}
@@ -74,7 +62,7 @@ export class ProductCard extends PureComponent<IProps, IState> {
   )
 
   private renderDots = () => (
-    <DotsPattern style={this.getDotsPatternStyle()} />
+    <DotsPattern className={c.dotsPattern} />
   )
 
   private renderLink = () => (
@@ -82,100 +70,54 @@ export class ProductCard extends PureComponent<IProps, IState> {
       <Img
         alt="bag"
         src={this.props.primaryImg}
+        imgClassName={c.primaryImg}
         onImgLoad={this.onImgLoad}
       />
       <Img
         alt="bag"
         imgClassName={c.secondaryImg}
         src={this.props.secondaryImg}
-        style={this.getSecondImgStyle()}
       />
     </Link>
   )
 
-  private getContainerStyle = () => ({
-    opacity: this.state.primaryOpacity,
-  })
-
-  private getDotsPatternStyle = (): CSSProperties => ({
-    opacity: this.state.secondaryOpacity,
-    transform: `translateY(${this.calculateCenterPosition() - 50}%)`,
-  })
-
-  private getSecondImgStyle = (): CSSProperties => ({
-    opacity: this.state.secondaryOpacity,
-    transform: `translateY(-${this.calculateCenterPosition() - 50}%)`,
-  })
-
-  private getElementDimentions = () =>
-    this.containerRef.getBoundingClientRect()
-
-  private getImageCenterPosition = () => {
-    const { height, top } = this.getElementDimentions();
-
-    return height / 2 + top;
-  }
-
-  private getOpacityValue = (centerPosition: number) => {
-    const primaryValue = primaryI(Math.abs(centerPosition / DOCUMENT_HEIGHT));
-    const secondaryValue = secondaryI(Math.abs(centerPosition / DOCUMENT_HEIGHT));
-
-    const primaryOpacity = this.calculatePrimaryOpacity(primaryValue);
-    const secondaryOpacity = this.calculateSecondaryOpacity(secondaryValue);
-
-    return ({
-      primaryOpacity,
-      secondaryOpacity,
-    });
-  }
-
-  private calculateCenterPosition = () =>
-    this.state.centerPosition > 600
-      ? 600
-      : this.state.centerPosition
-
-  private calculateSecondaryOpacity = (secondaryValue: number) =>
-    secondaryValue >= HIGHT_SECONDARY_OPACITY
-      ? HIGHT_SECONDARY_OPACITY
-      : secondaryValue < LOW_OPACITY_VALUE
-        ? LOW_OPACITY_VALUE
-        : secondaryValue
-
-  private calculatePrimaryOpacity = (primaryValue: number) =>
-    primaryValue >= HIGHT_PRIMARY_OPACITY
-      ? HIGHT_PRIMARY_OPACITY
-      : primaryValue < LOW_OPACITY_VALUE
-        ? LOW_OPACITY_VALUE
-        : primaryValue
-
   private handleContainerRef = (ref: HTMLElement) => {
-    this.containerRef = ref;
+    this.card = ref;
   }
 
-  private handleScroll = () => {
-    if (this.containerRef && this.state.isImgLoad) {
-      const imgCenterPosition = this.getImageCenterPosition();
+  private getContainerClassName = () =>
+    cn(c.container, { [c.visible]: this.state.isVisible })
 
-      if (imgCenterPosition <= DOCUMENT_CENTER) {
-        const centerPosition = imgCenterPosition - DOCUMENT_CENTER;
-        const { primaryOpacity, secondaryOpacity } = this.getOpacityValue(centerPosition);
+  private getTreshold = () => {
+    const treshold = [];
 
-        this.setState({
-          centerPosition,
-          primaryOpacity,
-          secondaryOpacity,
-        });
-      } else {
-        const centerPosition = DOCUMENT_CENTER - imgCenterPosition;
-        const { primaryOpacity, secondaryOpacity } = this.getOpacityValue(centerPosition);
-
-        this.setState({
-          centerPosition: Math.abs(centerPosition),
-          primaryOpacity,
-          secondaryOpacity,
-        });
-      }
+    for (let i = 0; i <= 1.0; i += 0.01) {
+      treshold.push(i);
     }
+
+    return treshold;
+  }
+
+  private handleIntersect: IntersectionObserverCallback = (entries) => {
+    if (entries[0].intersectionRatio > 0.9) {
+      this.setState({ isVisible: true });
+
+      return;
+    }
+
+    this.setState({ isVisible: false });
+  }
+
+  private createObservable = () => {
+    const options = {
+      root: null as null,
+      rootMargin: "0px",
+      threshold: this.getTreshold(),
+    };
+
+    this.observer = new IntersectionObserver(this.handleIntersect, options);
+
+    this.observer.observe(this.card);
   }
 
   private onImgLoad = () => {

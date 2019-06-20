@@ -7,11 +7,11 @@
   // max-height: 100vh;
   // overflow-y: scroll;
   // scroll-snap-type: y mandatory;
-  // scroll-snap-points-y: repeat(300px);
+  // scroll-snap-points-y: repeat(100vh);
 }
 
 .productCard {
   @include flex($align: center);
 
-  // scroll-snap-align: start;
+  // scroll-snap-align: end;
 }

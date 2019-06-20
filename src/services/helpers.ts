@@ -21,14 +21,3 @@ export const getImageDimensions = (url: string) => {
 };
 
 export const getAspectRatio = (x: number, y: number) => y / x;
-
-export const isElInViewport = (elem: HTMLElement) => {
-  const { innerHeight, innerWidth } = window;
-  const { top, left, bottom, right } = elem.getBoundingClientRect();
-  const { clientHeight, clientWidth } = document.documentElement;
-
-  return top >= 0
-    && left >= 0
-    && bottom <= (innerHeight || clientHeight)
-    && right <= (innerWidth || clientWidth);
-};
