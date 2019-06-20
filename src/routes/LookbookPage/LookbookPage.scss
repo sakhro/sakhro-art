@@ -1,17 +1,15 @@
 @import 'src/styles/base';
 
 .container {
-  @include flex($direction: column);
   @include size(100%);
 
-  // max-height: 100vh;
-  // overflow-y: scroll;
-  // scroll-snap-type: y mandatory;
-  // scroll-snap-points-y: repeat(100vh);
+  max-height: calc(100vh - 60px);
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
 
 .productCard {
   @include flex($align: center);
 
-  // scroll-snap-align: end;
+  scroll-snap-align: center;
 }
