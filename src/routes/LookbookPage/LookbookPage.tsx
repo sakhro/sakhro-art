@@ -5,25 +5,30 @@ import { PageTitle, ProductCard } from "@components";
 
 import c from "./LookbookPage.scss";
 
-export const LookbookPage: FC<InjectedIntlProps> = () => (
+interface IProps {
+  products: string[];
+}
+
+export const LookbookPage: FC<IProps & InjectedIntlProps> = props => (
   <section className={c.container}>
     <PageTitle>
       <FormattedMessage id="lookbook" />
     </PageTitle>
-    <div className={c.productCard}>
-      <ProductCard />
-    </div>
-    <div className={c.productCard}>
-      <ProductCard />
-    </div>
-    <div className={c.productCard}>
-      <ProductCard />
-    </div>
-    <div className={c.productCard}>
-      <ProductCard />
-    </div>
-    <div className={c.productCard}>
-      <ProductCard />
-    </div>
+    {props.products.map(product => (
+      <article
+        key={product}
+        className={c.productCard}
+      >
+        <ProductCard />
+      </article>
+    ))}
   </section>
 );
+
+LookbookPage.defaultProps = {
+  products: [
+    "1",
+    "2",
+    "3",
+  ],
+};

@@ -4,7 +4,7 @@ import React, { CSSProperties, FC } from "react";
 import c from "./DotsPattern.scss";
 
 interface IProps {
-  style: CSSProperties;
+  style?: CSSProperties;
   className?: string;
 }
 

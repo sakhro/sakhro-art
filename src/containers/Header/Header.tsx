@@ -13,6 +13,7 @@ import c from "./Header.scss";
 interface IProps extends RouteComponentProps {
   pageTitleKey: string;
   isProductPage: boolean;
+  showNav: () => void;
 }
 
 export const Header: FC<IProps> = props => {
@@ -58,7 +59,7 @@ export const Header: FC<IProps> = props => {
           </Typography>
         </div>
       )}
-      <Hamburger />
+      <Hamburger onClick={props.showNav} />
     </header>
   );
 };

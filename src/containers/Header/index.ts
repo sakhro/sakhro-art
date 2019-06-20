@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
 
+import { globalActions } from "@redux/Global/GlobalActions";
 import { isProductPageSelector, pageTitleKeySelector } from "@redux/Global/GlobalSelectors";
 
 import { Header as View  } from "./Header";
@@ -12,9 +13,13 @@ const mapStateToProps = createStructuredSelector({
   pageTitleKey: pageTitleKeySelector,
 });
 
+const mapDispatchToProps = {
+  showNav: globalActions.showNav,
+};
+
 const enhance = compose(
   withRouter,
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 );
 
 export const Header = enhance(View);

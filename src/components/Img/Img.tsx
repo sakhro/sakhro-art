@@ -20,17 +20,14 @@ export const Img: FC<IProps> = props => {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    // Create an custom img el
     const img = new Image();
     img.onload = () => {
-      // On img load set change src state to display an img
       setSrc(props.src);
 
       if (props.onImgLoad) {
         props.onImgLoad();
       }
     };
-    // Set img src to custom img el to load it lazy
     img.src = props.src;
   }, [props.src, props.onImgLoad]);
 
