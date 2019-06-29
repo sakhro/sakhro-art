@@ -19,32 +19,6 @@ export const Nav: FC<IProps> = (props) => {
     ? 0
     : -1;
 
-  const renderLink = ({ id, to }: { id: string, to: string }) => (
-    <li key={id}>
-      <Link
-        to={to}
-        onClick={props.onClose}
-        tabIndex={tabIndex}
-        className={c.navLink}
-      >
-        <FormattedMessage id={id} />
-      </Link>
-    </li>
-  );
-
-  const renderSocial = ({
-    id, Icon, href,
-  }: { id: string, Icon: IconType, href: string }) => (
-      <Link
-        key={id}
-        href={href}
-        tabIndex={tabIndex}
-        className={c.socialLink}
-      >
-        <Icon />
-      </Link>
-    );
-
   return (
     <nav className={cn(c.container, { [c.visible]: props.isVisible })}>
       <Button
@@ -55,10 +29,30 @@ export const Nav: FC<IProps> = (props) => {
         <div />
       </Button>
       <ul className={c.links}>
-        {LINKS.map(renderLink)}
+        {LINKS.map(({ id, to }: LinkType) => (
+          <li key={id}>
+            <Link
+              to={to}
+              onClick={props.onClose}
+              tabIndex={tabIndex}
+              className={c.navLink}
+            >
+              <FormattedMessage id={id} />
+            </Link>
+          </li>
+        ))}
       </ul>
       <footer className={c.footer}>
-        {SOCIALS.map(renderSocial)}
+        {SOCIALS.map(({ id, Icon, href }: SocialLinkType) => (
+          <Link
+            key={id}
+            href={href}
+            tabIndex={tabIndex}
+            className={c.socialLink}
+          >
+            <Icon />
+          </Link>
+        ))}
       </footer>
     </nav>
   );
