@@ -2,14 +2,8 @@
 
 .container {
   @include size(100%);
-
-  max-height: calc(100vh - 60px);
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
 }
 
 .productCard {
   @include flex($align: center);
-
-  scroll-snap-align: center;
 }

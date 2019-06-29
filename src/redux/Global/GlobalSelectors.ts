@@ -8,7 +8,7 @@ const getState = (state: IRootState) => state.global;
 const location = (_: IRootState, props: any) => props.location;
 const nav = (state: IRootState) => getState(state).nav;
 
-const currentRouteSelector = createSelector(
+export const currentRouteSelector = createSelector(
   location,
   ({ pathname }) => pathname,
 );
