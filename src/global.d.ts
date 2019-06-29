@@ -28,3 +28,9 @@ interface IRootState {
   global: IGlobalState;
   lookbook: ILookbookState;
 }
+
+// tslint:disable-next-line:interface-over-type-literal
+type LinkType = { id: string, to: string };
+
+// tslint:disable-next-line:interface-over-type-literal
+type SocialLinkType = { id: string, Icon: IconType, href: string };

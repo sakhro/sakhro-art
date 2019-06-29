@@ -43,36 +43,30 @@ const paragraphs2: any = defineMessages({
   },
 });
 
-export const HistoryPage: FC<InjectedIntlProps> = props => {
-  const renderParagraph1 = (key: string) => (
-    <Typography className={c.parag} key={key}>
-      {props.intl.formatMessage(paragraphs1[key])}
-    </Typography>
-  );
-
-  const renderParagraph2 = (key: string) => (
-    <Typography className={c.parag} key={key}>
-      {props.intl.formatMessage(paragraphs2[key])}
-    </Typography>
-  );
-
-  return (
-    <article className={c.container}>
-      <PageTitle>
-        <FormattedMessage id="history" />
-      </PageTitle>
-      <Img
-        src={Kenzo}
-        imgClassName={c.sakhroKenzoImg}
-        alt={props.intl.formatMessage(altText.sakhroKenzo)}
-      />
-      {Object.keys(paragraphs1).map(renderParagraph1)}
-      <Img
-        src={OlesyaSakhro}
-        imgClassName={c.olesyaSakhroImg}
-        alt={props.intl.formatMessage(altText.olesyaSakhro)}
-      />
-      {Object.keys(paragraphs2).map(renderParagraph2)}
-    </article>
-  );
-};
+export const HistoryPage: FC<InjectedIntlProps> = props => (
+  <article className={c.container}>
+    <PageTitle>
+      <FormattedMessage id="history" />
+    </PageTitle>
+    <Img
+      src={Kenzo}
+      imgClassName={c.sakhroKenzoImg}
+      alt={props.intl.formatMessage(altText.sakhroKenzo)}
+    />
+    {Object.keys(paragraphs1).map((key: string) => (
+      <Typography className={c.parag} key={key}>
+        {props.intl.formatMessage(paragraphs1[key])}
+      </Typography>
+    ))}
+    <Img
+      src={OlesyaSakhro}
+      imgClassName={c.olesyaSakhroImg}
+      alt={props.intl.formatMessage(altText.olesyaSakhro)}
+    />
+    {Object.keys(paragraphs2).map((key: string) => (
+      <Typography className={c.parag} key={key}>
+        {props.intl.formatMessage(paragraphs2[key])}
+      </Typography>
+    ))}
+  </article>
+);
