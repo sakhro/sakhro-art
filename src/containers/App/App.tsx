@@ -1,19 +1,23 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
+import { HISTORY, HOME, LOOKBOOK, PRODUCT } from "@constants/url";
 import { MainLayout } from "@layouts/MainLayout";
 
-import { HISTORY, HOME, LOOKBOOK, PRODUCT } from "@constants/url";
+// const HomePage = lazy(() => import("@routes/HomePage"));
+// const HistoryPage = lazy(() => import("@routes/HistoryPage"));
+// const LookbookPage = lazy(() => import("@routes/LookbookPage"));
+// const ProductPage = lazy(() => import("@routes/ProductPage"));
 
-const HomePage = lazy(() => import("@routes/HomePage"));
-const HistoryPage = lazy(() => import("@routes/HistoryPage"));
-const LookbookPage = lazy(() => import("@routes/LookbookPage"));
-const ProductPage = lazy(() => import("@routes/ProductPage"));
+import HistoryPage from "@routes/HistoryPage";
+import HomePage from "@routes/HomePage";
+import LookbookPage from "@routes/LookbookPage";
+import ProductPage from "@routes/ProductPage";
 
 export const App = () => (
   <BrowserRouter>
-    <MainLayout>
-      <Suspense fallback={null}> {/* TODO: Add loading fallback */}
+    <Suspense fallback={null}>
+      <MainLayout>
         <Switch>
           <Route exact component={HomePage} path={HOME} />
           <Route exact component={HistoryPage} path={HISTORY} />
@@ -22,7 +26,7 @@ export const App = () => (
 
           <Redirect to={HOME} />
         </Switch>
-      </Suspense>
-    </MainLayout>
+      </MainLayout>
+    </Suspense>
   </BrowserRouter>
 );

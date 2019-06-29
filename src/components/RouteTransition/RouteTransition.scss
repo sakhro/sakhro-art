@@ -1,0 +1,21 @@
+@import 'src/styles/base';
+
+.route {
+  transition: opacity 500ms ease-in-out;
+}
+
+:global {
+  .route-enter {
+    opacity: 0;
+  }
+  .route-enter-active {
+    opacity: 1;
+    
+  }
+  .route-exit {
+    opacity: 1;
+  }
+  .route-exit-active {
+    opacity: 0;
+  }
+}

@@ -9,3 +9,4 @@ export { Typography } from "./Typography";
 export { ProductCard } from "./ProductCard";
 export { DotsPattern } from "./DotsPattern";
 export { ExternalLink } from "./ExternalLink";
+export { RouteTransition } from "./RouteTransition";

@@ -3,13 +3,10 @@ import { defineMessages, InjectedIntlProps } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
 import { Img } from "@components";
-
+import { LOOKBOOK } from "@constants/url";
 import { Footer } from "@containers";
 
 import { HomeMain } from "@static/images";
-
-import { LOOKBOOK } from "@constants/url";
-
 import c from "./HomePage.scss";
 
 const messages = defineMessages({
@@ -27,7 +24,7 @@ export const HomePage: FC<InjectedIntlProps & RouteComponentProps> = memo((props
   };
 
   return (
-    <Fragment>
+    <section>
       <div className={c.container}>
         <Img
           customHeight
@@ -40,6 +37,6 @@ export const HomePage: FC<InjectedIntlProps & RouteComponentProps> = memo((props
         label={props.intl.formatMessage(messages.lookbook)}
         onClick={onFooterButtonClick}
       />
-    </Fragment>
+    </section>
   );
 });
