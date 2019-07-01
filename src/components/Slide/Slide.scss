@@ -2,7 +2,7 @@
 
 .container {
   @include flex($align: center, $justify: center);
-  @include size(100%, calc(100vh - 120px));
+  @include size(100%);
 
   background-color: #FEA900,
 }
