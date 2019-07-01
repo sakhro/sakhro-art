@@ -45,41 +45,29 @@ export class ProductCard extends PureComponent<IProps, IState> {
         ref={this.handleContainerRef}
         className={this.getContainerClassName()}
       >
-        {this.renderDots()}
-        {this.renderLink()}
-        {this.renderCardTitle()}
+        <DotsPattern className={c.dotsPattern} />
+        <Link to={`lookbook/${this.props.id}`}>
+          <Img
+            alt="bag"
+            src={this.props.primaryImg}
+            imgClassName={c.primaryImg}
+            onImgLoad={this.onImgLoad}
+          />
+          <Img
+            alt="bag"
+            imgClassName={c.secondaryImg}
+            src={this.props.secondaryImg}
+          />
+        </Link>
+        <Typography
+          component="h2"
+          className={c.cardTitle}
+        >
+          {this.props.title}
+        </Typography>
       </article>
     );
   }
-
-  public renderCardTitle = () => (
-    <Typography
-      component="h2"
-      className={c.cardTitle}
-    >
-      {this.props.title}
-    </Typography>
-  )
-
-  private renderDots = () => (
-    <DotsPattern className={c.dotsPattern} />
-  )
-
-  private renderLink = () => (
-    <Link to={`lookbook/${this.props.id}`}>
-      <Img
-        alt="bag"
-        src={this.props.primaryImg}
-        imgClassName={c.primaryImg}
-        onImgLoad={this.onImgLoad}
-      />
-      <Img
-        alt="bag"
-        imgClassName={c.secondaryImg}
-        src={this.props.secondaryImg}
-      />
-    </Link>
-  )
 
   private handleContainerRef = (ref: HTMLElement) => {
     this.card = ref;
