@@ -1,12 +1,18 @@
 @import 'src/styles/base';
 
 .container {
-  @include flex($direction: column);
+  @include flex($direction: column, $justify: flex-end);
+  @include size(auto, calc(100vh - 60px));
 }
 
-.backgroundImg {
-  @include absolute($top: 60px, $bottom: 60px);
-  @include size(100%, calc(100% - 120px));
+.title {
+  @include pl(1);
+  @include mx(2);
 
-  object-fit: cover;
+  line-height: 1;
+  border-left: 3px solid $color-secondary;
+}
+
+.slideshow {
+  height: 80%
 }

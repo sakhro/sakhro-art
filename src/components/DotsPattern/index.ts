@@ -1,1 +1,0 @@
-export { DotsPattern } from "./DotsPattern";

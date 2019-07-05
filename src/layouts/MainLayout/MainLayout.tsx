@@ -8,7 +8,7 @@ import { RouteTransition } from "@components";
 import "@styles/app.scss";
 import c from "./MainLayout.scss";
 
-export const MainLayout: FC<RouteComponentProps> = (props) => (
+export const MainLayout: FC<RouteComponentProps> = props => (
   <Fragment>
     <Header />
     <Nav />

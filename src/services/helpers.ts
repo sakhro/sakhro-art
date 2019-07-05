@@ -21,3 +21,6 @@ export const getImageDimensions = (url: string) => {
 };
 
 export const getAspectRatio = (x: number, y: number) => y / x;
+
+export const interpolator = (val: number, min: number, max: number) =>
+  min * (1 - val) + max * val;

@@ -9,28 +9,23 @@ $header-height: 60px;
   @include fixed($top: 0, $left: 0, $right: 0);
   @include flex($justify: space-between);
 
-  color: $color-white;
   overflow: hidden;
+  color: $color-text;
   background-color: $color-primary;
-  border-left: 8px solid $color-secondary;
 }
 
-.primaryTitle,
 .primaryTitle {
   @include m(0);
   @include flex($align: center);
   @include size(auto, $header-height);
-
+  @include font;
+  
   text-transform: uppercase;
-}
-
-.titleWrapper {
-  transition: transform 50ms;
 }
 
 .backButton {
   margin-left: -10px;
-  color: $color-white;
+  color: $color-text;
 }
 
 .arrowIcon {

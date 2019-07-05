@@ -8,11 +8,7 @@ import { Button, Link } from "@components";
 import { LINKS, SOCIALS } from "@config/global";
 
 import c from "./Nav.scss";
-
-interface IProps {
-  isVisible: boolean;
-  onClose: () => void;
-}
+import { IProps } from "./types";
 
 export const Nav: FC<IProps> = (props) => {
   const tabIndex = props.isVisible

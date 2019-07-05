@@ -1,18 +1,10 @@
 import cn from "classnames";
-import React, { CSSProperties, FC, Fragment, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, Fragment, useEffect, useMemo, useRef, useState } from "react";
 
 import { getAspectRatio, getImageDimensions } from "@services/helpers";
 
 import c from "./Img.scss";
-
-interface IProps {
-  src: string;
-  alt: string;
-  style?: CSSProperties;
-  imgClassName?: string;
-  customHeight?: boolean;
-  onImgLoad?: () => void;
-}
+import { IProps } from "./types";
 
 export const Img: FC<IProps> = props => {
   const placeholderRef = useRef(null);

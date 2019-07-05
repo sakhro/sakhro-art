@@ -11,7 +11,7 @@
     .topBar,
     .middleBar,
     .bottomBar {
-      background-color: $color-secondary;
+      background-color: $color-hover
     }
   }
 }
@@ -20,7 +20,7 @@
 .middleBar,
 .bottomBar {
   border-radius: 10px;
-  background-color: $color-white;
+  background-color: $color-secondary;
 }
 
 .topBar {

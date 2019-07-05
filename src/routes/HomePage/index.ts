@@ -1,5 +1,1 @@
-import { injectIntl } from "react-intl";
-
-import { HomePage } from "./HomePage";
-
-export default injectIntl(HomePage);
+export { HomePage as default } from "./HomePage";

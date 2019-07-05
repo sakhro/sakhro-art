@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 
-interface IProps extends IExternalLink {
-  className?: string;
-}
+import { IProps } from "./types";
 
 export const ExternalLink: FC<IProps> = props => (
   <a

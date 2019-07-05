@@ -2,12 +2,12 @@
 
 .container {
   @include flex($align: center, $justify: center);
-  @include font($color: $color-white);
+  @include font($color: $color-text);
   
   text-decoration: none;
   transition: color 100ms ease-in-out;
 
   &:hover {
-    color: $color-secondary;
+    color: $color-hover;
   }
 }

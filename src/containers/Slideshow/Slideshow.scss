@@ -1,0 +1,12 @@
+@import "src/styles/base";
+
+.container {
+  @include pl(0);
+  @include flex;
+  @include m(0);
+
+  will-change: transform;
+  transform: translateZ(0);
+  transition: transform 300ms ease-in-out;
+  list-style: none;
+}

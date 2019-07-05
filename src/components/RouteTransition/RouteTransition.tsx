@@ -1,11 +1,9 @@
 import cn from "classnames";
 import React, { FC } from "react";
-import { RouteComponentProps } from "react-router";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import c from "./RouteTransition.scss";
-
-type PropsType = Pick<RouteComponentProps, "location">;
+import { PropsType } from "./types";
 
 export const RouteTransition: FC<PropsType> = (props) => (
   <TransitionGroup>

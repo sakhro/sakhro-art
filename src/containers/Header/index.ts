@@ -4,11 +4,12 @@ import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
 
 import { globalActions } from "@redux/Global/GlobalActions";
-import { isProductPageSelector, pageTitleKeySelector } from "@redux/Global/GlobalSelectors";
+import { isHomePageSelector, isProductPageSelector, pageTitleKeySelector } from "@redux/Global/GlobalSelectors";
 
 import { Header as View  } from "./Header";
 
 const mapStateToProps = createStructuredSelector({
+  isHomePage: isHomePageSelector,
   isProductPage: isProductPageSelector,
   pageTitleKey: pageTitleKeySelector,
 });

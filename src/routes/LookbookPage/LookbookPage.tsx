@@ -1,19 +1,12 @@
 import React, { FC } from "react";
-import { FormattedMessage, InjectedIntlProps } from "react-intl";
 
-import { PageTitle, ProductCard } from "@components";
+import { ProductCard } from "@components";
 
 import c from "./LookbookPage.scss";
+import { IProps } from "./types";
 
-interface IProps {
-  products: string[];
-}
-
-export const LookbookPage: FC<IProps & InjectedIntlProps> = props => (
+export const LookbookPage: FC<IProps> = props => (
   <section className={c.container}>
-    <PageTitle>
-      <FormattedMessage id="lookbook" />
-    </PageTitle>
     {props.products.map(product => (
       <article
         key={product}

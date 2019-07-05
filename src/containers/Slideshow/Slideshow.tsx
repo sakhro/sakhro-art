@@ -1,37 +1,45 @@
-import React from "react";
+import cn from "classnames";
+import React, { FC, Fragment, useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 
-import { Img, Slide } from "@components";
+import { Bollets, Img } from "@components";
 
-import { clientHeight } from "@constants/global";
+import c from "./Slideshow.scss";
+import { IProps } from "./types";
 
-const imgStyle = {
-  height: clientHeight - 120,
-  width: "100%",
+export const Slideshow: FC<IProps> = props => {
+  const [active, setActive] = useState(0);
+
+  const onChangeIndex = (index: number) => {
+    setActive(index);
+  };
+
+  return (
+    <Fragment>
+      <Bollets active={active} items={props.items} />
+      <SwipeableViews
+        enableMouseEvents
+        index={active}
+        onChangeIndex={onChangeIndex}
+        className={cn(c.container, props.className)}
+      >
+        {props.items.map((item) => (
+          <Img
+            alt="test"
+            key={item.id}
+            src="https://via.placeholder.com/620x1000"
+          />
+        ))}
+      </SwipeableViews>
+    </Fragment>
+  );
 };
 
-export const Slideshow = () => (
-  <SwipeableViews enableMouseEvents>
-    <Slide>
-      <Img
-        style={imgStyle}
-        src="https://via.placeholder.com/620x1200"
-        alt="test"
-      />
-    </Slide>
-    <Slide>
-      <Img
-        style={imgStyle}
-        src="https://via.placeholder.com/620x1200"
-        alt="test"
-      />
-    </Slide>
-    <Slide>
-      <Img
-        style={imgStyle}
-        src="https://via.placeholder.com/620x1200"
-        alt="test"
-      />
-    </Slide>
-  </SwipeableViews>
-);
+Slideshow.defaultProps = {
+  items: [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+  ],
+};

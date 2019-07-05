@@ -6,7 +6,7 @@
   }
 }
 
-@mixin media-breakpoint-down($breakpoint) {
+@mixin media-breakpoint-down($key) {
   $breakpoint: map-get($grid-breakpoints, $key);
   
   @media screen and (max-width: $breakpoint) { 

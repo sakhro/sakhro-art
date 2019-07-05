@@ -1,41 +1,37 @@
 import React, { FC, useMemo } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FormattedMessage } from "react-intl";
-import { RouteComponentProps } from "react-router-dom";
 
 import { Button, Hamburger, Typography } from "@components";
 
 import { PAGE_TITLE } from "@config/global";
+import { interpolator } from "@services/helpers";
 import { useScrollOffset } from "@services/hooks";
 
 import c from "./Header.scss";
-
-interface IProps extends RouteComponentProps {
-  pageTitleKey: string;
-  isProductPage: boolean;
-  showNav: () => void;
-}
+import { IProps } from "./types";
 
 export const Header: FC<IProps> = props => {
   const scrollOffset = useScrollOffset();
 
-  const getTitlePosition = useMemo(() => {
+  const opacity = useMemo(() => {
     switch (true) {
-      case scrollOffset < 50:
-        return 0;
-      case scrollOffset > 110:
-        return 60;
+      case scrollOffset < 60:
+        return interpolator(scrollOffset / 60, 0, 0.07);
       default:
-        return scrollOffset - 49;
+        return interpolator(1, 0, 0.07);
     }
   }, [scrollOffset]);
 
-  const titleWrapperStyles = useMemo(() => ({
-    transform: `translateY(-${getTitlePosition}px)`,
-  }), [getTitlePosition]);
+  const containerStyle = useMemo(() => ({
+    boxShadow: `0 5px 10px rgba(0, 0, 0, ${opacity})`,
+  }), [opacity]);
 
   return (
-    <header className={c.container}>
+    <header
+      style={containerStyle}
+      className={c.container}
+    >
       {props.isProductPage && (
         <Button
           className={c.backButton}
@@ -45,19 +41,15 @@ export const Header: FC<IProps> = props => {
         </Button>
       )}
       {!props.isProductPage && (
-        <div
-          className={c.titleWrapper}
-          style={titleWrapperStyles}
-        >
-          <Typography className={c.primaryTitle}>
-            {PAGE_TITLE}
-          </Typography>
-          <Typography className={c.primaryTitle}>
-            <FormattedMessage
-              id={props.pageTitleKey}
-            />
-          </Typography>
-        </div>
+        <Typography component="h1" className={c.primaryTitle}>
+          {props.isHomePage
+            ? PAGE_TITLE
+            : (
+              <FormattedMessage
+                id={props.pageTitleKey}
+              />
+            )}
+        </Typography>
       )}
       <Hamburger onClick={props.showNav} />
     </header>

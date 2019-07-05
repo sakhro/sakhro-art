@@ -1,6 +1,7 @@
 // tslint:disable: max-line-length
 export const en = {
-  "contactMe": "Contact Me",
+  "askAbout": "Ask about this bag",
+  "cultBags": "Cult bags",
   "history": "History",
   "history.parag1": "The brand Sakhro was created in 2016 by embroidery artist Olesia Sakhro. Embroidery has since become the integral aspect of each collection purse.",
   "history.parag2": "An art can take many forms and embroidery in no exception. By researching and analyzing different embroidery techniques and cultural patterns, she has developed a deeper understanding in this field and created her own unique technique that was successfully deployed on her purses.",

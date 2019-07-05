@@ -23,7 +23,7 @@ const isHistoryPageSelector = createSelector(
   currentRoute => currentRoute === HISTORY,
 );
 
-const isHomePageSelector = createSelector(
+export const isHomePageSelector = createSelector(
   currentRouteSelector,
   currentRoute => currentRoute === HOME,
 );

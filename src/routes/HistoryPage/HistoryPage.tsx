@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { defineMessages, FormattedMessage, InjectedIntlProps } from "react-intl";
+import { defineMessages, InjectedIntlProps } from "react-intl";
 
-import { Img, PageTitle, Typography } from "@components";
+import { Img, Typography } from "@components";
 
 import { Kenzo, OlesyaSakhro } from "@static/images";
 
@@ -45,9 +45,6 @@ const paragraphs2: any = defineMessages({
 
 export const HistoryPage: FC<InjectedIntlProps> = props => (
   <article className={c.container}>
-    <PageTitle>
-      <FormattedMessage id="history" />
-    </PageTitle>
     <Img
       src={Kenzo}
       imgClassName={c.sakhroKenzoImg}
