@@ -8,7 +8,12 @@ const appDirectory = fs.realpathSync(process.cwd());
 // common function to get style loaders
 const getStyleLoaders = (cssOptions, preProcessor) => {
   const loaders = [
-    require.resolve('style-loader'),
+    {
+      loader: 'style-loader',
+      options: {
+        singleton: true
+      }
+    },
     {
       loader: require.resolve('css-loader'),
       options: cssOptions,
