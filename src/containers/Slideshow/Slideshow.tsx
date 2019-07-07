@@ -30,9 +30,17 @@ export const Slideshow: FC<IProps> = props => {
     setActive(index);
   };
 
+  const onBolletClick = (index: number) => () => {
+    setActive(index - 1);
+  };
+
   return (
     <Fragment>
-      <Bollets active={active} items={props.items} />
+      <Bollets
+        active={active}
+        items={props.items}
+        onBolletClick={onBolletClick}
+      />
       <SwipeableViews
         enableMouseEvents
         index={active}

@@ -12,6 +12,7 @@
   @include size(50px, 5px);
   @include mr(2);
 
+  cursor: pointer;
   background-color: $color-clouds;
   transition: background-color 300ms ease-in-out;
 

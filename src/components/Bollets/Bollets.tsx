@@ -10,6 +10,7 @@ export const Bollets: FC<IProps> = props => (
       <li
         key={item.id}
         className={cn(c.bollet, props.active === idx  && c.active)}
+        onClick={props.onBolletClick(item.id)}
       />
     ))}
   </ul>
