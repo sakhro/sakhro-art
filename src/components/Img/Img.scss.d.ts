@@ -3,3 +3,4 @@ export const placeholder: string;
 export const loader: string;
 export const loading: string;
 export const img: string;
+export const fullWidth: string;

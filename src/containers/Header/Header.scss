@@ -3,11 +3,11 @@
 $header-height: 60px;
 
 .container {
-  @include container;
   @include size(auto, $header-height);
   @include z-index('header');
   @include fixed($top: 0, $left: 0, $right: 0);
   @include flex($justify: space-between);
+  @include px(2);
 
   overflow: hidden;
   color: $color-text;

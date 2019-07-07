@@ -16,24 +16,15 @@ $color-hover: $color-fuzzy-wuzzy-brown;
 $color-active: $color-fuzzy-wuzzy-brown;
 
 // GRID
-$grid-columns: 12;
-$grid-fluid: false;
-$grid-gutter-widths: (
-  down sm: 40px,
-  up md: 30px,
-);
-
 $container-max-widths: (
   sm: 540px,
   md: 720px,
-  lg: 960px,
 );
 
 $grid-breakpoints: (
   xs: 0,
   sm: 544px,
   md: 768px,
-  lg: 1024px,
 );
 
 $spacing-sizes: (
@@ -78,6 +69,12 @@ $typography: (
       font-size: $font-size-base,
       font-weight: 400,
       line-height: 1.3
+    ),
+    sm: (
+      font-size: 18px,
+    ),
+    md: (
+      font-size: 18px,
     )
   ),
   h1: (

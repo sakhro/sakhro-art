@@ -6,7 +6,11 @@ import c from "./ProductPage.scss";
 
 export const ProductPage = () => (
   <div className={c.container}>
-    <Slideshow />
+    <Slideshow
+      grid
+      className={c.slideshow}
+      imgClassName={c.slideshowImg}
+    />
     <ContactMe />
   </div>
 );

@@ -15,6 +15,10 @@ export const HomePage: FC<RouteComponentProps> = memo(() => (
     >
       <FormattedMessage id="cultBags" />
     </Typography>
-    <Slideshow className={c.slideshow} />
+    <Slideshow
+      autoPlay
+      className={c.slideshow}
+      imgClassName={c.slideshowImg}
+    />
   </section>
 ));

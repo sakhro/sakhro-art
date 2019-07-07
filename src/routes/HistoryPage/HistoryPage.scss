@@ -1,7 +1,7 @@
 @import 'src/styles/base';
 
 .container {
-  @include flex($direction: column);
+  @include flex($direction: column, $align: center);
 }
 
 .sakhroKenzoImg {
@@ -12,6 +12,8 @@
 .parag {
   @include px(2);
   @include font($align: justify);
+
+  max-width: 700px;
 }
 
 .olesyaSakhroImg {

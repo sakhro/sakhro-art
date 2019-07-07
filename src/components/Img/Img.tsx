@@ -63,7 +63,7 @@ export const Img: FC<IProps> = props => {
           src={src}
           alt={props.alt}
           style={props.style}
-          className={cn(c.img, props.imgClassName)}
+          className={cn(c.img, props.imgClassName, props.fullWidth && c.fullWidth)}
         />
       )}
     </Fragment>
