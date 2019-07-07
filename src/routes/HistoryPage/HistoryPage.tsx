@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { defineMessages, InjectedIntlProps } from "react-intl";
+import { defineMessages, FormattedMessage, InjectedIntlProps } from "react-intl";
 
 import { Img, Typography } from "@components";
 
@@ -16,32 +16,18 @@ const altText = defineMessages({
   },
 });
 
-const paragraphs1: any = defineMessages({
-  parag1: {
-    id: "history.parag1",
-  },
-  parag2: {
-    id: "history.parag2",
-  },
-  parag3: {
-    id: "history.parag3",
-  },
-  parag4: {
-    id: "history.parag4",
-  },
-});
+const paragraphs1 = [
+  "history.parag1",
+  "history.parag2",
+  "history.parag3",
+  "history.parag4",
+];
 
-const paragraphs2: any = defineMessages({
-  parag5: {
-    id: "history.parag5",
-  },
-  parag6: {
-    id: "history.parag6",
-  },
-  parag7: {
-    id: "history.parag7",
-  },
-});
+const paragraphs2 = [
+  "history.parag5",
+  "history.parag6",
+  "history.parag7",
+];
 
 export const HistoryPage: FC<InjectedIntlProps> = props => (
   <article className={c.container}>
@@ -50,9 +36,9 @@ export const HistoryPage: FC<InjectedIntlProps> = props => (
       imgClassName={c.sakhroKenzoImg}
       alt={props.intl.formatMessage(altText.sakhroKenzo)}
     />
-    {Object.keys(paragraphs1).map((key: string) => (
-      <Typography className={c.parag} key={key}>
-        {props.intl.formatMessage(paragraphs1[key])}
+    {paragraphs1.map((id: string) => (
+      <Typography className={c.parag} key={id}>
+        <FormattedMessage id={id} />
       </Typography>
     ))}
     <Img
@@ -60,9 +46,9 @@ export const HistoryPage: FC<InjectedIntlProps> = props => (
       imgClassName={c.olesyaSakhroImg}
       alt={props.intl.formatMessage(altText.olesyaSakhro)}
     />
-    {Object.keys(paragraphs2).map((key: string) => (
-      <Typography className={c.parag} key={key}>
-        {props.intl.formatMessage(paragraphs2[key])}
+    {paragraphs2.map((id: string) => (
+      <Typography className={c.parag} key={id}>
+        <FormattedMessage id={id} />
       </Typography>
     ))}
   </article>

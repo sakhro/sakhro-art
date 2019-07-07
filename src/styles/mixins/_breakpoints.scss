@@ -13,3 +13,12 @@
     @content;
   }
 }
+
+@mixin media-breakpoint-between($lower, $upper) {
+  $breakpoint-lower: map-get($grid-breakpoints, $lower);
+  $breakpoint-upper: map-get($grid-breakpoints, $upper);
+  
+  @media screen and (min-width: $breakpoint-lower) and (max-width: $breakpoint-upper) {
+    @content;
+  }
+}

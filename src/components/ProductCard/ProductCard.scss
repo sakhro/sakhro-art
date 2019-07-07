@@ -1,18 +1,27 @@
-@import 'src/styles/base';
+@import "src/styles/base";
 
 .container {
-  @include size(100%);
-  @include my(1);
+  @include size(100%, auto);
+  @include my(0.5);
   @include relative;
 
   transition: box-shadow 300ms ease-out;
-  
+
   &:hover {
     box-shadow: 0 4px 8px 5px rgba($color-black, 0.05);
+
+    .title {
+      opacity: 1;
+    }
   }
 }
 
 .title {
-  @include m(2);
-  @include absolute($bottom: 0, $left: 0);
+  @include m(0.5);
+  @include absolute($bottom: 0, $left: 8px);
+
+  @include media-breakpoint-up(md) {
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+  }
 }

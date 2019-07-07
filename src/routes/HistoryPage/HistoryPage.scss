@@ -20,3 +20,12 @@
   @include size(calc(100% - 16px), auto);
   @include mr(2);
 }
+
+.sakhroKenzoImg,
+.olesyaSakhroImg {
+  @include media-breakpoint-up(md) {
+    @include size(auto);
+
+    max-width: 940px;
+  }
+}

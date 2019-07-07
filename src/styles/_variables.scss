@@ -24,7 +24,7 @@ $container-max-widths: (
 $grid-breakpoints: (
   xs: 0,
   sm: 544px,
-  md: 768px,
+  md: 767px,
 );
 
 $spacing-sizes: (
@@ -92,10 +92,13 @@ $typography: (
   h2: (
     base: (
       font-family: $font-family-secondary,
-      font-size: 36px,
+      font-size: 28px,
       font-weight: 400,
       line-height: 1.4,
     ),
+    sm: (
+      font-size: 26px,
+    )
   ),
 )
 
