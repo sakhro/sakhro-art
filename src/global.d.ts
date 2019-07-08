@@ -1,13 +1,3 @@
-interface IExternalLink {
-  href: string;
-}
-
-interface IGlobalState {
-  nav: {
-    isVisible: boolean,
-  };
-}
-
 interface IReduxAction<P = null, S = {}, E = {}> {
   type: string;
   payload: P;
@@ -17,6 +7,12 @@ interface IReduxAction<P = null, S = {}, E = {}> {
 
 interface IBag {
   id: string;
+}
+
+interface IGlobalState {
+  nav: {
+    isVisible: boolean,
+  };
 }
 
 interface ILookbookState {
@@ -34,3 +30,7 @@ type LinkType = { id: string, to: string };
 
 // tslint:disable-next-line:interface-over-type-literal
 type SocialLinkType = { id: string, Icon: IconType, href: string };
+
+interface IExternalLink {
+  href: string;
+}

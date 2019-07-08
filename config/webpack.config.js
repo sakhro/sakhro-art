@@ -1,5 +1,6 @@
 const fs = require('fs');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 
@@ -94,7 +95,7 @@ module.exports = {
         loader: 'file-loader'
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|ico)$/i,
         use: [
           {
             loader: 'url-loader',
@@ -116,7 +117,11 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: "./public/index.html",
-      filename: "./index.html"
+      filename: "./index.html",
+      favicon: './public/favicon.ico'
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async'
     })
   ]
 };
