@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Button, Link } from "@components";
 
 import { LINKS, SOCIALS } from "@config/global";
-import { DEFAULT_MESSAGES } from "@config/global";
+import { MESSAGES } from "@config/i18n";
 
 import c from "./Nav.scss";
 import { IProps } from "./types";
@@ -35,7 +35,7 @@ export const Nav: FC<IProps> = (props) => {
             >
               <FormattedMessage
                 id={`common.${id}`}
-                defaultMessage={DEFAULT_MESSAGES[`common.${id}`]}
+                defaultMessage={MESSAGES[`common.${id}`]}
               />
             </Link>
           </li>

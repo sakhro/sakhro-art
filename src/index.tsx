@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 
 import { App } from "@containers";
 
-import { language, messages } from "@config/i18n";
+import { LANGUAGE, MESSAGES } from "@config/i18n";
 import { rootStore } from "@redux/configureStore";
 
 declare global {
@@ -17,7 +17,7 @@ declare global {
 
 const app = (
   <Provider store={rootStore}>
-    <IntlProvider locale={language} messages={messages}>
+    <IntlProvider locale={LANGUAGE} messages={MESSAGES}>
       <App />
     </IntlProvider>
   </Provider>

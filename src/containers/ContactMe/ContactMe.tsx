@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Link } from "@components";
-import { DEFAULT_MESSAGES } from "@config/global";
+import { MESSAGES } from "@config/i18n";
 
 import c from "./ContactMe.scss";
 
@@ -12,7 +12,7 @@ export const ContactMe = () => (
       href="mailto:olesya.sakhro@gmail.com"
       className={c.contactLink}
     >
-      <FormattedMessage id="common.askAbout" defaultMessage={DEFAULT_MESSAGES["common.askAbout"]} />
+      <FormattedMessage id="common.askAbout" defaultMessage={MESSAGES["common.askAbout"]} />
     </Link>
   </footer>
 );

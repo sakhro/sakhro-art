@@ -8,7 +8,7 @@
     "jsx": "react",
     "baseUrl": ".",
     "skipLibCheck": true,
-    "resolveJsonModule": true,
+    // "resolveJsonModule": true,
     "esModuleInterop": true, // Allow default imports from the lib
     "paths": {
       "@static/*": [

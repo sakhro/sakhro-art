@@ -9,11 +9,13 @@ addLocaleData([...en]);
 // Define user's language. Different browsers have the user locale defined
 // on different fields on the `navigator` object, so we make sure to account
 // for these different by checking all of them
-export const language =
+const LANGUAGE_CODE =
   (navigator.languages && navigator.languages[0])
   || navigator.language;
 
+export const LANGUAGE = LANGUAGE_CODE.split("-")[0];
+
 // Try full locale, try locale without region code, fallback to 'en'
-export const messages =
-  LOCALES_DATA[language as LanguageType]
+export const MESSAGES: any =
+  LOCALES_DATA[LANGUAGE as LanguageType]
   || LOCALES_DATA.en;

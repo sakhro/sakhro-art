@@ -3,18 +3,18 @@ import { defineMessages, FormattedMessage, InjectedIntlProps } from "react-intl"
 
 import { Img, Typography } from "@components";
 
-import { DEFAULT_MESSAGES } from "@config/global";
+import { MESSAGES } from "@config/i18n";
 import { Kenzo, OlesyaSakhro } from "@static/images";
 
 import c from "./HistoryPage.scss";
 
 const altText = defineMessages({
   olesyaSakhro: {
-    defaultMessage: DEFAULT_MESSAGES["common.olesyaSakhro"],
+    defaultMessage: MESSAGES["common.olesyaSakhro"],
     id: "common.olesyaSakhro",
   },
   sakhroKenzo: {
-    defaultMessage: DEFAULT_MESSAGES["common.sakhroKenzo"],
+    defaultMessage: MESSAGES["common.sakhroKenzo"],
     id: "common.sakhroKenzo",
   },
 });
@@ -41,7 +41,7 @@ export const HistoryPage: FC<InjectedIntlProps> = props => (
     />
     {paragraphs1.map((id: string) => (
       <Typography className={c.parag} key={id}>
-        <FormattedMessage id={id} defaultMessage={DEFAULT_MESSAGES[id]} />
+        <FormattedMessage id={id} defaultMessage={MESSAGES[id]} />
       </Typography>
     ))}
     <Img
@@ -51,7 +51,7 @@ export const HistoryPage: FC<InjectedIntlProps> = props => (
     />
     {paragraphs2.map((id: string) => (
       <Typography className={c.parag} key={id}>
-        <FormattedMessage id={id} defaultMessage={DEFAULT_MESSAGES[id]} />
+        <FormattedMessage id={id} defaultMessage={MESSAGES[id]} />
       </Typography>
     ))}
   </article>
