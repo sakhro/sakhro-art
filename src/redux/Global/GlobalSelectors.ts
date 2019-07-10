@@ -50,13 +50,13 @@ export const pageTitleKeySelector = createSelector(
   (isLookbookPage, isHistoryPage, isHomePage) => {
     switch (true) {
       case isLookbookPage:
-        return "lookbook";
+        return "common.lookbook";
       case isHistoryPage:
-        return "history";
+        return "common.history";
       case isHomePage:
-        return "home"; // To handle nav close on route change
+        return "commonhome"; // To handle nav close on route change
       default:
-        return "missing";
+        return "common.missing";
     }
   },
 );

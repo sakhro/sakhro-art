@@ -25,6 +25,8 @@ interface IRootState {
   lookbook: ILookbookState;
 }
 
+type LanguageType = "ua" | "en";
+
 // tslint:disable-next-line:interface-over-type-literal
 type LinkType = { id: string, to: string };
 

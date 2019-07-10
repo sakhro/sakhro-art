@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Button, Hamburger, Typography } from "@components";
 
 import { PAGE_TITLE } from "@config/global";
+import { DEFAULT_MESSAGES } from "@config/global";
 import { interpolator } from "@services/helpers";
 import { useScrollOffset } from "@services/hooks";
 
@@ -47,6 +48,7 @@ export const Header: FC<IProps> = props => {
             : (
               <FormattedMessage
                 id={props.pageTitleKey}
+                defaultMessage={DEFAULT_MESSAGES[props.pageTitleKey]}
               />
             )}
         </Typography>

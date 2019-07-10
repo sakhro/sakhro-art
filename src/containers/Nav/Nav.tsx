@@ -1,11 +1,11 @@
 import cn from "classnames";
 import React, { FC } from "react";
-import { IconType } from "react-icons/lib/cjs";
 import { FormattedMessage } from "react-intl";
 
 import { Button, Link } from "@components";
 
 import { LINKS, SOCIALS } from "@config/global";
+import { DEFAULT_MESSAGES } from "@config/global";
 
 import c from "./Nav.scss";
 import { IProps } from "./types";
@@ -33,7 +33,10 @@ export const Nav: FC<IProps> = (props) => {
               tabIndex={tabIndex}
               className={c.navLink}
             >
-              <FormattedMessage id={id} />
+              <FormattedMessage
+                id={`common.${id}`}
+                defaultMessage={DEFAULT_MESSAGES[`common.${id}`]}
+              />
             </Link>
           </li>
         ))}
