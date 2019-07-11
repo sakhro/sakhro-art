@@ -4,20 +4,15 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { HISTORY, HOME, LOOKBOOK, PRODUCT } from "@constants/url";
 import { MainLayout } from "@layouts/MainLayout";
 
-// const HomePage = lazy(() => import("@routes/HomePage"));
-// const HistoryPage = lazy(() => import("@routes/HistoryPage"));
-// const LookbookPage = lazy(() => import("@routes/LookbookPage"));
-// const ProductPage = lazy(() => import("@routes/ProductPage"));
-
-import HistoryPage from "@routes/HistoryPage";
-import HomePage from "@routes/HomePage";
-import LookbookPage from "@routes/LookbookPage";
-import ProductPage from "@routes/ProductPage";
+const HomePage = lazy(() => import("@routes/HomePage"));
+const HistoryPage = lazy(() => import("@routes/HistoryPage"));
+const LookbookPage = lazy(() => import("@routes/LookbookPage"));
+const ProductPage = lazy(() => import("@routes/ProductPage"));
 
 export const App = () => (
   <BrowserRouter>
-    <Suspense fallback={null}>
-      <MainLayout>
+    <MainLayout>
+      <Suspense fallback={<div>loading</div>}>
         <Switch>
           <Route exact component={HomePage} path={HOME} />
           <Route exact component={HistoryPage} path={HISTORY} />
@@ -26,7 +21,7 @@ export const App = () => (
 
           <Redirect to={HOME} />
         </Switch>
-      </MainLayout>
-    </Suspense>
+      </Suspense>
+    </MainLayout>
   </BrowserRouter>
 );
