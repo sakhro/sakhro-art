@@ -46,3 +46,5 @@ export const transformLocalePath = (obj: any) =>
 
     return acc;
   }, {});
+
+export const getViewportHeight = () => document.documentElement.clientHeight;

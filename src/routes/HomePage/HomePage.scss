@@ -2,7 +2,6 @@
 
 .container {
   @include flex($direction: column, $justify: flex-end);
-  @include size(auto, calc(100vh - 60px));
 }
 
 .title {
