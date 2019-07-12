@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
+import { Spinner } from "@components";
 import { HISTORY, HOME, LOOKBOOK, PRODUCT } from "@constants/url";
 import { MainLayout } from "@layouts/MainLayout";
 
@@ -12,7 +13,7 @@ const ProductPage = lazy(() => import("@routes/ProductPage"));
 export const App = () => (
   <BrowserRouter>
     <MainLayout>
-      <Suspense fallback={<div>loading</div>}>
+      <Suspense fallback={<Spinner />}>
         <Switch>
           <Route exact component={HomePage} path={HOME} />
           <Route exact component={HistoryPage} path={HISTORY} />
