@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router";
 
 import { Typography } from "@components";
 import { MESSAGES } from "@config/i18n";
+import { HOME_SLIDES } from "@constants/global";
 import { Slideshow } from "@containers";
 import { getViewportHeight } from "@services/helpers";
 
@@ -28,6 +29,7 @@ export const HomePage: FC<RouteComponentProps> = memo(() => (
       autoPlay
       className={c.slideshow}
       imgClassName={c.slideshowImg}
+      items={HOME_SLIDES}
     />
   </section>
 ));

@@ -3,9 +3,3 @@
 .container {
   @include flex;
 }
-
-// .item {
-//   @include media-breakpoint-up(sm) {
-//     flex-basis: calc(50% - 8px);
-//   }
-// }

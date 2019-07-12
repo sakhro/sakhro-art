@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage, InjectedIntlProps } from "react-intl"
 import { Img, Typography } from "@components";
 
 import { MESSAGES } from "@config/i18n";
-import { Kenzo, OlesyaSakhro } from "@static/images";
+import { HistoryKenzo, HistoryOlesyaSakhro } from "@static/images";
 
 import c from "./HistoryPage.scss";
 
@@ -35,7 +35,7 @@ const paragraphs2 = [
 export const HistoryPage: FC<InjectedIntlProps> = props => (
   <article className={c.container}>
     <Img
-      src={Kenzo}
+      src={HistoryKenzo}
       imgClassName={c.sakhroKenzoImg}
       alt={props.intl.formatMessage(altText.sakhroKenzo)}
     />
@@ -45,7 +45,7 @@ export const HistoryPage: FC<InjectedIntlProps> = props => (
       </Typography>
     ))}
     <Img
-      src={OlesyaSakhro}
+      src={HistoryOlesyaSakhro}
       imgClassName={c.olesyaSakhroImg}
       alt={props.intl.formatMessage(altText.olesyaSakhro)}
     />

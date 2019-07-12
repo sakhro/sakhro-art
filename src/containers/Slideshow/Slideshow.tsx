@@ -52,8 +52,8 @@ export const Slideshow: FC<IProps> = props => {
           <Img
             alt="test"
             key={item.id}
-            imgClassName={props.imgClassName}
             src={item.src}
+            imgClassName={props.imgClassName}
           />
         ))}
       </SwipeableViews>

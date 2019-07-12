@@ -66,9 +66,15 @@ module.exports = {
     ]
   },
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all',
-      name: false,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
     }
   },
   module: {
@@ -116,7 +122,26 @@ module.exports = {
               fallback: 'file-loader',
               name: "./static/images/[hash]-[name].[ext]"
             }
-          }
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              optipng: {
+                enabled: true,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              },
+              webp: {
+                quality: 75
+              }
+            }
+          },
         ]
       }
     ]
