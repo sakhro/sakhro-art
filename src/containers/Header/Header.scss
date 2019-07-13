@@ -24,10 +24,9 @@ $header-height: 60px;
 }
 
 .backButton {
-  margin-left: -10px;
   color: $color-text;
 }
 
 .arrowIcon {
-  @include size(50px);
+  @include size(35px, auto);
 }

@@ -71,6 +71,10 @@
   font-size: 36px !important;
 }
 
+.socialIcon {
+  @include size(35px, auto);
+}
+
 .footer {
   @include flex;
   align-self: flex-end;

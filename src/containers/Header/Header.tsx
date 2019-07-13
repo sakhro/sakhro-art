@@ -1,13 +1,13 @@
 import React, { FC, Fragment, useMemo } from "react";
-import { IoIosArrowRoundBack } from "react-icons/io";
 import { FormattedMessage } from "react-intl";
 
-import { Button, Hamburger, Link, Typography } from "@components";
+import { Button, Hamburger, Img, Typography } from "@components";
 
 import { MESSAGES } from "@config/i18n";
 import { interpolator } from "@services/helpers";
 import { useScrollOffset } from "@services/hooks";
 import { getPageKey, getProdutKey, isHomePage, isProductPage } from "@services/navigation";
+import { LeftArrowIcon } from "@static/images";
 
 import c from "./Header.scss";
 import { IProps } from "./types";
@@ -39,7 +39,7 @@ export const Header: FC<IProps> = props => {
             className={c.backButton}
             onClick={props.history.goBack}
           >
-            <IoIosArrowRoundBack className={c.arrowIcon} />
+            <Img alt="" src={LeftArrowIcon} imgClassName={c.arrowIcon} />
           </Button>
           <Typography component="h1" className={c.primaryTitle}>
             <FormattedMessage

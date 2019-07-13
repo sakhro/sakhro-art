@@ -1,5 +1,3 @@
-import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
-
 import { HISTORY, HOME, LOOKBOOK } from "@constants/url";
 
 export const FB_URL = "//web.facebook.com/olesya.sakhro";
@@ -12,8 +10,8 @@ export const LINKS = [
 ];
 
 export const SOCIALS = [
-  { id: "facebook", Icon: FaFacebookSquare, href: FB_URL },
-  { id: "instagram", Icon: FaInstagram , href: INSTAGRAM_URL },
+  { id: "facebook", href: FB_URL },
+  { id: "instagram", href: INSTAGRAM_URL },
 ];
 
 export const PAGE_TITLE = "OLESYA SAKHRO";

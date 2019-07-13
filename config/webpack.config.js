@@ -107,7 +107,7 @@ module.exports = {
         loader: 'file-loader'
       },
       {
-        test: /\.(png|jpg|gif|ico)$/i,
+        test: /\.(png|jpg|gif|ico|svg)$/i,
         exclude: /node_modules/,
         use: [
           {
