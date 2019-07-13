@@ -1,14 +1,8 @@
 import cn from "classnames";
 import React, { FC, memo, useMemo } from "react";
 
+import { IProps } from "./types";
 import c from "./Typography.scss";
-
-type TextComponentType = "p" | "h1" | "h2";
-
-interface IProps {
-  component?: TextComponentType;
-  className?: string;
-}
 
 const classNames = {
   h1: c.h1,

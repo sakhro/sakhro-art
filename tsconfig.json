@@ -3,10 +3,12 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
     "target": "es6",
     "jsx": "react",
     "baseUrl": ".",
+    "module": "esnext",
+    "lib": ["es5", "es2015", "es2016", "dom"],
+    "moduleResolution": "node",
     "skipLibCheck": true,
     "esModuleInterop": true, // Allow default imports from the lib
     "paths": {
@@ -15,10 +17,11 @@
       ],
       "@*": [
         "src/*"
-      ],
+      ]
     }
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./static/**/*"
   ]
 }

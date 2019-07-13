@@ -1,0 +1,30 @@
+@import "src/styles/base";
+
+.container {
+  @include flex($wrap: wrap);
+  @include pl(0);
+  @include my(0);
+  @include size(100%);
+
+  list-style: none;
+}
+
+.productCard {
+  @include flex($align: center);
+
+  &.even {
+    @include media-breakpoint-between(sm, md) {
+      @include ml(1);
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    flex-basis: calc(50% - 8px);
+  }
+
+  @include media-breakpoint-up(md) {
+    flex-basis: calc(25% - 8px);
+
+    @include mx(0.5);
+  }
+}

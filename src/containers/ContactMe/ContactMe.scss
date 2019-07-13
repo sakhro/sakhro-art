@@ -1,16 +1,9 @@
 @import 'src/styles/base';
 
-.wrapper {
-  @include absolute($bottom: 0, $left: 0, $right: 0);
-  @include size(auto, 60px);
-
-  background-color: $color-secondary;
-}
-
 .container {
-  @include pl(2);
-  @include flex($align: center, $justify: space-between);
-  @include container($fluid: true);
+  @include size(auto, 60px);
+  @include flex($align: center, $justify: flex-end);
+  @include pr(2);
 }
 
 .contactIcon {
@@ -20,11 +13,11 @@
 .button {
   @include size(80px, 60px);
 
-  color: $color-white;
   background-color: $color-primary;
 }
 
-.contact {
-  color: $color-white;
-  text-transform: uppercase;
+.contactLink {
+  @include pr(1);
+
+  border-right: 1px solid $color-secondary;
 }

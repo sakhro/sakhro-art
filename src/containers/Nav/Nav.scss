@@ -1,16 +1,17 @@
 @import "src/styles/base";
 
 .container {
-  @include fixed($top: 0, $left: 0, $right: 0, $bottom: 0);
-  @include z-index("nav");
-  @include flex($direction: column, $align: center, $justify: space-between);
   @include p(2);
+  @include z-index("nav");
+  @include fixed($top: 0, $left: 0, $right: 0, $bottom: 0);
+  @include flex($direction: column, $align: center, $justify: space-between);
 
-  box-shadow: 0 4px 10px 5px rgba($color-black, 0.07);
+  color: $color-secondary;
   transform: translateX(110%);
-  transition: transform 500ms ease-out;
-  color: $color-white;
   background-color: $color-primary;
+  transition: transform 500ms ease-out;
+  box-shadow: 0 4px 10px 5px rgba($color-black, 0.07);
+  will-change: transform;
 
   &.visible {
     transform: translateX(0);
@@ -30,7 +31,7 @@
     content: " ";
     height: 36px;
     width: 2px;
-    background-color: $color-white;
+    background-color: $color-secondary;
     transition: background-color 100ms ease-in-out;
   }
 
@@ -45,7 +46,7 @@
   &:hover {
     &::before,
     &::after {
-      background-color: $color-secondary;
+      background-color: $color-hover;
     }
   }
 }
@@ -68,6 +69,10 @@
   @include ml(2);
 
   font-size: 36px !important;
+}
+
+.socialIcon {
+  @include size(35px, auto);
 }
 
 .footer {

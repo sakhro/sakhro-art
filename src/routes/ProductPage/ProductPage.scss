@@ -2,4 +2,5 @@
 
 .container {
   @include flex($direction: column);
+  @include size(auto, calc(100vh - 60px));
 }

@@ -9,17 +9,17 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}'",
     "build": "webpack --config ./config/webpack.config.js --mode production",
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts{,x}' 'server/**/*.ts{,x}' --fix --format verbose",
-    "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development --open",
-    "deploy:hosting": "yarn build && firebase deploy --only hosting"
+    "webpack:dev": "webpack-dev-server --config ./config/webpack.config.js --mode development --port 3000 --open",
+    "deploy:hosting": "yarn build && firebase deploy --only hosting",
+    "ngrok": "ngrok http --host-header=rewrite 3000"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.8",
-    "@types/d3-interpolate": "^1.3.1",
     "@types/ramda": "^0.26.9",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
+    "@types/react-helmet": "^5.0.8",
     "@types/react-intl": "^2.3.17",
-    "@types/react-redux": "^7.0.9",
     "@types/react-router-dom": "^4.3.3",
     "@types/react-swipeable-views": "^0.13.0",
     "@types/react-transition-group": "^2.9.2",
@@ -27,7 +27,8 @@
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^4.0.0-beta.5",
+    "ngrok": "^3.2.1",
     "node-sass": "^4.12.0",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
@@ -35,6 +36,7 @@
     "react-dev-utils": "^9.0.1",
     "redux-devtools-extension": "^2.13.8",
     "sass-loader": "^7.1.0",
+    "script-ext-html-webpack-plugin": "^2.1.3",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "tslint": "^5.17.0",
@@ -46,25 +48,20 @@
     "typescript": "^3.5.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.31.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "d3-interpolate": "^1.3.2",
     "intl": "^1.2.5",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-icons": "^3.7.0",
+    "react-helmet": "^5.2.1",
     "react-intl": "^2.9.0",
-    "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "react-swipeable-views": "^0.13.3",
-    "react-transition-group": "^4.1.1",
-    "redux": "^4.0.1",
-    "redux-saga": "^1.0.3",
-    "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "react-transition-group": "^4.1.1"
   }
 }

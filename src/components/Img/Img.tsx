@@ -1,18 +1,10 @@
 import cn from "classnames";
-import React, { CSSProperties, FC, Fragment, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, Fragment, useEffect, useMemo, useRef, useState } from "react";
 
 import { getAspectRatio, getImageDimensions } from "@services/helpers";
 
 import c from "./Img.scss";
-
-interface IProps {
-  src: string;
-  alt: string;
-  style?: CSSProperties;
-  imgClassName?: string;
-  customHeight?: boolean;
-  onImgLoad?: () => void;
-}
+import { IProps } from "./types";
 
 export const Img: FC<IProps> = props => {
   const placeholderRef = useRef(null);
@@ -21,13 +13,22 @@ export const Img: FC<IProps> = props => {
 
   useEffect(() => {
     const img = new Image();
-    img.onload = () => {
+
+    if (img.onload) {
+      img.onload = () => {
+        setSrc(props.src);
+
+        if (props.onImgLoad) {
+          props.onImgLoad();
+        }
+      };
+    } else {
       setSrc(props.src);
 
       if (props.onImgLoad) {
         props.onImgLoad();
       }
-    };
+    }
     img.src = props.src;
   }, [props.src, props.onImgLoad]);
 
@@ -71,7 +72,7 @@ export const Img: FC<IProps> = props => {
           src={src}
           alt={props.alt}
           style={props.style}
-          className={cn(c.img, props.imgClassName)}
+          className={cn(c.img, props.imgClassName, props.fullWidth && c.fullWidth)}
         />
       )}
     </Fragment>

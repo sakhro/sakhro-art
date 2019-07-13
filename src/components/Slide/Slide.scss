@@ -1,8 +1,0 @@
-@import 'src/styles/base';
-
-.container {
-  @include flex($align: center, $justify: center);
-  @include size(100%);
-
-  background-color: #FEA900,
-}

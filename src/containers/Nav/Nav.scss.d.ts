@@ -4,4 +4,5 @@ export const close: string;
 export const links: string;
 export const navLink: string;
 export const socialLink: string;
+export const socialIcon: string;
 export const footer: string;

@@ -1,34 +1,14 @@
-import React, { FC } from "react";
-import { FormattedMessage, InjectedIntlProps } from "react-intl";
+import React, { FC, Fragment } from "react";
 
-import { PageTitle, ProductCard } from "@components";
+import { ProductsGrid, SEO } from "@containers";
 
-import c from "./LookbookPage.scss";
+import { BAGS_DATA, BAGS_KEYS } from "@constants/lookbook";
 
-interface IProps {
-  products: string[];
-}
-
-export const LookbookPage: FC<IProps & InjectedIntlProps> = props => (
-  <section className={c.container}>
-    <PageTitle>
-      <FormattedMessage id="lookbook" />
-    </PageTitle>
-    {props.products.map(product => (
-      <article
-        key={product}
-        className={c.productCard}
-      >
-        <ProductCard />
-      </article>
-    ))}
-  </section>
+export const LookbookPage: FC = () => (
+  <Fragment>
+    <SEO image={BAGS_DATA[BAGS_KEYS[0]].thumbnail} />
+    <section>
+      <ProductsGrid />
+    </section>
+  </Fragment>
 );
-
-LookbookPage.defaultProps = {
-  products: [
-    "1",
-    "2",
-    "3",
-  ],
-};

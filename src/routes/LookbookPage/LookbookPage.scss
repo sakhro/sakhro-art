@@ -1,9 +1,0 @@
-@import 'src/styles/base';
-
-.container {
-  @include size(100%);
-}
-
-.productCard {
-  @include flex($align: center);
-}

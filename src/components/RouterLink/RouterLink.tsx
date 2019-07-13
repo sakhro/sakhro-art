@@ -1,11 +1,8 @@
 import React, { FC } from "react";
-import { NavLink, NavLinkProps } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import c from "./RouterLink.scss";
-
-interface IProps extends NavLinkProps {
-  className?: string;
-}
+import { IProps } from "./types";
 
 export const RouterLink: FC<IProps> = props => (
   <NavLink

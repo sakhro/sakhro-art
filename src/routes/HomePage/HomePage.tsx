@@ -1,42 +1,38 @@
 import React, { FC, Fragment, memo } from "react";
-import { defineMessages, InjectedIntlProps } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
-import { Img } from "@components";
-import { LOOKBOOK } from "@constants/url";
-import { Footer } from "@containers";
+import { Typography } from "@components";
+import { MESSAGES } from "@config/i18n";
+import { HOME_SLIDES } from "@constants/global";
+import { SEO, Slideshow } from "@containers";
+import { getViewportHeight } from "@services/helpers";
 
-import { HomeMain } from "@static/images";
 import c from "./HomePage.scss";
 
-const messages = defineMessages({
-  lookbook: {
-    id: "lookbook",
-  },
-  olesyaSakhro: {
-    id: "olesyaSakhro",
-  },
+const getContainerStyles = () => ({
+  height: `${getViewportHeight() - 60}px`,
 });
 
-export const HomePage: FC<InjectedIntlProps & RouteComponentProps> = memo((props) => {
-  const onFooterButtonClick = () => {
-    props.history.push(LOOKBOOK);
-  };
-
-  return (
-    <section>
-      <div className={c.container}>
-        <Img
-          customHeight
-          src={HomeMain}
-          alt={props.intl.formatMessage(messages.olesyaSakhro)}
-          imgClassName={c.backgroundImg}
+export const HomePage: FC<RouteComponentProps> = memo(() => (
+  <Fragment>
+    <SEO image={HOME_SLIDES[0].src} />
+    <section className={c.container} style={getContainerStyles()}>
+      <Typography
+        component="h1"
+        className={c.title}
+      >
+        <FormattedMessage
+          id="common.cultBags"
+          defaultMessage={MESSAGES["common.cultBags"]}
         />
-      </div>
-      <Footer
-        label={props.intl.formatMessage(messages.lookbook)}
-        onClick={onFooterButtonClick}
+      </Typography>
+      <Slideshow
+        autoPlay
+        className={c.slideshow}
+        imgClassName={c.slideshowImg}
+        items={HOME_SLIDES}
       />
     </section>
-  );
-});
+  </Fragment>
+));

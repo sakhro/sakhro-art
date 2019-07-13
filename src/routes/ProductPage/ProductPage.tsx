@@ -1,12 +1,16 @@
 import React from "react";
 
-import { ContactMe, Slideshow } from "@containers";
+import { Product } from "@containers";
+import { getViewportHeight } from "@services/helpers";
 
 import c from "./ProductPage.scss";
 
+const getContainerStyles = () => ({
+  height: `${getViewportHeight() - 60}px`,
+});
+
 export const ProductPage = () => (
-  <div className={c.container}>
-    <Slideshow />
-    <ContactMe />
-  </div>
+  <section className={c.container} style={getContainerStyles()}>
+    <Product />
+  </section>
 );

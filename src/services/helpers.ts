@@ -1,3 +1,5 @@
+import keys from "ramda/es/keys";
+
 export const getImageDimensions = (url: string) => {
   if (!url) {
     return;
@@ -21,3 +23,28 @@ export const getImageDimensions = (url: string) => {
 };
 
 export const getAspectRatio = (x: number, y: number) => y / x;
+
+export const interpolator = (val: number, min: number, max: number) =>
+  min * (1 - val) + max * val;
+
+export const transformLocalePath = (obj: any) =>
+  keys(obj).reduce((acc1, localKey) => {
+    const messages = keys(obj[localKey])
+      .reduce((acc2, item) => {
+        const acc = {
+          ...acc2,
+          [`${localKey as string}.${item as string}`]: obj[localKey][item],
+        };
+
+        return acc;
+      }, {});
+
+    const acc = {
+      ...acc1,
+      ...messages,
+    };
+
+    return acc;
+  }, {});
+
+export const getViewportHeight = () => document.documentElement.clientHeight;

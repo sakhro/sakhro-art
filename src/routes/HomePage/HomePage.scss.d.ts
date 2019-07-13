@@ -1,2 +1,4 @@
 export const container: string;
-export const backgroundImg: string;
+export const title: string;
+export const slideshow: string;
+export const slideshowImg: string;

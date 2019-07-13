@@ -1,23 +1,43 @@
 import cn from "classnames";
 import React, { FC } from "react";
-import { IconType } from "react-icons/lib/cjs";
 import { FormattedMessage } from "react-intl";
 
-import { Button, Link } from "@components";
+import { Button, Img, Link } from "@components";
 
 import { LINKS, SOCIALS } from "@config/global";
+import { MESSAGES } from "@config/i18n";
+import { FacebookIcon, InstagramIcon } from "@static/images";
 
 import c from "./Nav.scss";
-
-interface IProps {
-  isVisible: boolean;
-  onClose: () => void;
-}
+import { IProps } from "./types";
 
 export const Nav: FC<IProps> = (props) => {
   const tabIndex = props.isVisible
     ? 0
     : -1;
+
+  const getIcon = (id: string) => {
+    switch (id) {
+      case "facebook":
+        return (
+          <Img
+            src={FacebookIcon}
+            alt="facebook"
+            imgClassName={c.socialIcon}
+          />
+        );
+      case "instagram":
+        return (
+          <Img
+            src={InstagramIcon}
+            alt="instagram"
+            imgClassName={c.socialIcon}
+          />
+        );
+      default:
+        return;
+    }
+  };
 
   return (
     <nav className={cn(c.container, { [c.visible]: props.isVisible })}>
@@ -37,20 +57,23 @@ export const Nav: FC<IProps> = (props) => {
               tabIndex={tabIndex}
               className={c.navLink}
             >
-              <FormattedMessage id={id} />
+              <FormattedMessage
+                id={`common.${id}`}
+                defaultMessage={MESSAGES[`common.${id}`]}
+              />
             </Link>
           </li>
         ))}
       </ul>
       <footer className={c.footer}>
-        {SOCIALS.map(({ id, Icon, href }: SocialLinkType) => (
+        {SOCIALS.map(({ id, href }: SocialLinkType) => (
           <Link
             key={id}
             href={href}
             tabIndex={tabIndex}
             className={c.socialLink}
           >
-            <Icon />
+            {getIcon(id)}
           </Link>
         ))}
       </footer>

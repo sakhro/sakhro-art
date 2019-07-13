@@ -1,0 +1,22 @@
+@import 'src/styles/base';
+
+.container {
+  @include ml(2);;
+  @include flex($align: center);
+  @include pl(0);
+
+  list-style: none;
+}
+
+.bollet {
+  @include size(50px, 5px);
+  @include mr(2);
+
+  cursor: pointer;
+  background-color: $color-clouds;
+  transition: background-color 300ms ease-in-out;
+
+  &.active {
+    background-color: rgba($color-active, 0.7);
+  }
+}

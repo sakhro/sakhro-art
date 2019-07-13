@@ -1,14 +1,22 @@
 const fs = require('fs');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const appDirectory = fs.realpathSync(process.cwd());
 
 // common function to get style loaders
 const getStyleLoaders = (cssOptions, preProcessor) => {
   const loaders = [
-    require.resolve('style-loader'),
+    {
+      loader: 'style-loader',
+      options: {
+        singleton: true
+      }
+    },
     {
       loader: require.resolve('css-loader'),
       options: cssOptions,
@@ -45,12 +53,12 @@ module.exports = {
   output: {
     path: `${appDirectory}/dist`,
     publicPath: '/',
-    filename: '[hash].bundle.js'
+    filename: 'static/js/[name].[contenthash:8].js',
+    chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
   },
   devServer: {
     contentBase: './dist'
   },
-
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
     plugins: [
@@ -58,26 +66,35 @@ module.exports = {
       new TsConfigPathsPlugin()
     ]
   },
-
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: false
+    }
+  },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
+        exclude: /node_modules/,
         loader: "awesome-typescript-loader",
       },
       {
         enforce: "pre",
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: "source-map-loader"
       },
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: getStyleLoaders({
           importLoaders: 1,
         }),
       },
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         use: getStyleLoaders({
           importLoaders: 2,
           modules: true,
@@ -86,32 +103,50 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
+        exclude: /node_modules/,
         loader: 'file-loader'
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|ico|svg)$/i,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 8192,
               fallback: 'file-loader',
-              name: "./static/images/[hash]-[name].[ext]"
+              name: "static/images/[hash]-[name].[ext]"
             }
           }
         ]
       }
     ]
   },
-
   devServer: {
     historyApiFallback: true
   },
-
   plugins: [
-    new HtmlWebPackPlugin({
+    new HtmlWebpackPlugin({
+      inject: true,
       template: "./public/index.html",
-      filename: "./index.html"
-    })
+      favicon: './public/favicon.ico',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async'
+    }),
+    // new BundleAnalyzerPlugin()
   ]
 };

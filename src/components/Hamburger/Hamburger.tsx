@@ -3,11 +3,7 @@ import React, { FC } from "react";
 import { Button } from "@components";
 
 import c from "./Hamburger.scss";
-
-interface IProps {
-  className?: string;
-  onClick: () => void;
-}
+import { IProps } from "./types";
 
 export const Hamburger: FC<IProps> = props => (
   <Button

@@ -1,0 +1,13 @@
+@import 'src/styles/base';
+
+.slideshow {
+  height: 80%;
+  
+  @include media-breakpoint-up(md) {
+    max-width: 50%;
+  }
+}
+
+.slideshowImg {
+  float: right;
+}

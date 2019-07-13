@@ -1,12 +1,11 @@
 export { Img } from "./Img";
 export { Link } from "./Link";
-export { Slide } from "./Slide";
 export { Button } from "./Button";
-export { PageTitle } from "./PageTitle";
+export { Spinner } from "./Spinner";
+export { Bollets } from "./Bollets";
 export { Hamburger } from "./Hamburger";
 export { RouterLink } from "./RouterLink";
 export { Typography } from "./Typography";
 export { ProductCard } from "./ProductCard";
-export { DotsPattern } from "./DotsPattern";
 export { ExternalLink } from "./ExternalLink";
 export { RouteTransition } from "./RouteTransition";

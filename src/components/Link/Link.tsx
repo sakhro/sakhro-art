@@ -4,14 +4,7 @@ import React, { FC, memo, useMemo } from "react";
 import { ExternalLink, RouterLink } from "@components";
 
 import c from "./Link.scss";
-
-interface IProps {
-  to?: string;
-  href?: string;
-  tabIndex?: number;
-  className?: string;
-  onClick?: any;
-}
+import { IProps } from "./types";
 
 export const Link: FC<IProps> = memo(props => {
   const Component: any = useMemo(() => {

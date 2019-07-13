@@ -1,65 +1,29 @@
-@import 'src/styles/base';
-
-$bg-animation-duration: 1000ms;
-$bg-animation-delay: 1000ms;
+@import "src/styles/base";
 
 .container {
   @include size(100%);
-  @include my(12);
-  @include mr(2);
+  @include my(0.5);
   @include relative;
-  @include flex($direction: column);
 
-  opacity: 0;
-  transition: opacity 500ms ease;
-
-  &.visible {
-    opacity: 1
+  &:hover {
+    .title {
+      opacity: 1;
+    }
   }
 }
 
-.primaryImg {
-  @include size(100%, auto);
+.title {
+  @include m(0.5);
+  @include absolute($bottom: 0, $left: 8px);
 
-  box-shadow: 0 4px 10px 5px rgba($color-black, 0.05);
-}
-
-.cardTitle {
-  @include mt(0);
-  
-  text-align: right;
-}
-
-.secondaryImg {
-  @include absolute($top: 0, $right: 0);
-
-  transition: 
-    top $bg-animation-duration ease-out $bg-animation-delay, 
-    right $bg-animation-duration ease-out $bg-animation-delay;
-  z-index: -1;
-}
-
-.dotsPattern,
-.secondaryImg {
-  opacity: 0.16;
-}
-
-.dotsPattern {
-  @include absolute($top: 0, $right: 0, $left: 10%, $bottom: 50%);
-
-  transition: 
-    top $bg-animation-duration ease-out $bg-animation-delay, 
-    right $bg-animation-duration ease-out $bg-animation-delay;
-}
-
-.visible {
-  .secondaryImg {
-    top: 70px;
-    right: 50px;
+  @include media-breakpoint-up(md) {
+    opacity: 0;
+    transition: opacity 300ms ease-out;
   }
+}
 
-  .dotsPattern {
-    top: -10%;
-    right: -10%;
-  }
+.thumbnail {
+  @include size(100%, 400px);
+
+  object-fit: contain
 }

@@ -1,72 +1,62 @@
-import React, { FC } from "react";
+import React, { FC, Fragment } from "react";
 import { defineMessages, FormattedMessage, InjectedIntlProps } from "react-intl";
 
-import { Img, PageTitle, Typography } from "@components";
+import { Img, Typography } from "@components";
+import { SEO } from "@containers";
 
-import { Kenzo, OlesyaSakhro } from "@static/images";
+import { MESSAGES } from "@config/i18n";
+import { HistoryKenzo, HistoryOlesyaSakhro } from "@static/images";
 
 import c from "./HistoryPage.scss";
 
 const altText = defineMessages({
   olesyaSakhro: {
-    id: "olesyaSakhro",
+    defaultMessage: MESSAGES["common.olesyaSakhro"],
+    id: "common.olesyaSakhro",
   },
   sakhroKenzo: {
-    id: "sakhroKenzo",
+    defaultMessage: MESSAGES["common.sakhroKenzo"],
+    id: "common.sakhroKenzo",
   },
 });
 
-const paragraphs1: any = defineMessages({
-  parag1: {
-    id: "history.parag1",
-  },
-  parag2: {
-    id: "history.parag2",
-  },
-  parag3: {
-    id: "history.parag3",
-  },
-  parag4: {
-    id: "history.parag4",
-  },
-});
+const paragraphs1 = [
+  "history.parag1",
+  "history.parag2",
+  "history.parag3",
+  "history.parag4",
+];
 
-const paragraphs2: any = defineMessages({
-  parag5: {
-    id: "history.parag5",
-  },
-  parag6: {
-    id: "history.parag6",
-  },
-  parag7: {
-    id: "history.parag7",
-  },
-});
+const paragraphs2 = [
+  "history.parag5",
+  "history.parag6",
+  "history.parag7",
+];
 
 export const HistoryPage: FC<InjectedIntlProps> = props => (
-  <article className={c.container}>
-    <PageTitle>
-      <FormattedMessage id="history" />
-    </PageTitle>
-    <Img
-      src={Kenzo}
-      imgClassName={c.sakhroKenzoImg}
-      alt={props.intl.formatMessage(altText.sakhroKenzo)}
-    />
-    {Object.keys(paragraphs1).map((key: string) => (
-      <Typography className={c.parag} key={key}>
-        {props.intl.formatMessage(paragraphs1[key])}
-      </Typography>
-    ))}
-    <Img
-      src={OlesyaSakhro}
-      imgClassName={c.olesyaSakhroImg}
-      alt={props.intl.formatMessage(altText.olesyaSakhro)}
-    />
-    {Object.keys(paragraphs2).map((key: string) => (
-      <Typography className={c.parag} key={key}>
-        {props.intl.formatMessage(paragraphs2[key])}
-      </Typography>
-    ))}
-  </article>
+  <Fragment>
+    <SEO image={HistoryKenzo}/>
+    <article className={c.container}>
+      <Img
+        src={HistoryKenzo}
+        imgClassName={c.sakhroKenzoImg}
+        alt={props.intl.formatMessage(altText.sakhroKenzo)}
+      />
+      {paragraphs1.map((id: string) => (
+        <Typography className={c.parag} key={id}>
+          <FormattedMessage id={id} defaultMessage={MESSAGES[id]} />
+        </Typography>
+      ))}
+      <Img
+        src={HistoryOlesyaSakhro}
+        imgClassName={c.olesyaSakhroImg}
+        alt={props.intl.formatMessage(altText.olesyaSakhro)}
+      />
+      {paragraphs2.map((id: string) => (
+        <Typography className={c.parag} key={id}>
+          <FormattedMessage id={id} defaultMessage={MESSAGES[id]} />
+        </Typography>
+      ))}
+    </article>
+  </Fragment>
 );
