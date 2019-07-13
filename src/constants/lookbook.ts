@@ -22,13 +22,19 @@ import { REYA_IMGS } from "static/images/bags/reya";
 import { SOPHIA_IMGS  } from "static/images/bags/sophia";
 
 export const BAGS_KEYS = [
+  "juventas",
+  "maya",
+  "reya",
   "asteria",
+  "sophia",
+  "kandinsky",
+  "malva",
+  "dayNight",
   "agata",
   "avrora",
+  "diana",
   "besaga",
   "besagaRed",
-  "dayNight",
-  "diana",
   "eileithyia",
   "eos",
   "fish",
@@ -36,13 +42,7 @@ export const BAGS_KEYS = [
   "hubris",
   "iris",
   "juno",
-  "juventas",
-  "kandinsky",
-  "malva",
   "martricaria",
-  "reya",
-  "sophia",
-  "maya",
 ];
 
 export const BAGS_DATA: Record<string, IBag> = {

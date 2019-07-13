@@ -3,7 +3,7 @@ export default {
   asteria: "Asteria",
   avrora: "Avrora",
   besaga: "Besaga",
-  besagaRed: "Besaga Red",
+  besagaRed: "Red Besaga",
   dayNight: "Day Night",
   diana: "Diana",
   eileithyia: "Eileithyia",

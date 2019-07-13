@@ -2,9 +2,8 @@ import React, { FC, Fragment, useMemo } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FormattedMessage } from "react-intl";
 
-import { Button, Hamburger, Typography } from "@components";
+import { Button, Hamburger, Link, Typography } from "@components";
 
-import { PAGE_TITLE } from "@config/global";
 import { MESSAGES } from "@config/i18n";
 import { interpolator } from "@services/helpers";
 import { useScrollOffset } from "@services/hooks";
@@ -53,11 +52,16 @@ export const Header: FC<IProps> = props => {
       {!isProductPage(props) && (
         <Typography component="h1" className={c.primaryTitle}>
           {isHomePage(props)
-            ? PAGE_TITLE
+            ? (
+              <FormattedMessage
+                id={`common.olesyaSakhro`}
+                defaultMessage={MESSAGES[`common.olesyaSakhro`]}
+              />
+            )
             : (
               <FormattedMessage
                 id={`common.${getPageKey(props)}`}
-                defaultMessage={MESSAGES[`common.${getProdutKey(props)}`]}
+                defaultMessage={MESSAGES[`common.${getPageKey(props)}`]}
               />
             )}
         </Typography>
