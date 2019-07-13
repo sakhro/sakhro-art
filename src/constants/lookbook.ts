@@ -11,6 +11,7 @@ import { FISH_IMGS  } from "static/images/bags/fish";
 import { HARMONY_IMGS } from "static/images/bags/harmony";
 import { HUBRIS_IMGS} from "static/images/bags/hubris";
 import { IRIS_IMGS  } from "static/images/bags/iris";
+import { JANE_IMGS  } from "static/images/bags/jane";
 import { JUNO_IMGS } from "static/images/bags/juno";
 import { JUVENTAS_IMGS } from "static/images/bags/juventas";
 import { KANDINSKY_IMGS  } from "static/images/bags/kandinsky";
@@ -22,6 +23,7 @@ import { REYA_IMGS } from "static/images/bags/reya";
 import { SOPHIA_IMGS  } from "static/images/bags/sophia";
 
 export const BAGS_KEYS = [
+  "jane",
   "juventas",
   "maya",
   "reya",
@@ -97,6 +99,10 @@ export const BAGS_DATA: Record<string, IBag> = {
   iris: {
     imgs: IRIS_IMGS,
     thumbnail: IRIS_IMGS[0],
+  },
+  jane: {
+    imgs: JANE_IMGS,
+    thumbnail: JANE_IMGS[0],
   },
   juno: {
     imgs: JUNO_IMGS,

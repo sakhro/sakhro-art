@@ -143,7 +143,7 @@ module.exports = {
         minifyURLs: true,
       },
     }),
-    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime/]),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async'
     }),

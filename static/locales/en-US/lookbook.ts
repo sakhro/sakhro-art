@@ -12,6 +12,7 @@ export default {
   harmony: "Harmony",
   hubris: "Hubris",
   iris: "Iris",
+  jane: "Jane",
   juno: "Juno",
   juventas: "Juventas",
   kandinsky: "Kandinsky",
