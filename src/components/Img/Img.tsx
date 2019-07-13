@@ -13,13 +13,22 @@ export const Img: FC<IProps> = props => {
 
   useEffect(() => {
     const img = new Image();
-    img.onload = () => {
+
+    if (img.onload) {
+      img.onload = () => {
+        setSrc(props.src);
+
+        if (props.onImgLoad) {
+          props.onImgLoad();
+        }
+      };
+    } else {
       setSrc(props.src);
 
       if (props.onImgLoad) {
         props.onImgLoad();
       }
-    };
+    }
     img.src = props.src;
   }, [props.src, props.onImgLoad]);
 

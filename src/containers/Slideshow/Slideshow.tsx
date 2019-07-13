@@ -50,9 +50,9 @@ export const Slideshow: FC<IProps> = props => {
       >
         {props.items.map((item) => (
           <Img
-            alt="test"
             key={item.id}
             src={item.src}
+            alt="Olesya Sakhro Bags"
             imgClassName={props.imgClassName}
           />
         ))}

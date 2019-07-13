@@ -1,15 +1,11 @@
 @import "src/styles/base";
 
 .container {
-  @include size(100%, auto);
+  @include size(100%);
   @include my(0.5);
   @include relative;
 
-  transition: box-shadow 300ms ease-out;
-
   &:hover {
-    box-shadow: 0 4px 8px 5px rgba($color-black, 0.05);
-
     .title {
       opacity: 1;
     }
@@ -24,4 +20,10 @@
     opacity: 0;
     transition: opacity 300ms ease-out;
   }
+}
+
+.thumbnail {
+  @include size(100%, 400px);
+
+  object-fit: contain
 }

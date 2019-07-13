@@ -9,8 +9,10 @@ export const ProductCard: FC<IProps> = props => (
   <article className={c.container}>
     <Link to={`lookbook/${props.id}`}>
       <Img
+        customHeight
         alt={props.title}
-        src="https://via.placeholder.com/620x1000"
+        src={props.thumbnail}
+        imgClassName={c.thumbnail}
       />
     </Link>
     <Typography
@@ -21,8 +23,3 @@ export const ProductCard: FC<IProps> = props => (
     </Typography>
   </article>
 );
-
-ProductCard.defaultProps = {
-  id: "sophia",
-  title: "Sophia",
-};

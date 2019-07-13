@@ -6,7 +6,8 @@ interface IReduxAction<P = null, S = {}, E = {}> {
 }
 
 interface IBag {
-  id: string;
+  thumbnail: string;
+  imgs: string[];
 }
 
 interface IGlobalState {
@@ -16,7 +17,8 @@ interface IGlobalState {
 }
 
 interface ILookbookState {
-  bags: IBag[];
+  bagsKeys: string[];
+  bags: Record<string, IBag>;
   isLoading: false;
 }
 

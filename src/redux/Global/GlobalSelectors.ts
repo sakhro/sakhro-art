@@ -1,4 +1,4 @@
-import { pathOr } from "ramda";
+import pathOr from "ramda/es/pathOr";
 import { createSelector } from "reselect";
 
 import { HISTORY, HOME, LOOKBOOK } from "@constants/url";

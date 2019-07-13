@@ -4,6 +4,7 @@ const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const appDirectory = fs.realpathSync(process.cwd());
 
@@ -66,15 +67,9 @@ module.exports = {
     ]
   },
   optimization: {
-    runtimeChunk: 'single',
     splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all'
-        }
-      }
+      chunks: 'all',
+      name: false
     }
   },
   module: {
@@ -120,28 +115,9 @@ module.exports = {
             options: {
               limit: 8192,
               fallback: 'file-loader',
-              name: "./static/images/[hash]-[name].[ext]"
+              name: "static/images/[hash]-[name].[ext]"
             }
-          },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65
-              },
-              optipng: {
-                enabled: true,
-              },
-              pngquant: {
-                quality: '65-90',
-                speed: 4
-              },
-              webp: {
-                quality: 75
-              }
-            }
-          },
+          }
         ]
       }
     ]
@@ -170,6 +146,7 @@ module.exports = {
     new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async'
-    })
+    }),
+    // new BundleAnalyzerPlugin()
   ]
 };
