@@ -3,5 +3,4 @@ export interface IProps {
   imgClassName?: string;
   items?: any[];
   autoPlay?: boolean;
-  grid?: boolean;
 }

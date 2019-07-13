@@ -31,7 +31,7 @@ export const Slideshow: FC<IProps> = props => {
   };
 
   const onBolletClick = (index: number) => () => {
-    setActive(index - 1);
+    setActive(index);
   };
 
   return (
@@ -59,13 +59,4 @@ export const Slideshow: FC<IProps> = props => {
       </SwipeableViews>
     </Fragment>
   );
-};
-
-Slideshow.defaultProps = {
-  items: [
-    { id: 1, src: "https://via.placeholder.com/620x1000" },
-    { id: 2, src: "https://via.placeholder.com/820x1000" },
-    { id: 3, src: "https://via.placeholder.com/620x1200" },
-    { id: 4, src: "https://via.placeholder.com/720x800" },
-  ],
 };

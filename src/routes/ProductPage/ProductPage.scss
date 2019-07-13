@@ -4,15 +4,3 @@
   @include flex($direction: column);
   @include size(auto, calc(100vh - 60px));
 }
-
-.slideshow {
-  height: 80%;
-  
-  @include media-breakpoint-up(md) {
-    max-width: 50%;
-  }
-}
-
-.slideshowImg {
-  float: right;
-}

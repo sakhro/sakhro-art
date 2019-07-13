@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, Fragment, useMemo } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FormattedMessage } from "react-intl";
 
@@ -8,6 +8,7 @@ import { PAGE_TITLE } from "@config/global";
 import { MESSAGES } from "@config/i18n";
 import { interpolator } from "@services/helpers";
 import { useScrollOffset } from "@services/hooks";
+import { getPageKey, getProdutKey, isHomePage, isProductPage } from "@services/navigation";
 
 import c from "./Header.scss";
 import { IProps } from "./types";
@@ -33,22 +34,30 @@ export const Header: FC<IProps> = props => {
       style={containerStyle}
       className={c.container}
     >
-      {props.isProductPage && (
-        <Button
-          className={c.backButton}
-          onClick={props.history.goBack}
-        >
-          <IoIosArrowRoundBack className={c.arrowIcon} />
-        </Button>
+      {isProductPage(props) && (
+        <Fragment>
+          <Button
+            className={c.backButton}
+            onClick={props.history.goBack}
+          >
+            <IoIosArrowRoundBack className={c.arrowIcon} />
+          </Button>
+          <Typography component="h1" className={c.primaryTitle}>
+            <FormattedMessage
+              id={`lookbook.${getProdutKey(props)}`}
+              defaultMessage={MESSAGES[`lookbook.${getProdutKey(props)}`]}
+            />
+          </Typography>
+        </Fragment>
       )}
-      {!props.isProductPage && (
+      {!isProductPage(props) && (
         <Typography component="h1" className={c.primaryTitle}>
-          {props.isHomePage
+          {isHomePage(props)
             ? PAGE_TITLE
             : (
               <FormattedMessage
-                id={props.pageTitleKey}
-                defaultMessage={MESSAGES[props.pageTitleKey]}
+                id={`common.${getPageKey(props)}`}
+                defaultMessage={MESSAGES[`common.${getProdutKey(props)}`]}
               />
             )}
         </Typography>

@@ -1,21 +1,22 @@
 import cn from "classnames";
 import React, { FC } from "react";
+import { InjectedIntlProps } from "react-intl";
 
 import { ProductCard} from "@components";
 import { MESSAGES } from "@config/i18n";
+import { BAGS_DATA, BAGS_KEYS } from "@constants/lookbook";
 
 import c from "./ProductsGrid.scss";
-import { IProps } from "./types";
 
-const getTitle = (props: IProps, key: string) =>
+const getTitle = (props: InjectedIntlProps, key: string) =>
   props.intl.formatMessage({
     defaultMessage: MESSAGES[`lookbook.${key}`],
-    id: key,
+    id: `lookbook.${key}`,
   });
 
-export const ProductsGrid: FC<IProps> = props => (
+export const ProductsGrid: FC<InjectedIntlProps> = props => (
   <ul className={c.container}>
-    {props.bagsKeys.map((key, idx) => (
+    {BAGS_KEYS.map((key, idx) => (
       <li
         key={key}
         className={cn(c.productCard, idx % 2 && c.even)}
@@ -23,7 +24,7 @@ export const ProductsGrid: FC<IProps> = props => (
         <ProductCard
           id={key}
           title={getTitle(props, key)}
-          thumbnail={props.bags[key].thumbnail}
+          thumbnail={BAGS_DATA[key].thumbnail}
         />
       </li>
     ))}

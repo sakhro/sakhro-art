@@ -1,16 +1,11 @@
 import React from "react";
 
-import { ContactMe, Slideshow } from "@containers";
+import { Product } from "@containers";
 
 import c from "./ProductPage.scss";
 
 export const ProductPage = () => (
-  <div className={c.container}>
-    <Slideshow
-      grid
-      className={c.slideshow}
-      imgClassName={c.slideshowImg}
-    />
-    <ContactMe />
-  </div>
+  <section className={c.container}>
+    <Product />
+  </section>
 );

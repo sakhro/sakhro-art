@@ -45,7 +45,7 @@ export const BAGS_KEYS = [
   "maya",
 ];
 
-export const BAGS_DATA = {
+export const BAGS_DATA: Record<string, IBag> = {
   asteria: {
     imgs: ASTERIA_IMGS,
     thumbnail: ASTERIA_IMGS[0],
