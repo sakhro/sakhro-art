@@ -12,6 +12,7 @@ export default {
   harmony: "Гармонія",
   hubris: "Гібріс",
   iris: "Ірис",
+  jane: "Джейн",
   juno: "Юнона",
   juventas: "Ювента",
   kandinsky: "Кандінський",

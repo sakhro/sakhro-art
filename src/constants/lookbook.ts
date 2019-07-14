@@ -11,17 +11,20 @@ import { FISH_IMGS  } from "static/images/bags/fish";
 import { HARMONY_IMGS } from "static/images/bags/harmony";
 import { HUBRIS_IMGS} from "static/images/bags/hubris";
 import { IRIS_IMGS  } from "static/images/bags/iris";
+import { JANE_IMGS  } from "static/images/bags/jane";
 import { JUNO_IMGS } from "static/images/bags/juno";
 import { JUVENTAS_IMGS } from "static/images/bags/juventas";
 import { KANDINSKY_IMGS  } from "static/images/bags/kandinsky";
 import { MALVA_IMGS  } from "static/images/bags/malva";
 import { MARTRICARIA_IMGS  } from "static/images/bags/martricaria";
 import { MAYA_IMGS } from "static/images/bags/maya";
-// import { PAPAVER_IMGS  } from "static/images/bags/papaver";
+import { PAPAVER_IMGS  } from "static/images/bags/papaver";
 import { REYA_IMGS } from "static/images/bags/reya";
 import { SOPHIA_IMGS  } from "static/images/bags/sophia";
 
 export const BAGS_KEYS = [
+  "papaver",
+  "jane",
   "juventas",
   "maya",
   "reya",
@@ -98,6 +101,10 @@ export const BAGS_DATA: Record<string, IBag> = {
     imgs: IRIS_IMGS,
     thumbnail: IRIS_IMGS[0],
   },
+  jane: {
+    imgs: JANE_IMGS,
+    thumbnail: JANE_IMGS[0],
+  },
   juno: {
     imgs: JUNO_IMGS,
     thumbnail: JUNO_IMGS[0],
@@ -121,6 +128,10 @@ export const BAGS_DATA: Record<string, IBag> = {
   maya: {
     imgs: MAYA_IMGS,
     thumbnail: MAYA_IMGS[0],
+  },
+  papaver: {
+    imgs: PAPAVER_IMGS,
+    thumbnail: PAPAVER_IMGS[0],
   },
   reya: {
     imgs: REYA_IMGS,
