@@ -18,11 +18,12 @@ import { KANDINSKY_IMGS  } from "static/images/bags/kandinsky";
 import { MALVA_IMGS  } from "static/images/bags/malva";
 import { MARTRICARIA_IMGS  } from "static/images/bags/martricaria";
 import { MAYA_IMGS } from "static/images/bags/maya";
-// import { PAPAVER_IMGS  } from "static/images/bags/papaver";
+import { PAPAVER_IMGS  } from "static/images/bags/papaver";
 import { REYA_IMGS } from "static/images/bags/reya";
 import { SOPHIA_IMGS  } from "static/images/bags/sophia";
 
 export const BAGS_KEYS = [
+  "papaver",
   "jane",
   "juventas",
   "maya",
@@ -127,6 +128,10 @@ export const BAGS_DATA: Record<string, IBag> = {
   maya: {
     imgs: MAYA_IMGS,
     thumbnail: MAYA_IMGS[0],
+  },
+  papaver: {
+    imgs: PAPAVER_IMGS,
+    thumbnail: PAPAVER_IMGS[0],
   },
   reya: {
     imgs: REYA_IMGS,
