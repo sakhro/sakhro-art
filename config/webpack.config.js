@@ -57,7 +57,8 @@ module.exports = {
     chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    historyApiFallback: true
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
@@ -121,9 +122,6 @@ module.exports = {
         ]
       }
     ]
-  },
-  devServer: {
-    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
